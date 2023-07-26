@@ -1,6 +1,5 @@
 package board.free.project1.service;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,8 +22,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class ReplyServiceImpl  implements ReplyService{
-
+public class ReplyServiceImpl implements ReplyService {
 
     private final ReplyRepository replyRepository;
     private final ModelMapper modelMapper;
@@ -33,33 +31,29 @@ public class ReplyServiceImpl  implements ReplyService{
     public PageResponseDTO<ReplyDTO> list(ReplyPageRequestDTO requestDTO) {
 
         boolean last = requestDTO.isLast();
-        
+
         int pageNum = requestDTO.getPage();
 
-        if(last){
+        if (last) {
             long totalCount = replyRepository.getCountBoard(requestDTO.getBno());
-            
-           pageNum = (int)(Math.ceil (totalCount/ (double)requestDTO.getSize()));
-           pageNum = pageNum<=0? 1: pageNum;
+
+            pageNum = (int) (Math.ceil(totalCount / (double) requestDTO.getSize()));
+            pageNum = pageNum <= 0 ? 1 : pageNum;
         }
 
-        Pageable pageable = PageRequest.of(pageNum-1,requestDTO.getSize(),Sort.by("rno").ascending());
+        Pageable pageable = PageRequest.of(pageNum - 1, requestDTO.getSize(), Sort.by("rno").ascending());
 
         Page<Reply> result = replyRepository.listBoard((requestDTO.getBno()), pageable);
 
         log.info("--------------------------------------------");
 
-        
-        long totalReplyCount =result.getTotalElements();
+        long totalReplyCount = result.getTotalElements();
 
-        List<ReplyDTO> dtoList =
-        result.get()
-        .map(entity-> modelMapper.map(entity, ReplyDTO.class) )
-        .collect(Collectors.toList());
+        List<ReplyDTO> dtoList = result.get()
+                .map(entity -> modelMapper.map(entity, ReplyDTO.class))
+                .collect(Collectors.toList());
 
-        
-
-       PageResponseDTO<ReplyDTO> responseDTO = new PageResponseDTO<>(dtoList, totalReplyCount, requestDTO);
+        PageResponseDTO<ReplyDTO> responseDTO = new PageResponseDTO<>(dtoList, totalReplyCount, requestDTO);
         responseDTO.setPage(pageNum);
 
         return responseDTO;
@@ -68,7 +62,6 @@ public class ReplyServiceImpl  implements ReplyService{
 
     @Override
     public Long register(ReplyDTO replyDTO) {
-       
 
         Reply reply = modelMapper.map(replyDTO, Reply.class);
 
@@ -76,15 +69,18 @@ public class ReplyServiceImpl  implements ReplyService{
         log.info(reply);
 
         Long newRno = replyRepository.save(reply).getRno();
+        log.info(newRno);
+        log.info("내가 알고 싶은 값");
+
 
         return newRno;
     }
 
     @Override
     public ReplyDTO read(Long rno) {
-        
+
         Optional<Reply> result = replyRepository.findById(rno);
-        
+
         Reply reply = result.orElseThrow();
 
         return modelMapper.map(reply, ReplyDTO.class);
@@ -92,9 +88,8 @@ public class ReplyServiceImpl  implements ReplyService{
 
     @Override
     public void remove(Long rno) {
-     
+
         Optional<Reply> result = replyRepository.findById(rno);
-        
 
         Reply reply = result.orElseThrow();
 
@@ -106,9 +101,8 @@ public class ReplyServiceImpl  implements ReplyService{
 
     @Override
     public void modify(ReplyDTO replyDTO) {
-        
+
         Optional<Reply> result = replyRepository.findById(replyDTO.getRno());
-        
 
         Reply reply = result.orElseThrow();
 
@@ -117,5 +111,5 @@ public class ReplyServiceImpl  implements ReplyService{
 
         replyRepository.save(reply);
     }
-    
+
 }

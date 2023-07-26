@@ -41,21 +41,24 @@ public class BoardServiceImpl implements BoardService {
 
         Optional<Board> result = boardRepository.findById(bno);
 
-        Board board = result.orElseThrow();
+        Board board = result.orElseThrow(); 
 
         BoardDTO dto = modelMapper.map(board, BoardDTO.class);
+        // board => dto로 db에 있는 것을 가져와서 보여준다.
 
         return dto;
     }
 
     @Override
     public Long register(BoardDTO boardDTO) {
+
         Board board = modelMapper.map(boardDTO, Board.class);
+        // 등록을 눌렀을 때 boardDTO가 파라미터로 들어오고 mapper를 사용해서 Board db에 매칭시킨다.
 
         log.info("Board....");
-        log.info(board);
+        log.info(board); // db 값
 
-        Long newBno = boardRepository.save(board).getBno();
+        Long newBno = boardRepository.save(board).getBno(); //db값을 저장한다.
 
         return newBno;
 

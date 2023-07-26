@@ -16,7 +16,6 @@ import board.free.project1.dto.BoardDTO;
 import board.free.project1.dto.BoardListRcntDTO;
 import board.free.project1.dto.PageRequestDTO;
 import board.free.project1.dto.PageResponseDTO;
-import board.free.project1.dto.ReplyDTO;
 import board.free.project1.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
