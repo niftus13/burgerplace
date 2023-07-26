@@ -9,7 +9,7 @@ const ListSearchComponent = ({moveSearch, queryObj}) => {
 
   useEffect(() => {
 
-    searchObj.type = queryObj.type || ''
+    searchObj.type = queryObj.type || 'tc'
     searchObj.keyword = queryObj.keyword ||''
 
     console.log("===========searchobj=============")

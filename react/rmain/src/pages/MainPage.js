@@ -1,25 +1,31 @@
-import { useState } from "react";
-import BasicLayout from "../layouts/BasicLayout";
 import { useNavigate } from "react-router-dom";
+import BasicLayout from "../layouts/BasicLayout";
+import { useState } from "react";
 import MainSearchComponent from "../components/main/MainSearchComponent";
+
 
 
 const MainPage = () => {
 
   const navigate = useNavigate();
+  const [searchData, setSearchData] = useState({ type: "tc", keyword: "" });
 
-  const moveSearch = (type, keyword) => {
+  const moveSearch = () => {
+    const queryString = new URLSearchParams(searchData).toString();
+    navigate(`/board/list?${queryString}`);
+  };
+  
 
-    const queryString = `?type=${type}&keyword=${keyword}`;
-
-    navigate.push("/board/list" + queryString);
-  }
 
   return ( 
     <BasicLayout>
       <h2>Main Page</h2>
       <h1>TOP3</h1>
-      <MainSearchComponent moveSearch={moveSearch} queryObj={{ type: "", keyword: "" }}/>
+      <MainSearchComponent
+        moveSearch={moveSearch}
+        queryObj={searchData}
+        setSearch={setSearchData}
+      />
     </BasicLayout>
    );
 }

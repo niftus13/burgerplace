@@ -1,45 +1,17 @@
-import { useEffect, useState } from "react";
+import React from "react";
 
-
-const MainSearchComponent = ({moveSearch, queryObj}) => {
-
-  console.log("SearchComponent----------------------------")
-  
-  const [searchObj, setSearchObj] = useState({type:'',keyword:''})
-
-  useEffect(() => {
-
-    searchObj.type = queryObj.type || ''
-    searchObj.keyword = queryObj.keyword ||''
-
-    console.log("===========searchobj=============")
-    console.log(searchObj)
-
-    setSearchObj({...searchObj})
-
-  },[queryObj])
-
-
-  return ( 
+const MainSearchComponent = ({ moveSearch, queryObj, setSearch }) => {
+  return (
     <div className="m-4 p-4 bg-blue-300 border-2">
-      
-      <input 
-      type='text'
-      className="border-1 m-2 p-2"
-      value={searchObj.keyword}
-      onChange={ e => {
-        searchObj.keyword = e.target.value
-        setSearchObj({...searchObj})
-      }}
-      ></input>
-      
-      <button 
-      className="p-2 m-2 border-2"
-      onClick={ e => moveSearch(searchObj.type, searchObj.keyword )}
-      >SEARCH</button>
-    
+      <input
+        type="text"
+        className="border-1 m-2 p-2"
+        value={queryObj.keyword}
+        onChange={(e) => setSearch({ ...queryObj, keyword: e.target.value })}
+      />
+      <button onClick={moveSearch}>SEARCH</button>
     </div>
   );
-}
- 
+};
+
 export default MainSearchComponent;
