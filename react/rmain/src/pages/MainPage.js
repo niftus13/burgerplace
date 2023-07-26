@@ -42,7 +42,6 @@ const MainPage = () => {
         queryObj={searchData}
         setSearch={setSearchData}
       />
-      <ListSearchComponent moveSearch={moveSearch} queryObj={queryObj} setSearch={setSearch} />
       <h1>============작은지도============</h1>
       <h1>H-----------------------------------------------H</h1>
       <h1>H-----------------------------------------------H</h1>
