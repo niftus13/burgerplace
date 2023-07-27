@@ -46,5 +46,9 @@ public class Product {
     public void clearImages(){
         images.clear();
     }
+
+    public void changePrice() {
+        this.price = price;
+    }
     
 }
