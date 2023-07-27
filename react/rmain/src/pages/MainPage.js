@@ -5,6 +5,8 @@ import MainSearchComponent from "../components/main/MainSearchComponent";
 import ListSearchComponent from "../components/board/ListSearchComponent";
 import useQueryObj from "../hooks/useQueryObj";
 import MainListComponent from "../components/main/MainListComponent";
+import MainFreeBoard from "../components/main/MainFreeBoard";
+import MainTradeBoard from "../components/main/MainTradeBoard";
 
 
 
@@ -51,7 +53,9 @@ const MainPage = () => {
       <h1>행사상품</h1>
       <MainListComponent queryObj={queryObjWithSize} movePage={moveList} moveRead={moveRead} />
       <h1>거래게시판</h1>
+      <MainTradeBoard queryObj={queryObjWithSize} movePage={moveList} moveRead={moveRead}></MainTradeBoard>
       <h1>자유게시판</h1>
+      <MainFreeBoard queryObj={queryObjWithSize} movePage={moveList} moveRead={moveRead}/>
     </BasicLayout>
   );
 }
