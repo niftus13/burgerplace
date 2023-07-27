@@ -29,7 +29,6 @@ public class FileBoardSearchImpl extends QuerydslRepositorySupport implements Fi
         // Join을 사용할수 없기때문에
         // Batch Size를 이용해서 사용한다.
         QFileBoard board = QFileBoard.fileBoard;
-
         JPQLQuery<FileBoard> query = from(board);
 
 
