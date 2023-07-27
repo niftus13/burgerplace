@@ -88,7 +88,52 @@ public class RepositoryTests {
     public void testListQuerydsl(){
 
         PageRequestDTO requestDTO = new PageRequestDTO();
-        repository.list(requestDTO);
+        System.out.println(repository.list(requestDTO));
+
+    }
+
+    @Test        
+    public void testSelectOne() {
+
+        Long bno = 75L;
+
+        FileBoard board = repository.selectOne(bno);
+
+        System.out.println(board);
+        System.out.println(board.getImages());
+    }
+
+    @Transactional
+    @Commit
+    @Test
+    public void testDelete() {
+
+        Long bno = 100L;
+
+        repository.deleteById(bno);
+    }
+
+    @Transactional
+    @Commit
+    @Test
+    public void testUpdate() {
+
+        Long bno = 20L;
+
+        Optional<FileBoard> result = repository.findById(bno);
+
+        FileBoard board = result.orElseThrow();
+
+        board.cleanImages();
+
+        FileBoardImage img1 = FileBoardImage.builder()
+                .uuid(UUID.randomUUID().toString())
+                .fname("zzz.jpg")
+                .build();
+
+       board.addImage(img1);
+
+       repository.save(board);
 
     }
 }

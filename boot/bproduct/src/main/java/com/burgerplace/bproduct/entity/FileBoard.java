@@ -38,7 +38,8 @@ public class FileBoard {
     private String writer;
 
     // 종속성 설정, 부모가 상태가 변하면 자식도 변하게 한다
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    // @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "board")
     @Builder.Default
     // size 값 만큼 한번에 처리한다
@@ -51,5 +52,9 @@ public class FileBoard {
         boardImage.changeOrd(images.size());
 
         images.add(boardImage);
+    }
+
+    public void cleanImages() {
+        images.clear();
     }
 }
