@@ -3,8 +3,11 @@ package com.burgerplace.bproduct.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.BatchSize;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +24,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "images") // images를 제외한다
 public class FileBoard {
     
     @Id
@@ -35,9 +38,11 @@ public class FileBoard {
     private String writer;
 
     // 종속성 설정, 부모가 상태가 변하면 자식도 변하게 한다
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
     @JoinColumn(name = "board")
     @Builder.Default
+    // size 값 만큼 한번에 처리한다
+    @BatchSize(size = 20)
     private List<FileBoardImage> images = new ArrayList<>();
 
     public void addImage(FileBoardImage boardImage) {
