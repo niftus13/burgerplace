@@ -16,6 +16,8 @@ public class RootConfig {
                 .setFieldAccessLevel(org.modelmapper.config.Configuration.AccessLevel.PRIVATE)
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
 
+                // 설정파일이다. 없어도 된다.
+
         return modelMapper;
     }
 }

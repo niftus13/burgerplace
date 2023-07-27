@@ -13,5 +13,4 @@ public interface BoardService {
 
     BoardDTO getOne(Long bno);
 
-    Long register (BoardDTO boardDTO);
 }

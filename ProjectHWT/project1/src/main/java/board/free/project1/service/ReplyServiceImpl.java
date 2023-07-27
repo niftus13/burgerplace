@@ -64,52 +64,72 @@ public class ReplyServiceImpl implements ReplyService {
     public Long register(ReplyDTO replyDTO) {
 
         Reply reply = modelMapper.map(replyDTO, Reply.class);
+        // 모델매퍼를 통해서 dto로 들어온 매개변수를 엔티티로 매칭시킨다.
 
         log.info("reply....");
+        
         log.info(reply);
+        // entity 속성으로 log가 나온다.
 
         Long newRno = replyRepository.save(reply).getRno();
+        // 레파지토리에 모델매퍼로 매칭된 엔티티 객체를 저장하고 오토incre를 반환한다.
         log.info(newRno);
         log.info("내가 알고 싶은 값");
 
 
-        return newRno;
+        return newRno; // 오토 인크리 반환
     }
 
     @Override
     public ReplyDTO read(Long rno) {
 
         Optional<Reply> result = replyRepository.findById(rno);
+        // null처리 쉽게 하려고 Optional를 사용한다. 매개변수로 들어온 rno를 통해 해당 로우를 가져와서 result에 넣는다.
 
         Reply reply = result.orElseThrow();
+        // 예외 발생하면 처리해라
 
         return modelMapper.map(reply, ReplyDTO.class);
+        // 엔티티 객체를 dto 객체로 변환한 것을 반환한다.
     }
 
     @Override
     public void remove(Long rno) {
 
         Optional<Reply> result = replyRepository.findById(rno);
+        // 매개변수로 들어온 rno를 통해 row를 가져온다. null 처리 => optional
 
         Reply reply = result.orElseThrow();
+        // 예외 처리
 
         reply.changeText("해당 글은 삭제 되었습니다.");
+        // setter 메서드라 생각하면 된다. reply 엔티티 객체의 text를 변환한다.
+
         reply.changeFile(null);
+        // null 처리한다.
 
         replyRepository.save(reply);
+        // 그 값을 db에 저장한다.
     }
 
     @Override
     public void modify(ReplyDTO replyDTO) {
 
         Optional<Reply> result = replyRepository.findById(replyDTO.getRno());
+        // DTO가 매개변수로 들어온다. dto의 getRno를 가져온다. 등록되어 있으니까 rno 있다.
 
         Reply reply = result.orElseThrow();
+        // 예외 처리
 
         reply.changeText(replyDTO.getReplyText());
+        // replyDTO, 화면단에서 적은거 가져온다. 그리고 setter로 바꿔준다.
+
         reply.changeFile(replyDTO.getReplyFile());
+        // replyDTO, 화면단에서 적은거 가져온다. 그리고 setter로 바꿔준다.
+
 
         replyRepository.save(reply);
+        // 그 값을 저장한다. 반환값은 없다.
     }
 
 }

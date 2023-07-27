@@ -1,14 +1,11 @@
 package board.free.project1.controller;
 
-import java.util.Map;
 
 import org.springdoc.core.annotations.ParameterObject;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,15 +40,4 @@ public class BoardController {
         return  boardService.getOne(bno);
     }
 
-    @PostMapping("")
-    public Map<String, Long> register( @RequestBody BoardDTO boardDTO){
-
-        log.info("boardController.........");
-        log.info(boardDTO);
-
-        Long newBno = boardService.register(boardDTO);
-
-        return Map.of("result", newBno);
-
-    }
 }
