@@ -29,7 +29,7 @@ const ListComponent = ({queryObj, movePage, moveRead}) => {
 
     },[queryObj])
     // use*** = 컴포넌트 안에서만. 아닐경우는 함수로 사용가능
-    // console.log(createSearchParams(queryObj).toString())
+    console.log(createSearchParams(queryObj).toString()+"홍원태")
 
 
     return ( 

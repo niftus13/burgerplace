@@ -21,8 +21,6 @@ const ReadComponent = ({bno}) => {
     },[bno])
 
 
-
-
     return ( 
         <div>
             <div>{board.bno}</div>

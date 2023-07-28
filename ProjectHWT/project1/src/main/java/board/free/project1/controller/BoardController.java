@@ -28,12 +28,13 @@ public class BoardController {
 
     @GetMapping(value ="/list")
     public PageResponseDTO<BoardListRcntDTO> list (@ParameterObject  PageRequestDTO requestDTO){
-
+        // 파라미터가 객체형식으로 들어오는 것을 받아준다.
         log.info(requestDTO);
 
         return boardService.listRcnt(requestDTO);
         
     }
+
     @GetMapping("{bno}")
     public BoardDTO get(@PathVariable("bno") Long bno){
 
