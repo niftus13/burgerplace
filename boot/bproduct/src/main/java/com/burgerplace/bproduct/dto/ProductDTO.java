@@ -1,5 +1,6 @@
 package com.burgerplace.bproduct.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -24,9 +25,11 @@ public class ProductDTO {
     private String pdesc;
     private int price;
 
-    private List<String> images;
+    @Builder.Default
+    private List<String> images = new ArrayList<>();
 
     // 등록/수정 업로드된  파일 데이터를 수집하는 용도
-    private List<MultipartFile> files;
+    @Builder.Default
+    private List<MultipartFile> files = new ArrayList<>();
 
 }
