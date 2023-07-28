@@ -35,6 +35,10 @@ public class Product {
 
     private int price;
 
+    // column이 되니 조심하게 만들어야 된다.
+    // delFlag
+    private boolean delFlag;
+
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private List<ProductImage> images = new ArrayList<>();
@@ -56,4 +60,16 @@ public class Product {
         this.price = price;
     }
     
+    public void changePname(String pname) {
+        this.pname = pname;
+    }
+
+    public void changePdesc(String pdesc) {
+        this.pdesc = pdesc;
+    }
+
+    public void changeDel(boolean delFlag) {
+        this.delFlag = delFlag;
+    }
+
 }
