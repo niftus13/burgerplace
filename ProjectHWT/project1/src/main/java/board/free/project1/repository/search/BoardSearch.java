@@ -1,5 +1,4 @@
 package board.free.project1.repository.search;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,12 +29,18 @@ public interface BoardSearch {
 
     // DTO로 받는 검색방식 method
     PageResponseDTO<BoardListRcntDTO> searchDTORcnt(PageRequestDTO requestDTO);
+    // service를 통해서 여기에 왔다. pageRequestDTO 매개변수로 주고 구현체로 가자.
+
+
+
+
+
 
     // Pageable을 반환하는 것을 만들어주는 method
     default Pageable makePageable(PageRequestDTO requestDTO){
 
         Pageable pageable = PageRequest.of(
-            requestDTO.getPage() -1,
+            requestDTO.getPage() -1, 
             requestDTO.getSize(),
             Sort.by("bno").descending()
             );
