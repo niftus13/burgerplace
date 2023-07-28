@@ -30,8 +30,11 @@ public class BoardServiceImpl implements BoardService {
 
         log.info("--------------------------");
         log.info(pageRequestDTO);
+        // 제대로 왔니? => 확인해보니까 pageRequestDTO page=1, size=10, k,t=null 출력된다.
 
         return boardRepository.searchDTORcnt(pageRequestDTO);
+        // 자 이제 repository에 searchDTORcnt로 가서 pageRequestDTO page=1, size=10, k,t=null를 매개변수로 주자.
+        // 그리고 그 결과를 반환하장!!
 
     }
 

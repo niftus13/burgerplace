@@ -28,10 +28,17 @@ public class BoardController {
 
     @GetMapping(value ="/list")
     public PageResponseDTO<BoardListRcntDTO> list (@ParameterObject  PageRequestDTO requestDTO){
-        // 파라미터가 객체형식으로 들어오는 것을 받아준다.
+        // 파라미터가 객체형식으로 모두 들어오는 것을 받아준다.
+        // 일단 requestDTO가 들어온다.
         log.info(requestDTO);
+        // 한번 찍어보렴
+        // page=1, size=10, keyword=null, type=null
+
+        log.info(boardService.listRcnt(requestDTO)+"홍원태 서비스 리스트 리퀘스트디트오 전사");
 
         return boardService.listRcnt(requestDTO);
+        // 이제 service의 listRcnt에 requestDTO를 넣자고 그 결과를 리턴하자.
+        
         
     }
 

@@ -135,15 +135,22 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
     }
 
+
+
+
     @Override
     public PageResponseDTO<BoardListRcntDTO> searchDTORcnt(PageRequestDTO requestDTO) {
         
+    // 지금 pageRequestDTO의 값이 매개변수로 들어온 길을 따라 여기까지 왔다.
+
         Pageable pageable = makePageable(requestDTO);
+        log.info(pageable+"홍원태");
 
         QBoard board = QBoard.board;
         QReply reply = QReply.reply;
+        // 모델 매퍼 매칭 설정 
 
-        // JPQL로 보드 관련 테이블 만드는데 board에서 만든다
+        // JPQL로 보드 관련 테이블 만드는데 board에서 만든다.
         JPQLQuery<Board> query = from(board);
         // left join 항상 left join거는 쪽을 기준으로 잡는다.
         query.leftJoin(reply).on(reply.board.eq(board));
@@ -192,12 +199,15 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         List<BoardListRcntDTO> list = listQuery.fetch();
 
         log.info("--------------------------");
-        log.info(list);
+        log.info(list+"홍원태 list 전사");
 
         long totalCount = listQuery.fetchCount();
+        log.info(totalCount+ "홍원태 totalCount 전사");
+        log.info(requestDTO+"홍원태 requestDTO전사");
 
 
         return new PageResponseDTO<>(list, totalCount, requestDTO);
+        // 이를 반환한다.
 
     }
 

@@ -29,7 +29,7 @@ const ListComponent = ({queryObj, movePage, moveRead}) => {
 
         getList(queryObj).then(data => {
             // axios로 queryObj가 실행되어 값을 가져오면... data에 담기게 된다.
-            console.log(data)
+            console.log(data, "홍원태 전사", "홍원태 워리어", "리버풀 전사")
             // 콘솔로 찍어서 값을 가져온다.
             setListData(data)
             // 함수를 이용해서 상태를 바꿔준다.
