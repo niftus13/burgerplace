@@ -10,13 +10,11 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import com.burgerplace.bproduct.dto.FileBoardListDTO;
 import com.burgerplace.bproduct.dto.PageRequestDTO;
 import com.burgerplace.bproduct.dto.PageResponseDTO;
-import com.burgerplace.bproduct.dto.ProductListDTO;
+
 import com.burgerplace.bproduct.entity.FileBoard;
-import com.burgerplace.bproduct.entity.Product;
+
 import com.burgerplace.bproduct.entity.QFileBoard;
 import com.burgerplace.bproduct.entity.QFileBoardImage;
-import com.burgerplace.bproduct.entity.QProduct;
-import com.burgerplace.bproduct.entity.QProductImage;
 
 import lombok.extern.log4j.Log4j2;
 

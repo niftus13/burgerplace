@@ -13,4 +13,6 @@ public interface ProductService {
     PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO);
 
     Long register(ProductDTO productDTO);
+
+    ProductDTO readOne(Long pno);
 }
