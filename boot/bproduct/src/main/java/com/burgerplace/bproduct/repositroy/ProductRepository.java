@@ -11,6 +11,6 @@ import com.burgerplace.bproduct.repositroy.search.ProductSearch;
 public interface ProductRepository extends JpaRepository<Product, Long>, ProductSearch {
     
     @EntityGraph(attributePaths = "images")
-    @Query("select p from Product p where p.pno = :pno")
+    @Query("select p from Product p where p.delFlag = false and p.pno = :pno ")
     Product selectOne(@Param("pno")Long pno);
 }
