@@ -32,3 +32,4 @@ public class ProductReview {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+}

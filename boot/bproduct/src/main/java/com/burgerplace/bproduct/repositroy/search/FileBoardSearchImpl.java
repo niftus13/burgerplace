@@ -10,16 +10,20 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import com.burgerplace.bproduct.dto.FileBoardListDTO;
 import com.burgerplace.bproduct.dto.PageRequestDTO;
 import com.burgerplace.bproduct.dto.PageResponseDTO;
+import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.FileBoard;
+import com.burgerplace.bproduct.entity.Product;
 import com.burgerplace.bproduct.entity.QFileBoard;
 import com.burgerplace.bproduct.entity.QFileBoardImage;
+import com.burgerplace.bproduct.entity.QProduct;
+import com.burgerplace.bproduct.entity.QProductImage;
 
 import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 
 @Log4j2
-public class FileBoardSearchImpl extends QuerydslRepositorySupport implements FileBoardSearch{
+public class FileBoardSearchImpl extends QuerydslRepositorySupport implements FileBoardSearch {
 
     public FileBoardSearchImpl() {
         super(FileBoard.class);
@@ -34,12 +38,11 @@ public class FileBoardSearchImpl extends QuerydslRepositorySupport implements Fi
         QFileBoardImage boardImage = QFileBoardImage.fileBoardImage;
 
         JPQLQuery<FileBoard> query = from(board);
-        
+
         query.leftJoin(board.images, boardImage);
         query.where(boardImage.ord.eq(0));
 
-
-        int pageNum = pageRequestDTO.getPage()-1 <0?0: pageRequestDTO.getPage()-1;
+        int pageNum = pageRequestDTO.getPage() - 1 < 0 ? 0 : pageRequestDTO.getPage() - 1;
 
         Pageable pageable = PageRequest.of(
                 pageNum,
@@ -49,21 +52,19 @@ public class FileBoardSearchImpl extends QuerydslRepositorySupport implements Fi
         this.getQuerydsl().applyPagination(pageable, query);
 
         JPQLQuery<FileBoardListDTO> listQuery = query.select(
-            Projections.bean(FileBoardListDTO.class,
-            board.bno,
-            board.title,
-            boardImage.uuid,
-            boardImage.fname
-            )
-        );
+                Projections.bean(FileBoardListDTO.class,
+                        board.bno,
+                        board.title,
+                        boardImage.uuid,
+                        boardImage.fname));
 
         List<FileBoardListDTO> list = listQuery.fetch();
         Long totalCount = listQuery.fetchCount();
         // List<FileBoard> list = query.fetch();
 
         // list.forEach(fb -> {
-        //     log.info(fb);
-        //     log.info(fb.getImages());
+        // log.info(fb);
+        // log.info(fb.getImages());
         // });
 
         // return null;
