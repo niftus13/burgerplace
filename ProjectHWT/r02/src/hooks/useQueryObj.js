@@ -18,6 +18,7 @@ const checkNull = (obj) => {
     }
 
     return result
+    // 리턴 result는 널을 무시하는 객체를 만든다.
 }
 
 
@@ -26,6 +27,7 @@ const useQueryObj = () => {
     const [search, setSearch] = useSearchParams()
 
     const navigate = useNavigate()
+    // 이동 함수
     
     console.log(search)
     // page size 값은 없다면 초기값 설정
