@@ -1,5 +1,6 @@
 package com.burgerplace.bproduct.service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import com.burgerplace.bproduct.dto.ProductDTO;
 import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;
 import com.burgerplace.bproduct.repositroy.ProductRepository;
+import com.burgerplace.bproduct.util.FileUploader;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final FileUploader fileUploader;
 
     @Override
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO requestDTO) {
@@ -54,6 +57,15 @@ public class ProductServiceImpl implements ProductService {
                 .build();
 
         return dto;
+    }
+
+    @Override
+    public void remove(Long pno) {
+        Product product = productRepository.selectOne(pno);
+
+        List<String> fileNames = product.getImages().stream().map(pi -> pi.getFname()).collect(Collectors.toList());
+
+        fileUploader.removeFiles(fileNames);
     }
 
 }
