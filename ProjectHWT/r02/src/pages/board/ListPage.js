@@ -1,4 +1,3 @@
-import { createSearchParams, useNavigate, useSearchParams } from "react-router-dom";
 import ListComponent from "../../components/board/ListComponent";
 import ListSearchComponent from "../../components/board/ListSearchComponent";
 import useQueryObj from "../../hooks/useQueryObj";
