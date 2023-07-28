@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
+import com.burgerplace.bproduct.dto.PageRequestDTO;
+import com.burgerplace.bproduct.dto.PageResponseDTO;
+import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;
 import com.burgerplace.bproduct.repositroy.ProductRepository;
 
@@ -20,23 +23,23 @@ public class ProductTests {
     ProductRepository repo;
 
 
-    @Test
-    public void testInsert(){
+    // @Test
+    // public void testInsert(){
 
-        Product product = Product.builder()
-        .pname("Test")
-        .pdesc("Test")
-        .writer("user00")
-        .price(4000)
-        .build();
+    //     Product product = Product.builder()
+    //     .pname("Test")
+    //     .pdesc("Test")
+    //     .writer("user00")
+    //     .price(4000)
+    //     .build();
 
-        product.addImage(UUID.randomUUID().toString()+ "_aaa.jpg");
-        product.addImage(UUID.randomUUID().toString()+"_bbb.jpg0");
-        product.addImage(UUID.randomUUID().toString()+"_ccc.jpg");
+    //     product.addImage(UUID.randomUUID().toString()+ "_aaa.jpg");
+    //     product.addImage(UUID.randomUUID().toString()+"_bbb.jpg0");
+    //     product.addImage(UUID.randomUUID().toString()+"_ccc.jpg");
 
-        repo.save(product);
+    //     repo.save(product);
 
-    }
+    // }
 
      @Test
     @Transactional // 안걸리면 lazy exception이 걸린다.
@@ -83,6 +86,20 @@ public class ProductTests {
          product.addImage(UUID.randomUUID().toString()+"_newImage.jpg");
 
          repo.save(product);
+
+    }
+
+     @Test
+    public void testList1(){
+
+        PageRequestDTO requestDTO = new PageRequestDTO();
+
+        PageResponseDTO<ProductListDTO> result = repo.list(requestDTO);
+
+       for (ProductListDTO dto : result.getDtoList()) {
+
+        System.out.println(dto);
+       } 
 
     }
 }
