@@ -24,6 +24,9 @@ public class ProductDTO {
     private String pname;
     private String pdesc;
     private int price;
+    private Boolean event;
+    private String hashTag;
+    private String brand;
 
     @Builder.Default
     private List<String> images = new ArrayList<>();

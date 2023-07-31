@@ -35,6 +35,12 @@ public class Product {
 
     private int price;
 
+    private Boolean event;
+
+    private String hashTag;
+
+    private String brand;
+
     // column이 되니 조심하게 만들어야 된다.
     // delFlag
     private boolean delFlag;
