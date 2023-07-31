@@ -1,15 +1,15 @@
-package board.free.project1;
+package burgerplace.board.bod;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@SpringBootApplication
 @EnableJpaAuditing
-public class Project1Application {
+@SpringBootApplication
+public class BodApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Project1Application.class, args);
+		SpringApplication.run(BodApplication.class, args);
 	}
 
 }

@@ -17,6 +17,7 @@ public class RootConfig {
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
 
                 // 설정파일이다. 없어도 된다.
+                // dto=entity
 
         return modelMapper;
     }

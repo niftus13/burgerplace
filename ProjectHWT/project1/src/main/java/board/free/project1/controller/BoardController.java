@@ -37,9 +37,7 @@ public class BoardController {
         log.info(boardService.listRcnt(requestDTO)+"홍원태 서비스 리스트 리퀘스트디트오 전사");
 
         return boardService.listRcnt(requestDTO);
-        // 이제 service의 listRcnt에 requestDTO를 넣자고 그 결과를 리턴하자.
-        
-        
+        // 이제 service의 listRcnt에 requestDTO를 넣자고 그 결과를 리턴하자
     }
 
     @GetMapping("{bno}")

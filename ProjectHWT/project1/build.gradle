@@ -57,6 +57,10 @@ dependencies {
 
             "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
 
+			// 썸네일
+			implementation 'net.coobird:thumbnailator:0.4.16'
+
+
 }
 
 tasks.named('test') {

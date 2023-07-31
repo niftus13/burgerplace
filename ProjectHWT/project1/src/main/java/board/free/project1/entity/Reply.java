@@ -34,6 +34,7 @@ public class Reply {
     // 필요할때 까지 쿼리를 날리지않게 하기 위해서 건다
     // 연관관계를 걸때는 기본적으로 LazyLoading을 건다.
     @ManyToOne(fetch = FetchType.LAZY)
+    // 이 엔티티 기준에서는 reply 여러개가 하나의 게시물을 잡고 있는 구조이다.
     private Board board;
 
      // 수정시 쓰기위한 함수 2개 설정  바꾸는 함수들만
