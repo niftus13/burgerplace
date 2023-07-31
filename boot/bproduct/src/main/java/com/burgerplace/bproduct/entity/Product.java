@@ -52,7 +52,7 @@ public class Product {
     // 상품을 추가하는 method
     public void addImage(String name){
 
-        ProductImage pImage = ProductImage.builder().fname(name)
+        ProductImage pImage = ProductImage.builder().pfname(name)
         .ord(images.size()).build();
 
         images.add(pImage);

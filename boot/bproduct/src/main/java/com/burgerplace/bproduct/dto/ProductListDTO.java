@@ -8,7 +8,7 @@ public class ProductListDTO {
     private Long pno;
     private String pname;
     private int price;
-    private String fname;
+    private String pfname;
 
     private long reviewCnt;
 

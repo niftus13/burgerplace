@@ -56,7 +56,7 @@ public class ProductServiceImpl implements ProductService {
                 .pname(product.getPname())
                 .price(product.getPrice())
                 .pdesc(product.getPdesc())
-                .images(product.getImages().stream().map(pi -> pi.getFname()).collect(Collectors.toList()))
+                .images(product.getImages().stream().map(pi -> pi.getPfname()).collect(Collectors.toList()))
                 .build();
 
         return dto;
@@ -70,7 +70,7 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
 
-        List<String> fileNames = product.getImages().stream().map(pi -> pi.getFname()).collect(Collectors.toList());
+        List<String> fileNames = product.getImages().stream().map(pi -> pi.getPfname()).collect(Collectors.toList());
 
         fileUploader.removeFiles(fileNames);
     }
@@ -88,7 +88,7 @@ public class ProductServiceImpl implements ProductService {
         product.changePrice(productDTO.getPrice());
 
         // 기존 이미지 목록 추출 --- 추후 비교해서 삭제
-        List<String> oldFileNames = product.getImages().stream().map(pi -> pi.getFname())
+        List<String> oldFileNames = product.getImages().stream().map(pi -> pi.getPfname())
                 .collect(Collectors.toList());
         // 이미지들은 clearImage() 실행
         product.clearImages();

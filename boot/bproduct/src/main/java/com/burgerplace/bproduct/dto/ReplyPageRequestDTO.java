@@ -11,13 +11,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class FileBoardListDTO {
+public class ReplyPageRequestDTO extends PageRequestDTO {
     
     private Long bno;
 
-    private String title;
-    
-    private String uuid;
-    
-    private String fname;
+    @Builder.Default
+    private int page = 1;
+
+    @Builder.Default
+    private int size = 50;
+
+    private boolean last;
 }

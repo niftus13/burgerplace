@@ -15,10 +15,10 @@ import lombok.ToString;
 @NoArgsConstructor
 public class ProductImage {
 
-    private String fname;
+    private String pfname;
 
     private int ord;
 
-
+    private String UUID;
 
 }

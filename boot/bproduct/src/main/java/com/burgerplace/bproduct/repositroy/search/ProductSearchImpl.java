@@ -49,7 +49,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                 Projections.bean(ProductListDTO.class,
                  product.pno, product.pname,
                  product.price,
-                 productImage.fname)
+                 productImage.pfname)
             );
             List<ProductListDTO> dtoList = dtoQuery.fetch();
             long totalCount = dtoQuery.fetchCount();
@@ -86,7 +86,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                 Projections.bean(ProductListDTO.class,
                         product.pno, product.pname,
                         product.price,
-                        productImage.fname.min().as("fname"),
+                        productImage.pfname.min().as("fname"),
                         review.score.avg().as("reviewAvg"),
                         review.count().as("reviewCnt")));
         List<ProductListDTO> dtoList = dtoQuery.fetch();
