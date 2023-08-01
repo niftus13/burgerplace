@@ -1,13 +1,20 @@
 package burgerplace.board.bod.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.annotations.BatchSize;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,8 +43,19 @@ public class TradeReply {
 
     private Boolean tHidden;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @JoinColumn(name = "mem_id")
+    private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "TBoard_tBno")
     private TradeBoard tradeBoard;
+
+    @BatchSize(size = 5)
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
+    @JoinColumn(name="TReply_itRno")
+    @Builder.Default
+    private List<TReplyImage> tReplyImages = new ArrayList<>();
 
 
 }

@@ -5,9 +5,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="FReply_Image")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
 public class FReplyImage {
 
     @Id
@@ -19,6 +27,11 @@ public class FReplyImage {
     private Integer ord;
 
     private String uuid;
+
+    
+    public void changeOrd(int ord){
+        this.ord=ord;
+    }
 
     
 }

@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -32,7 +33,7 @@ public class TradeBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer tfBno;
+    private Integer tBno;
 
     private String tTitle;
 
@@ -44,9 +45,13 @@ public class TradeBoard {
 
     private Boolean tFinish;
 
+    @ManyToOne
+    @JoinColumn(name="mem_id")
+    private Member member;
+
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Tboard")
+    @JoinColumn(name = "TBoard_tBno")
     @Builder.Default
     private List<TBoardImage> tImages = new ArrayList<>();
 
