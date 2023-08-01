@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="FReply_Image")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

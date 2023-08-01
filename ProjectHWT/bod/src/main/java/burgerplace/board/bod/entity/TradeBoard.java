@@ -1,6 +1,5 @@
 package burgerplace.board.bod.entity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +22,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="TradeBoard")
+@Table
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString(exclude = "tImages")
-public class TradeBoard {
+public class TradeBoard extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +39,6 @@ public class TradeBoard {
     private String tContent;
 
     private String nickname;
-
-    private LocalDateTime tDate;
 
     private Boolean tFinish;
 

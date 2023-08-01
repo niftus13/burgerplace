@@ -23,12 +23,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "TradeReply")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
-@ToString(exclude = "tradeBoard")
+@ToString(exclude = "tRImages")
 public class TradeReply {
     
     @Id

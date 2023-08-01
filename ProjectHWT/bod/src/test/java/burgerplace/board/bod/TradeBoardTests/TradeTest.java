@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import burgerplace.board.bod.entity.TBoardImage;
+import burgerplace.board.bod.entity.TReplyImage;
 import burgerplace.board.bod.entity.TradeBoard;
+import burgerplace.board.bod.entity.TradeReply;
 import burgerplace.board.bod.repository.TradeBoardRepository;
 import burgerplace.board.bod.repository.TradeReplyRepository;
 
@@ -28,7 +30,6 @@ public class TradeTest {
                     .tTitle("맥 알리스터")
                     .tContent("Her we GO")
                     .nickname("hwt")
-                    .tDate(null)
                     .tFinish(false)
                     .build();
 
@@ -46,9 +47,37 @@ public class TradeTest {
             tb.addImage(ti2);
 
             tbRepo.save(tb);
-
-
         }
     }
+
+        @Test
+        public void tradeReplyInsert(){
+
+            for(int i=0; i<100 ; i++){
+
+            TradeReply tr = TradeReply.builder()
+            .nickname("hwt"+i+"siuuuu")
+            .replyText("kkkkk"+i)
+            .replyDate(null)
+            .tHidden(true)
+            .build();
+
+            TReplyImage tri1 = TReplyImage.builder()
+            .pName("III.JPG")
+            .uuid(UUID.randomUUID().toString())
+            .build();
+
+            TReplyImage tri2 = TReplyImage.builder()
+            .pName("III.JPG")
+            .uuid(UUID.randomUUID().toString())
+            .build();
+
+            tr.trAddImages(tri1);
+            tr.trAddImages(tri2);
+
+            trRepo.save(tr);
+
+            }
+        }
 
 }

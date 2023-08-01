@@ -1,3 +1,9 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.1.2'
@@ -33,6 +39,19 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
+
+	// 썸네일 만들기
+	implementation 'net.coobird:thumbnailator:0.4.16'
+
+		implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
+	    annotationProcessor(
+
+            "jakarta.persistence:jakarta.persistence-api",
+
+            "jakarta.annotation:jakarta.annotation-api",
+
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
+
 }
 
 tasks.named('test') {

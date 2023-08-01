@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="FBoard_Image")
+@Table
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

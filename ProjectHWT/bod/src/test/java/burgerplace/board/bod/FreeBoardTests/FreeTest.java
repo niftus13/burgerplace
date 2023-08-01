@@ -26,13 +26,9 @@ public class FreeTest {
     public void insert() {
 
         for (int i = 0; i < 100; i++) {
-            FreeBoard fileBoard = FreeBoard.builder()
-                    .fTitle("hwt")
-                    .fContent("korea Monster")
-                    .nickname("히트다희")
-                    .fDate(null)
-                    .build();
 
+            FreeBoard fileBoard = new FreeBoard();
+            
             FBoardImage img2 = FBoardImage.builder()
                     .uuid(UUID.randomUUID().toString())
                     .pName("aaa.jpg")

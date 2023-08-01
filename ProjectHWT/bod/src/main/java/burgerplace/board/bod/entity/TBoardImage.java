@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "TBoard_Image")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

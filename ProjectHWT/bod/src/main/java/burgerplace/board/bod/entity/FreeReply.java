@@ -23,12 +23,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="FreeReply")
+@Table
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
+@ToString(exclude = "frImages")
 public class FreeReply {
 
     @Id

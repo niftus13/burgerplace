@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name = "TReply_Image")
+@Table
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

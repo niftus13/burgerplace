@@ -1,6 +1,5 @@
 package burgerplace.board.bod.entity;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +22,13 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="FreeBoard")
+@Table
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
-public class FreeBoard {
+@ToString(exclude = "fImages")
+public class FreeBoard extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,8 +39,7 @@ public class FreeBoard {
     private String fContent;
 
     private String nickname;
-    
-    private LocalDateTime fDate;
+        
 
     @ManyToOne
     @JoinColumn(name="mem_id")
