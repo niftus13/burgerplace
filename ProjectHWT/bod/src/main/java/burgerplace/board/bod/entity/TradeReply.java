@@ -55,7 +55,14 @@ public class TradeReply {
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
     @JoinColumn(name="TReply_itRno")
     @Builder.Default
-    private List<TReplyImage> tReplyImages = new ArrayList<>();
+    private List<TReplyImage> tRImages = new ArrayList<>();
+
+    public void trAddImages(TReplyImage tReplyImage){
+
+        tReplyImage.changeOrd(tRImages.size());
+
+        tRImages.add(tReplyImage);
+    }
 
 
 }

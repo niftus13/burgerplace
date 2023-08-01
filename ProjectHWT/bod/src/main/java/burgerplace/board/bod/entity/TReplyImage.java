@@ -30,6 +30,10 @@ public class TReplyImage {
 
     private String uuid;
 
+    public void changeOrd(int ord){
+        this.ord=ord;
+    }
+
 
     
 }
