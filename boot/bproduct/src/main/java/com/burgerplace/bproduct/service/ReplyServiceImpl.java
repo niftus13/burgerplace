@@ -35,14 +35,14 @@ public class ReplyServiceImpl implements ReplyService{
         int pageNum = requestDTO.getPage();
         
         if(last) {
-            long totalCount = replyRepository.getCountBoard(requestDTO.getBno());
+            long totalCount = replyRepository.getCountProduct(requestDTO.getPno());
 
             pageNum = (int)(Math.ceil(totalCount/(double)requestDTO.getSize()));
         }
 
-        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("bno").ascending());
+        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("pno").ascending());
 
-        Page<Reply> result = replyRepository.listBoard(requestDTO.getBno(), pageable);
+        Page<Reply> result = replyRepository.listProduct(requestDTO.getPno(), pageable);
 
         log.info("--------------------------");
 

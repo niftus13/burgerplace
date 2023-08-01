@@ -10,9 +10,9 @@ import com.burgerplace.bproduct.entity.Reply;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
 
-    @Query("select r from Reply r where r.board.bno = :bno")
-    Page<Reply> listBoard(@Param("bno") Long bno, Pageable pageable);
+    @Query("select p from Reply p where p.product.pno = :pno")
+    Page<Reply> listProduct(@Param("pno") Long pno, Pageable pageable);
 
-    @Query("select count(r) from Reply r where r.board.bno = :bno")
-    long getCountBoard(@Param("bno") Long bno);
+    @Query("select count(p) from Reply p where p.product.pno = :pno")
+    long getCountProduct(@Param("pno") Long pno);
 }
