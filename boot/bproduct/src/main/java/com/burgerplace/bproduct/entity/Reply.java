@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table(name="product_reply")
+@Table(name = "product_reply")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @ToString(exclude = "product")
 public class Reply {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pRno;

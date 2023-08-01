@@ -40,7 +40,7 @@ public class ReplyServiceImpl implements ReplyService{
             pageNum = (int)(Math.ceil(totalCount/(double)requestDTO.getSize()));
         }
 
-        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("pno").ascending());
+        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("pRno").ascending());
 
         Page<Reply> result = replyRepository.listProduct(requestDTO.getPno(), pageable);
 
