@@ -13,6 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -42,9 +43,13 @@ public class FreeBoard {
     
     private LocalDateTime fDate;
 
+    @ManyToOne
+    @JoinColumn(name="mem_id")
+    private Member member;
+
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "Fboard")
+    @JoinColumn(name = "Fboard_fBno")
     @Builder.Default
     private List<FBoardImage> fImages = new ArrayList<>();
 

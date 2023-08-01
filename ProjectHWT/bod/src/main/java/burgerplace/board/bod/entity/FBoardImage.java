@@ -31,7 +31,7 @@ public class FBoardImage{
 
     private String uuid;
 
-    public void changeOrd(Integer ord){
+    public void changeOrd(int ord){
         this.ord=ord;
     }
 
