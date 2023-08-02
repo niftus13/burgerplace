@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-export const getRepliesOfBoard = async (pno, page = 1, last = false) => {
+export const getpRepliesOfBoard = async (pno, page = 1, last = false) => {
 
   const res = await axios.get(`http://localhost:8080/api/productreplies/${pno}/list?page=${page}&last=${last}`)
 
@@ -9,7 +9,7 @@ export const getRepliesOfBoard = async (pno, page = 1, last = false) => {
 
 }
 
-export const postReply = async (reply) => {
+export const postpReply = async (reply) => {
 
   const res = await axios.post('http://localhost:8080/api/productreplies/' , reply)
 
@@ -17,7 +17,7 @@ export const postReply = async (reply) => {
 
 }
 
-export const getReply = async (pRno) => {
+export const getpReply = async (pRno) => {
 
   const res = await axios.get(`http://localhost:8080/api/productreplies/${pRno}`)
 
@@ -25,14 +25,14 @@ export const getReply = async (pRno) => {
 
 }
 
-export const deleteReply = async (pRno) => {
+export const deletepReply = async (pRno) => {
 
   const res = await axios.delete(`http://localhost:8080/api/productreplies/${pRno}`)
 
   return res.data
 }
 
-export const putReply = async (reply) => {
+export const putpReply = async (reply) => {
 
   const res = await axios.put(`http://localhost:8080/api/productreplies/${reply.pRno}`, reply)
 
