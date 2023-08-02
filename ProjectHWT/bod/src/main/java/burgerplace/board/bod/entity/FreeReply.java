@@ -43,15 +43,12 @@ public class FreeReply {
 
     private boolean fHidden;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="FBoard_fBno")
-    private FreeBoard freeBoard;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
 
-    @BatchSize(size = 5)
+    @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
     @JoinColumn(name = "FReply_fRno")
     @Builder.Default

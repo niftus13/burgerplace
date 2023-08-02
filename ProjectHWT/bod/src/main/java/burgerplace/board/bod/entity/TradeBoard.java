@@ -28,7 +28,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @ToString(exclude = "tImages")
-public class TradeBoard extends BaseEntity {
+public class TradeBoard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,6 +45,10 @@ public class TradeBoard extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;
+
+    @OneToMany
+    @JoinColumn(name="TBoard_tBno")
+    private TradeReply tradeReply;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})

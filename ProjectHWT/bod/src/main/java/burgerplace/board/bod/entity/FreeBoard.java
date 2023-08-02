@@ -28,7 +28,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Builder
 @ToString(exclude = "fImages")
-public class FreeBoard extends BaseEntity {
+public class FreeBoard  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +44,10 @@ public class FreeBoard extends BaseEntity {
     @ManyToOne
     @JoinColumn(name="member_id")
     private Member member;
+
+    @OneToMany
+    @JoinColumn(name="FBoard_fBno")
+    private FreeReply freeReply;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
