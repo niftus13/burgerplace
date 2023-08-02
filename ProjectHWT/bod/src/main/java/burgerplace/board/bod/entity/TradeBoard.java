@@ -43,7 +43,7 @@ public class TradeBoard extends BaseEntity {
     private Boolean tFinish;
 
     @ManyToOne
-    @JoinColumn(name="mem_id")
+    @JoinColumn(name="member_id")
     private Member member;
 
     @BatchSize(size = 20)

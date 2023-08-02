@@ -48,12 +48,12 @@ public class FreeReply {
     private FreeBoard freeBoard;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="mem_id")
+    @JoinColumn(name="member_id")
     private Member member;
 
     @BatchSize(size = 5)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "FR_ifRno")
+    @JoinColumn(name = "FReply_fRno")
     @Builder.Default
     private List<FReplyImage> frImages = new ArrayList<>();
 

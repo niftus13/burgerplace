@@ -44,7 +44,7 @@ public class TradeReply {
     private Boolean tHidden;
 
     @ManyToOne
-    @JoinColumn(name = "mem_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
@@ -53,7 +53,7 @@ public class TradeReply {
 
     @BatchSize(size = 5)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
-    @JoinColumn(name="TReply_itRno")
+    @JoinColumn(name="TReply_tRno")
     @Builder.Default
     private List<TReplyImage> tRImages = new ArrayList<>();
 
