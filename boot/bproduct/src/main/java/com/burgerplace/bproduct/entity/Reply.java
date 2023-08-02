@@ -34,4 +34,15 @@ public class Reply {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
+
+    // 수정시 쓰기위한 함수 2개 설정  바꾸는 함수들만
+    public void changeText(String text){
+        this.replyText = text;
+    }
+
+    public void changeFile(String fileName){
+
+        this.replyFile = fileName;
+    }
+
 }

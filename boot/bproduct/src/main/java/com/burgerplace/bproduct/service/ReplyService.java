@@ -11,5 +11,17 @@ import com.burgerplace.bproduct.dto.ReplyPageRequestDTO;
 public interface ReplyService {
     
     PageResponseDTO<ReplyDTO> list(ReplyPageRequestDTO requestDTO);
+
+    // reply insert
+    Long register(ReplyDTO replyDTO);
+
+    // reply read
+    ReplyDTO read(Long rno);
+
+    // reply delete
+    void remove(Long rno);
+
+    // reply modify
+    void modify(ReplyDTO replyDTO);
     
 }
