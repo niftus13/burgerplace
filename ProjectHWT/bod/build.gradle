@@ -40,6 +40,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
 
+		// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+	// Entity => dto || dto => Entity
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
+
 	// 썸네일 만들기
 	implementation 'net.coobird:thumbnailator:0.4.16'
 

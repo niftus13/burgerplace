@@ -1,6 +1,6 @@
-package burgerplace.board.bod.entity;
+package org.zerock.j1.domain;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,27 +13,25 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Entity
-@Table
-@Getter
+@Table(name = "tbl_todo2")
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
-public class FBoardImage{
-
+@Getter
+public class Todo {
+    
+    // PK
     @Id
+    // 키생성 전략 DB가 알아서 한다.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ifBno;
+    private Long tno;
+    // 길이 300에 not null
+    @Column(length = 300, nullable = false)
+    private String title;
 
-    private String pName;
-
-    private Long ord;
-
-    private String uuid;
-
-    public void changeOrd(Long ord){
-        this.ord=ord;
+    public void changeTitle(String title){
+        this.title=title;
     }
-
-
+    
 }

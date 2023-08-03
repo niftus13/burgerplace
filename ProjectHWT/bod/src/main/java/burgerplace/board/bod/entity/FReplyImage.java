@@ -20,11 +20,11 @@ public class FReplyImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ifRno;
+    private Long ifRno;
 
     private String pName;
 
-    private Integer ord;
+    private int ord;
 
     private String uuid;
 

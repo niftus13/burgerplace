@@ -32,7 +32,7 @@ public class FreeBoard  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer fBno;
+    private Long fBno;
 
     private String fTitle;
 
@@ -45,9 +45,6 @@ public class FreeBoard  {
     @JoinColumn(name="member_id")
     private Member member;
 
-    @OneToMany
-    @JoinColumn(name="FBoard_fBno")
-    private FreeReply freeReply;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})

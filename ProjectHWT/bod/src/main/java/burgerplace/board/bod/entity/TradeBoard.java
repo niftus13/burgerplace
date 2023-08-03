@@ -46,9 +46,6 @@ public class TradeBoard {
     @JoinColumn(name="member_id")
     private Member member;
 
-    @OneToMany
-    @JoinColumn(name="TBoard_tBno")
-    private TradeReply tradeReply;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})

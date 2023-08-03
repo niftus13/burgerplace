@@ -33,7 +33,7 @@ public class FreeReply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer fRno;
+    private Long fRno;
 
     private String nickname;
 
@@ -47,6 +47,10 @@ public class FreeReply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id")
     private Member member;
+
+    @ManyToOne
+    @JoinColumn(name = "FBoard_fBno")
+    private FreeBoard freeBoard;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, cascade = {CascadeType.ALL})
