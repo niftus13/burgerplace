@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 // 단점 jsonFormat jsonIgnore 안먹힘
-public interface BoardReadDTO {
+public interface FreeBoardReadDTO {
 
     Long getBno();
 

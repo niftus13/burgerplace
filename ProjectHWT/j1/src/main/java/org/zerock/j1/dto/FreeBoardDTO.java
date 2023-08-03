@@ -13,19 +13,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BoardDTO {
+public class FreeBoardDTO {
     
     // Board Entity => Board DTO 용도는생각 하지 말고 생성
     // JSONFormat || JsonIgnore 날짜시간 처리시 사용한다.
     // JsonIgnore json형식으로 만들지 말라.
 
-    private Long bno;
+    private Long fBno;
 
-    private String title;
+    private String fTitle;
 
-    private String content;
+    private String fContent;
 
-    private String writer;
+    private String nickname;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;

@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.j1.dto.FreeReplyDTO;
 import org.zerock.j1.dto.PageResponseDTO;
-import org.zerock.j1.dto.ReplyDTO;
 import org.zerock.j1.dto.ReplyPageRequestDTO;
-import org.zerock.j1.service.ReplyService;
+import org.zerock.j1.service.FreeReplyService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/replies")
@@ -27,50 +26,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Log4j2
 public class ReplyController {
 
-    private final ReplyService replyService;
+    private final FreeReplyService frService;
 
     @GetMapping("/{bno}/list")
-    public PageResponseDTO<ReplyDTO> list(
+    public PageResponseDTO<FreeReplyDTO> list(
             @PathVariable("bno") Long bno,
             ReplyPageRequestDTO requestDTO) {
 
         log.info("bno ---" + bno);
         log.info(requestDTO);
 
-        return replyService.list(requestDTO);
+        return frService.list(requestDTO);
     }
 
     @PostMapping("/")
-    public Map<String, Long> register(@RequestBody ReplyDTO replyDTO) {
+    public Map<String, Long> register(@RequestBody FreeReplyDTO replyDTO) {
 
         log.info("ReplyController................");
         log.info(replyDTO);
 
-        Long newRno = replyService.register(replyDTO);
+        Long newRno = frService.register(replyDTO);
 
         return Map.of("result", newRno);
 
     }
 
     @GetMapping(value = "/{rno}")
-    public ReplyDTO get(@PathVariable("rno") Long rno) {
-        return replyService.read(rno);
+    public FreeReplyDTO get(@PathVariable("rno") Long rno) {
+        return frService.read(rno);
     }
 
     @DeleteMapping("/{rno}")
     public Map<String, Long> remove(@PathVariable("rno") Long rno) {
 
-        replyService.remove(rno);
+        frService.remove(rno);
 
         return Map.of("result", rno);
     }
 
     @PutMapping("/{rno}")
-    public Map<String, Long> modify(@RequestBody ReplyDTO replyDTO) {
+    public Map<String, Long> modify(@RequestBody FreeReplyDTO replyDTO) {
 
-        replyService.modify(replyDTO);
+        frService.modify(replyDTO);
 
-        return Map.of("result", replyDTO.getRno());
+        return Map.of("result", replyDTO.getFRno());
     }
 
 }

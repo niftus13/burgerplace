@@ -1,28 +1,30 @@
 package org.zerock.j1.dto;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
-public class ReplyDTO {
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+public class FreeReplyDTO {
     
-    private Long rno;
+    private Long fRno;
 
     private String replyText;
 
-    private String replyFile;
-
-    private String replyer;
+    private String nickname;
     // bno값 추가
     private Long bno;
+
+    private boolean fHidden;
     
     // 수정시 쓰기위한 함수 2개 설정  바꾸는 함수들만 
     public void changeText(String text){
         this.replyText = text;
     }
 
-    public void changeFile(String fileName){
-
-        this.replyFile = fileName;
-    }
 
 }

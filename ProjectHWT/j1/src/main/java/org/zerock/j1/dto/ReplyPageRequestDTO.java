@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class ReplyPageRequestDTO extends PageRequestDTO {
     
-    private Long bno;
+    private Long fBno;
     @Builder.Default
     private int page = 1;
     @Builder.Default

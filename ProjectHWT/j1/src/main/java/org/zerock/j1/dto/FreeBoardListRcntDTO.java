@@ -17,11 +17,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class BoardListRcntDTO {
+public class FreeBoardListRcntDTO {
 
-    private Long bno;
-    private String title;
-    private String writer;
+    private Long fBno;
+    private String fTitle;
+    private String nickname;
     private Long replyCount;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime regDate;

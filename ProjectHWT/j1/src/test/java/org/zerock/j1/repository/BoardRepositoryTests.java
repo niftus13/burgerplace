@@ -13,9 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.j1.domain.Board;
-import org.zerock.j1.dto.BoardListRcntDTO;
-import org.zerock.j1.dto.BoardReadDTO;
+import org.zerock.j1.domain.FreeBoard;
+import org.zerock.j1.dto.FreeBoardListRcntDTO;
+import org.zerock.j1.dto.FreeBoardReadDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
 
@@ -27,19 +27,19 @@ public class BoardRepositoryTests {
 
     // 테스트를 위한 DI
     @Autowired
-    private BoardRepository boardRepository;
+    private FreeBoardRepository fbRepository;
 
     // Insert 테스트
     @Test
     public void testInsert() {
         for (int i = 0; i < 100; i++) {
-            Board board = Board.builder()
-                    .title("Sample Title" + i)
-                    .content("Sample Content" + i)
-                    .writer("user" + (i % 10))
+            FreeBoard fBoard = FreeBoard.builder()
+                    .fTitle("Sample Title" + i)
+                    .fContent("Sample Content" + i)
+                    .nickname("user" + (i % 10))
                     .build();
 
-            boardRepository.save(board);
+            fbRepository.save(fBoard);
         }
     }
 
@@ -47,15 +47,15 @@ public class BoardRepositoryTests {
     @Test
     public void testRead() {
 
-        Long bno = 1L;
+        Long fBno = 1L;
 
-        Optional<Board> result = boardRepository.findById(bno);
+        Optional<FreeBoard> result = fbRepository.findById(fBno);
 
         log.info("--------------------------------");
 
-        Board board = result.orElseThrow();
+        FreeBoard fBoard = result.orElseThrow();
 
-        log.info(board);
+        log.info(fBoard);
     }
 
     // Update 테스트
@@ -65,21 +65,21 @@ public class BoardRepositoryTests {
         // 조회후 save를 다시하는 방법
         // 이방식이 복잡하고 너무길다 싶을때 쓰는게
         // Query method 방식
-        Long bno = 1L;
+        Long fBno = 1L;
 
-        Optional<Board> result = boardRepository.findById(bno);
+        Optional<FreeBoard> result = fbRepository.findById(fBno);
 
-        Board board = result.orElseThrow();
-        board.changeTitle("Update Title");
+        FreeBoard fBoard = result.orElseThrow();
+        fBoard.changeTitle("Update Title");
 
-        boardRepository.save(board);
+        fbRepository.save(fBoard);
     }
 
     // Query method 관련 테스트
     @Test
     public void testQuery1() {
 
-        java.util.List<Board> list = boardRepository.findByTitleContaining("1");
+        java.util.List<FreeBoard> list = fbRepository.findByTitleContaining("1");
 
         log.info("----------------------");
         log.info(list.size());
@@ -90,7 +90,7 @@ public class BoardRepositoryTests {
     @Test
     public void testQuery1_1() {
 
-        java.util.List<Board> list = boardRepository.listTitle("1");
+        java.util.List<FreeBoard> list = fbRepository.listTitle("1");
 
         log.info("----------------------");
         log.info(list.size());
@@ -101,7 +101,7 @@ public class BoardRepositoryTests {
     @Test
     public void testQuery1_2() {
 
-        java.util.List<Object[]> list = boardRepository.listTitle2("1");
+        java.util.List<Object[]> list = fbRepository.listTitle2("1");
 
         log.info("----------------------");
         log.info(list.size());
@@ -113,7 +113,7 @@ public class BoardRepositoryTests {
     public void testQuery1_3() {
         Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
 
-        Page<Object[]> result = boardRepository.listTitle3("1", pageable);
+        Page<Object[]> result = fbRepository.listTitle3("1", pageable);
 
         log.info(result);
 
@@ -125,7 +125,7 @@ public class BoardRepositoryTests {
     public void testModify(){
         Long bno = 100L;
         String title = "Modified Title 100";
-        int count = boardRepository.modifyTitle(title, bno);
+        int count = fbRepository.modifyTitle(title, bno);
 
         log.info("-----------------" + count);
 
@@ -138,7 +138,7 @@ public class BoardRepositoryTests {
         Pageable pageable = PageRequest.of(
                 0, 10, Sort.by("bno").descending());
 
-        Page<Board> result = boardRepository.findByContentContaining("1", pageable);
+        Page<FreeBoard> result = fbRepository.findByContentContaining("1", pageable);
 
         log.info("------------------------");
         log.info(result);
@@ -147,7 +147,7 @@ public class BoardRepositoryTests {
     @Test
     public void testNative(){
 
-        List<Object[]> result = boardRepository.listNative();
+        List<Object[]> result = fbRepository.listNative();
         
         result.forEach(arr -> log.info(Arrays.toString(arr)));
         
@@ -158,7 +158,7 @@ public class BoardRepositoryTests {
     public void testSearch1(){
 
        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
-       Page<Board> result = boardRepository.search1("tcw","1", pageable);
+       Page<FreeBoard> result = fbRepository.search1("tcw","1", pageable);
        log.info(result.getTotalElements());
 
        result.get().forEach(b -> log.info(b));
@@ -167,7 +167,7 @@ public class BoardRepositoryTests {
     @Test
     public void testListWithRcnt(){
 
-        List<Object[]> result = boardRepository.getListWithRcnt();
+        List<Object[]> result = fbRepository.getListWithRcnt();
 
         for (Object[] result2 : result){
             log.info(Arrays.toString(result2));
@@ -179,7 +179,7 @@ public class BoardRepositoryTests {
 
          Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
 
-         boardRepository.searchWithRcnt("tcw", "1", pageable);
+         fbRepository.searchWithRcnt("tcw", "1", pageable);
     }
 
     @Test
@@ -187,7 +187,7 @@ public class BoardRepositoryTests {
 
         PageRequestDTO pageRequest = new PageRequestDTO();
 
-        PageResponseDTO<BoardListRcntDTO> responseDTO= boardRepository.searchDTORcnt(pageRequest);
+        PageResponseDTO<FreeBoardListRcntDTO> responseDTO= fbRepository.searchDTORcnt(pageRequest);
 
         log.info(responseDTO);
     }
@@ -197,7 +197,7 @@ public class BoardRepositoryTests {
     public void testReadOne(){
         Long bno = 77L;
         
-        BoardReadDTO dto= boardRepository.readOne(bno);
+        FreeBoardReadDTO dto= fbRepository.readOne(bno);
 
         log.info(dto);
         log.info(dto.getRegDate());

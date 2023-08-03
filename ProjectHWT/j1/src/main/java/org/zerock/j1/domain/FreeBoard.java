@@ -20,24 +20,28 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-public class Board extends BaseEntity{
+public class FreeBoard extends BaseEntity{
     
     // PK 설정 및 Auto increment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bno;
-    // 컬럼 추가및 설정
+    private Long fBno;
+    
     @Column(length = 200, nullable = false)
-    private String title;
+    private String fTitle;
+
     @Column(length = 1000, nullable = false)
-    private String content;
+    private String fContent;
+
     @Column(length = 50, nullable = false)
-    private String writer;
+    private String nickname;
+    
+    
 
     // setter 대신에 change를 쓴다
 
-    public void changeTitle(String title){
-        this.title=title;
+    public void changeTitle(String fTitle){
+        this.fTitle=fTitle;
     }
 
 }

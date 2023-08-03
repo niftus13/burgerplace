@@ -19,28 +19,25 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "board")
-public class Reply {
+@ToString(exclude = "freeBoard")
+public class FreeReply extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rno;
+    private Long fRno;
 
     private String replyText;
 
-    private String replyFile;
+    private String nickname;
 
-    private String replyer;
+    private boolean fHidden;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Board board;
+    private FreeBoard freeBoard;
 
     public void changeText(String text) {
         this.replyText = text;
     }
 
-    public void changeFile(String fileName) {
-        this.replyFile = fileName;
-    }
 
 }

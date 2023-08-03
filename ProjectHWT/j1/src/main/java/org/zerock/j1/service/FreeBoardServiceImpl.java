@@ -4,12 +4,12 @@ import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.zerock.j1.domain.Board;
-import org.zerock.j1.dto.BoardDTO;
-import org.zerock.j1.dto.BoardListRcntDTO;
+import org.zerock.j1.domain.FreeBoard;
+import org.zerock.j1.dto.FreeBoardDTO;
+import org.zerock.j1.dto.FreeBoardListRcntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
-import org.zerock.j1.repository.BoardRepository;
+import org.zerock.j1.repository.FreeBoardRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,32 +17,32 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class BoardServiceImpl  implements BoardService{
+public class FreeBoardServiceImpl  implements FreeBoardService{
     
-    private final BoardRepository boardRepository;
+    private final FreeBoardRepository fbRepository;
 
     private final ModelMapper modelMapper;
     // 등록작업을 위해서 사용한다.
     // private final ModelMapper modelMapper;
 
     @Override
-    public PageResponseDTO<BoardListRcntDTO> listRcnt(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<FreeBoardListRcntDTO> listRcnt(PageRequestDTO pageRequestDTO) {
         
         log.info("--------------------------");
         log.info(pageRequestDTO);
 
-        return boardRepository.searchDTORcnt(pageRequestDTO);
+        return fbRepository.searchDTORcnt(pageRequestDTO);
 
     }
 
     @Override
-    public BoardDTO getOne(Long bno) {
+    public FreeBoardDTO getOne(Long bno) {
         
-        Optional<Board> result = boardRepository.findById(bno);
+        Optional<FreeBoard> result = fbRepository.findById(bno);
 
-        Board board = result.orElseThrow();
+        FreeBoard board = result.orElseThrow();
 
-        BoardDTO dto = modelMapper.map(board, BoardDTO.class);
+        FreeBoardDTO dto = modelMapper.map(board, FreeBoardDTO.class);
         
             
         

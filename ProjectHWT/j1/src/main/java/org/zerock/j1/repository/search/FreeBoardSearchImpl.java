@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import org.zerock.j1.domain.Board;
-import org.zerock.j1.domain.QBoard;
-import org.zerock.j1.domain.QReply;
-import org.zerock.j1.dto.BoardListRcntDTO;
+import org.zerock.j1.domain.FreeBoard;
+import org.zerock.j1.domain.QFreeBoard;
+import org.zerock.j1.domain.QFreeReply;
+import org.zerock.j1.dto.FreeBoardListRcntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
 
@@ -22,22 +22,22 @@ import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
+public class FreeBoardSearchImpl extends QuerydslRepositorySupport implements FreeBoardSearch {
 
     // 생성자를 만들어준다.
-    public BoardSearchImpl() {
-        super(Board.class);
+    public FreeBoardSearchImpl() {
+        super(FreeBoard.class);
     }
 
     // interface 메소드를 구현
     @Override
-    public Page<Board> search1(String searchType, String keyword, Pageable pageable) {
+    public Page<FreeBoard> search1(String searchType, String keyword, Pageable pageable) {
 
         // QueryDomain 이 필요하다
-        QBoard board = QBoard.board;
+        QFreeBoard fBoard = QFreeBoard.freeBoard;
         // Query를 동적으로 만들어내는 작업
         // SQL 문을 객체화 시켜놓은것
-        JPQLQuery<Board> query = from(board);
+        JPQLQuery<FreeBoard> query = from(fBoard);
 
         // query.where(board.title.contains("1"));
 
@@ -51,9 +51,9 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             for (String type : searchArr) {
 
                 switch (type) {
-                    case "t" -> searchBuilder.or(board.title.contains(keyword));
-                    case "c" -> searchBuilder.or(board.content.contains(keyword));
-                    case "w" -> searchBuilder.or(board.writer.contains(keyword));
+                    case "t" -> searchBuilder.or(fBoard.fTitle.contains(keyword));
+                    case "c" -> searchBuilder.or(fBoard.fContent.contains(keyword));
+                    case "w" -> searchBuilder.or(fBoard.nickname.contains(keyword));
                 }
 
             } // end for
@@ -63,7 +63,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         this.getQuerydsl().applyPagination(pageable, query);
         // list를 가져오는 방법
-        List<Board> list = query.fetch();
+        List<FreeBoard> list = query.fetch();
         long count = query.fetchCount();
 
         log.info(list);
@@ -75,13 +75,13 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     @Override
     public Page<Object[]> searchWithRcnt(String searchType, String keyword, Pageable pageable) {
 
-        QBoard board = QBoard.board;
-        QReply reply = QReply.reply;
+        QFreeBoard fBoard = QFreeBoard.freeBoard;
+        QFreeReply fReply = QFreeReply.freeReply;
 
         // JPQL로 보드 관련 테이블 만드는데 board에서 만든다
-        JPQLQuery<Board> query = from(board);
+        JPQLQuery<FreeBoard> query = from(fBoard);
         // left join 항상 left join거는 쪽을 기준으로 잡는다.
-        query.leftJoin(reply).on(reply.board.eq(board));
+        query.leftJoin(fReply).on(fReply.freeBoard.eq(fBoard));
 
         // 검색조건 추가
         if (keyword != null && searchType != null) {
@@ -93,10 +93,10 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             for (String type : searchArr) {
 
                 switch (type) {
-                    case "t" -> searchBuilder.or(board.title.contains(keyword));
-                    case "c" -> searchBuilder.or(board.content.contains(keyword));
-                    case "w" -> searchBuilder.or(board.writer.contains(keyword));
-                    case "r" -> searchBuilder.or(reply.replyText.contains(keyword));
+                    case "t" -> searchBuilder.or(fBoard.fTitle.contains(keyword));
+                    case "c" -> searchBuilder.or(fBoard.fContent.contains(keyword));
+                    case "w" -> searchBuilder.or(fBoard.nickname.contains(keyword));
+                    case "r" -> searchBuilder.or(fReply.replyText.contains(keyword));
                 }
 
             } // end for
@@ -106,12 +106,12 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         }
 
         // group by
-        query.groupBy(board);
+        query.groupBy(fBoard);
 
         // JPQL tuple 타입으로 뽑아줘야된다.
         // select에 들어가는거는 실제로 추출하는 데이터 column
         // count 와 countdistinct는 중복된걸 배제하기위해서 사용되고, 조인이 곱의 방식이기때문
-        JPQLQuery<Tuple> tupleQuery = query.select(board.bno, board.title, board.writer, reply.countDistinct());
+        JPQLQuery<Tuple> tupleQuery = query.select(fBoard.fBno, fBoard.fTitle, fBoard.nickname, fReply.countDistinct());
 
         // Paging 처리
         this.getQuerydsl().applyPagination(pageable, tupleQuery);
@@ -136,17 +136,17 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     }
 
     @Override
-    public PageResponseDTO<BoardListRcntDTO> searchDTORcnt(PageRequestDTO requestDTO) {
+    public PageResponseDTO<FreeBoardListRcntDTO> searchDTORcnt(PageRequestDTO requestDTO) {
         
         Pageable pageable = makePageable(requestDTO);
 
-        QBoard board = QBoard.board;
-        QReply reply = QReply.reply;
+        QFreeBoard fBoard = QFreeBoard.freeBoard;
+        QFreeReply fReply = QFreeReply.freeReply;
 
         // JPQL로 보드 관련 테이블 만드는데 board에서 만든다
-        JPQLQuery<Board> query = from(board);
+        JPQLQuery<FreeBoard> query = from(fBoard);
         // left join 항상 left join거는 쪽을 기준으로 잡는다.
-        query.leftJoin(reply).on(reply.board.eq(board));
+        query.leftJoin(fReply).on(fReply.freeBoard.eq(fBoard));
 
         String keyword = requestDTO.getKeyword();
         String searchType = requestDTO.getType();
@@ -161,9 +161,9 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             for (String type : searchArr) {
 
                 switch (type) {
-                    case "t" -> searchBuilder.or(board.title.contains(keyword));
-                    case "c" -> searchBuilder.or(board.content.contains(keyword));
-                    case "w" -> searchBuilder.or(board.writer.contains(keyword));
+                    case "t" -> searchBuilder.or(fBoard.fTitle.contains(keyword));
+                    case "c" -> searchBuilder.or(fBoard.fContent.contains(keyword));
+                    case "w" -> searchBuilder.or(fBoard.nickname.contains(keyword));
                 }
 
             } // end for
@@ -175,21 +175,21 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         this.getQuerydsl().applyPagination(pageable, query);
 
         // group by
-        query.groupBy(board);
+        query.groupBy(fBoard);
 
         // 어제 했던 tuple 뽑는거 까진 똑같음
         // JPQL Query를 바로 BoardListRcntDTO로 추출하는 쿼리
-        JPQLQuery<BoardListRcntDTO> listQuery =
+        JPQLQuery<FreeBoardListRcntDTO> listQuery =
         query.select(Projections.bean(
-            BoardListRcntDTO.class, 
-            board.bno, 
-            board.title,
-            board.writer,
-            board.regDate, 
-            reply.countDistinct().as("replyCount")));
+            FreeBoardListRcntDTO.class, 
+            fBoard.fBno, 
+            fBoard.fTitle,
+            fBoard.nickname,
+            fBoard.regDate, 
+            fReply.countDistinct().as("replyCount")));
 
         // 쿼리를 List<BoardListRcntDTO>로 추출
-        List<BoardListRcntDTO> list = listQuery.fetch();
+        List<FreeBoardListRcntDTO> list = listQuery.fetch();
 
         log.info("--------------------------");
         log.info(list);

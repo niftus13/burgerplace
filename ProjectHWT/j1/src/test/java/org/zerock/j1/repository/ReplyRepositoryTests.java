@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.zerock.j1.domain.Board;
-import org.zerock.j1.domain.Reply;
+import org.zerock.j1.domain.FreeBoard;
+import org.zerock.j1.domain.FreeReply;
 import org.zerock.j1.dto.ReplyPageRequestDTO;
-import org.zerock.j1.service.ReplyService;
+import org.zerock.j1.service.FreeReplyService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -19,54 +19,57 @@ import lombok.extern.log4j.Log4j2;
 public class ReplyRepositoryTests {
 
     @Autowired
-    private ReplyRepository replyRepository;
+    private FreeReplyRepository frRepository;
 
     @Autowired
-    private ReplyService replyService;
+    private FreeReplyService frService;
 
 
     @Test
     public void insertOne() {
 
-        Long bno = 100L;
+        Long fBno = 100L;
 
-        Board board = Board.builder().bno(bno).build();
+        FreeBoard fBoard = FreeBoard.builder().fBno(fBno).build();
 
-        Reply reply = Reply.builder()
+        FreeReply fReply = FreeReply.builder()
                 .replyText("Reply......1")
-                .replyer("replyer00")
-                .board(board)
+                .nickname("replyer00")
+                .freeBoard(fBoard)
                 .build();
 
-        replyRepository.save(reply);
+        frRepository.save(fReply);
     }
 
     @Test
     public void testInsertDummies() {
 
-        Long[] bnoArr = { 99L, 96L, 92L, 84L, 81L };
+        Long[] fBnoArr = { 99L, 96L, 92L, 84L, 81L };
 
-        for (Long bno : bnoArr) {
+        for (Long fBno : fBnoArr) {
 
-            Board board = Board.builder().bno(bno).build();
+            FreeBoard fBoard = FreeBoard.builder().fBno(fBno).build();
 
             for (int i = 0; i < 50; i++) {
 
-                Reply reply = Reply.builder()
-                        .replyText("Reply..." + bno + "--" + i)
-                        .replyer("replyer" + i)
-                        .board(board)
+                FreeReply fReply = FreeReply.builder()
+                        .replyText("Reply..." + fBno + "--" + i)
+                        .nickname("replyer" + i)
+                        .freeBoard(fBoard)
                         .build();
 
-                replyRepository.save(reply);
+                frRepository.save(fReply);
             }
         }
     }
+
+
+
     @Test
     public void testListBoard(){
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("rno").ascending());
-        Long bno = 99L;
-        Page<Reply> result = replyRepository.listBoard(bno, pageable);
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("fRno").ascending());
+        Long fBno = 99L;
+        Page<FreeReply> result = frRepository.listBoard(fBno, pageable);
 
         result.get().forEach(r-> log.info(r));
         
@@ -75,9 +78,9 @@ public class ReplyRepositoryTests {
     @Test
     public void testCount(){
         
-        long bno = 99L;
+        long fBno = 99L;
 
-        long count = replyRepository.getCountBoard(bno);
+        long count = frRepository.getCountBoard(fBno);
 
         log.info("count: " + count);
     }
@@ -85,9 +88,9 @@ public class ReplyRepositoryTests {
     @Test
     public void testListLast(){
 
-        ReplyPageRequestDTO requestDTO = ReplyPageRequestDTO.builder().bno(99L).last(true).build();
+        ReplyPageRequestDTO requestDTO = ReplyPageRequestDTO.builder().fBno(99L).last(true).build();
 
-        log.info(replyService.list(requestDTO));
+        log.info(frService.list(requestDTO));
 
 
     }
