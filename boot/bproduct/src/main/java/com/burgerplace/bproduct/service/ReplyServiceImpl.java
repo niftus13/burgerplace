@@ -77,9 +77,9 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public ReplyDTO read(Long rno) {
+    public ReplyDTO read(Long pno) {
         
-        Optional<Reply> result = replyRepository.findById(rno);
+        Optional<Reply> result = replyRepository.findById(pno);
         
         Reply reply = result.orElseThrow();
 
@@ -87,9 +87,9 @@ public class ReplyServiceImpl implements ReplyService{
     }
 
     @Override
-    public void remove(Long rno) {
+    public void remove(Long pno) {
      
-        Optional<Reply> result = replyRepository.findById(rno);
+        Optional<Reply> result = replyRepository.findById(pno);
         
 
         Reply reply = result.orElseThrow();

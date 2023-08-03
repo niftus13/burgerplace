@@ -79,9 +79,9 @@ public class ReplyTests {
     @Test
     public void testCount() {
         
-        Long bno = 99L;
+        Long pno = 99L;
 
-        long count = replyRepository.getCountProduct(bno);
+        long count = replyRepository.getCountProduct(pno);
 
         log.info("count: " + count);
     }
