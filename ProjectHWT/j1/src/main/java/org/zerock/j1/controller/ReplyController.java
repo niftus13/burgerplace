@@ -28,12 +28,12 @@ public class ReplyController {
 
     private final FreeReplyService frService;
 
-    @GetMapping("/{bno}/list")
+    @GetMapping("/{fBno}/list")
     public PageResponseDTO<FreeReplyDTO> list(
-            @PathVariable("bno") Long bno,
+            @PathVariable("fBno") Long fBno,
             ReplyPageRequestDTO requestDTO) {
 
-        log.info("bno ---" + bno);
+        log.info("bno ---" + fBno);
         log.info(requestDTO);
 
         return frService.list(requestDTO);
@@ -51,17 +51,17 @@ public class ReplyController {
 
     }
 
-    @GetMapping(value = "/{rno}")
-    public FreeReplyDTO get(@PathVariable("rno") Long rno) {
-        return frService.read(rno);
+    @GetMapping(value = "/{fRno}")
+    public FreeReplyDTO get(@PathVariable("fRno") Long fRno) {
+        return frService.read(fRno);
     }
 
-    @DeleteMapping("/{rno}")
-    public Map<String, Long> remove(@PathVariable("rno") Long rno) {
+    @DeleteMapping("/{fRno}")
+    public Map<String, Long> remove(@PathVariable("fRno") Long fRno) {
 
-        frService.remove(rno);
+        frService.remove(fRno);
 
-        return Map.of("result", rno);
+        return Map.of("result", fRno);
     }
 
     @PutMapping("/{rno}")

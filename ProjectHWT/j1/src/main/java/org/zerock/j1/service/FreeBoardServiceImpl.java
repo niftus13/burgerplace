@@ -36,9 +36,9 @@ public class FreeBoardServiceImpl  implements FreeBoardService{
     }
 
     @Override
-    public FreeBoardDTO getOne(Long bno) {
+    public FreeBoardDTO getOne(Long fBno) {
         
-        Optional<FreeBoard> result = fbRepository.findById(bno);
+        Optional<FreeBoard> result = fbRepository.findById(fBno);
 
         FreeBoard board = result.orElseThrow();
 

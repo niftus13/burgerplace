@@ -19,7 +19,7 @@ public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long>, Fre
     // 자동으로 쿼리 메소드를 만들어낸다.
     // 생각보다 사용되진 않는다 why? 복잡한 쿼리 문을 생성을 하기 힘들기떄문.
     // 실제로 사용되는것은 JPQL을 사용한다.
-    List<FreeBoard> findByTitleContaining(String title);
+    List<FreeBoard> findByfTitleContaining(String fTitle);
 
     // JPQL 방식 @Query annotation을 넣어준다
     // * 사용 불가 alias사용하거나 entity property사용
@@ -28,7 +28,7 @@ public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long>, Fre
     // DDL은 @Modifying라는 annotation을 붙여줘야된다. => 웬만해선 사용하는 것을지양해야된다.
     // 장점 join 처리시 결과뽑아내는게 좋다.
 
-    @Query("select fb from FreeBoard b where fb.fTitle like %:fTitle% ")
+    @Query("select fb from FreeBoard fb where fb.fTitle like %:fTitle% ")
     List<FreeBoard> listTitle(@Param("fTitle") String fTitle);
 
 
@@ -52,13 +52,13 @@ public interface FreeBoardRepository extends JpaRepository<FreeBoard, Long>, Fre
     // 마지막 매개변수로 Pageable이 들어가면 Page타입으로 리턴해야되고
     // Paging 을 처리해 준다.
     // order by 까지 지원해준다.
-    Page<FreeBoard> findByContentContaining(String fContent, org.springframework.data.domain.Pageable pageable);
+    Page<FreeBoard> findByfContentContaining(String fContent, org.springframework.data.domain.Pageable pageable);
 
     // nativeQuery
     // 급할때 쓴다.
     // native Query를 쓰면 DB에 종속되게 되버린다.
-    @Query(value = "select * from t_board ", nativeQuery=true)
-    List<Object[]> listNative();
+    // @Query(value = "select * from t_board ", nativeQuery=true)
+    // List<Object[]> listNative();
 
 
 

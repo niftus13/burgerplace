@@ -79,7 +79,7 @@ public class BoardRepositoryTests {
     @Test
     public void testQuery1() {
 
-        java.util.List<FreeBoard> list = fbRepository.findByTitleContaining("1");
+        java.util.List<FreeBoard> list = fbRepository.findByfTitleContaining("1");
 
         log.info("----------------------");
         log.info(list.size());
@@ -138,20 +138,20 @@ public class BoardRepositoryTests {
         Pageable pageable = PageRequest.of(
                 0, 10, Sort.by("bno").descending());
 
-        Page<FreeBoard> result = fbRepository.findByContentContaining("1", pageable);
+        Page<FreeBoard> result = fbRepository.findByfContentContaining("1", pageable);
 
         log.info("------------------------");
         log.info(result);
     }
 
-    @Test
-    public void testNative(){
+    // @Test
+    // public void testNative(){
 
-        List<Object[]> result = fbRepository.listNative();
+    //     List<Object[]> result = fbRepository.listNative();
         
-        result.forEach(arr -> log.info(Arrays.toString(arr)));
+    //     result.forEach(arr -> log.info(Arrays.toString(arr)));
         
-    }
+    // }
 
     // QBoard를 써서 만든테스트
     @Test

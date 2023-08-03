@@ -22,7 +22,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class ReplyServiceImpl implements FreeReplyService {
+public class FreeReplyServiceImpl implements FreeReplyService {
 
     private final FreeReplyRepository frRepository;
     private final ModelMapper modelMapper;
@@ -73,9 +73,9 @@ public class ReplyServiceImpl implements FreeReplyService {
     }
 
     @Override
-    public FreeReplyDTO read(Long rno) {
+    public FreeReplyDTO read(Long fRno) {
 
-        Optional<FreeReply> result = frRepository.findById(rno);
+        Optional<FreeReply> result = frRepository.findById(fRno);
 
         FreeReply reply = result.orElseThrow();
 
@@ -84,9 +84,9 @@ public class ReplyServiceImpl implements FreeReplyService {
     }
 
     @Override
-    public void remove(Long rno) {
+    public void remove(Long fRno) {
 
-        Optional<FreeReply> result = frRepository.findById(rno);
+        Optional<FreeReply> result = frRepository.findById(fRno);
 
         FreeReply reply = result.orElseThrow();
 

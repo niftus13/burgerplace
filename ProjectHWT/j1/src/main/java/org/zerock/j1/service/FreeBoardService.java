@@ -12,6 +12,6 @@ public interface FreeBoardService {
 
     PageResponseDTO<FreeBoardListRcntDTO> listRcnt(PageRequestDTO pageRequestDTO);
 
-    FreeBoardDTO getOne(Long bno);
+    FreeBoardDTO getOne(Long fBno);
 
 }

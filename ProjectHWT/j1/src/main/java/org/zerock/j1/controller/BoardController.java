@@ -34,9 +34,9 @@ public class BoardController {
         
     }
     
-    @GetMapping("{bno}")
-    public FreeBoardDTO get(@PathVariable("bno") Long bno){
+    @GetMapping("{fBno}")
+    public FreeBoardDTO get(@PathVariable("fBno") Long fBno){
 
-        return  fbService.getOne(bno);
+        return  fbService.getOne(fBno);
     }
 }

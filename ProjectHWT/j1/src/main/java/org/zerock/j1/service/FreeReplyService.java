@@ -12,9 +12,9 @@ public interface FreeReplyService {
 
     Long register(FreeReplyDTO replyDTO);
 
-    FreeReplyDTO read(Long rno);
+    FreeReplyDTO read(Long fRno);
 
-    void remove(Long rno);
+    void remove(Long fRno);
 
     void modify(FreeReplyDTO replyDTO);
 
