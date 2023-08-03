@@ -16,10 +16,10 @@ public interface ReplyService {
     Long register(ReplyDTO replyDTO);
 
     // reply read
-    ReplyDTO read(Long rno);
+    ReplyDTO read(Long pRno);
 
     // reply delete
-    void remove(Long rno);
+    void remove(Long pRno);
 
     // reply modify
     void modify(ReplyDTO replyDTO);
