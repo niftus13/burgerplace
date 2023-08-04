@@ -29,7 +29,7 @@ public class FreeBoardServiceImpl  implements FreeBoardService{
     public PageResponseDTO<FreeBoardListRcntDTO> listRcnt(PageRequestDTO pageRequestDTO) {
         
         log.info("--------------------------");
-        log.info(pageRequestDTO);
+        log.info(pageRequestDTO+"BoardServiceImpl HWT");
 
         return fbRepository.searchDTORcnt(pageRequestDTO);
 

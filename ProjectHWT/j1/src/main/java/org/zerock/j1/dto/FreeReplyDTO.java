@@ -17,7 +17,7 @@ public class FreeReplyDTO {
 
     private String nickname;
     // bno값 추가
-    private Long bno;
+    private Long fBno;
 
     private boolean fHidden;
     

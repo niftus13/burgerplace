@@ -40,7 +40,7 @@ public class FreeReplyServiceImpl implements FreeReplyService {
             pageNum = pageNum <= 0 ? 1 : pageNum;
         }
 
-        Pageable pageable = PageRequest.of(pageNum - 1, requestDTO.getSize(), Sort.by("rno").ascending());
+        Pageable pageable = PageRequest.of(pageNum - 1, requestDTO.getSize(), Sort.by("fRno").ascending());
 
         Page<FreeReply> result = frRepository.listBoard(requestDTO.getFBno(), pageable);
 

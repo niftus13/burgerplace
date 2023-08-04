@@ -1,11 +1,9 @@
 package org.zerock.j1.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,25 +15,22 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "freeBoard")
-public class FreeReply extends BaseEntity {
-
+@ToString
+public class TradeBoard extends BaseEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long fRno;
+    private Long tBno;
 
-    private String replyText;
+    private String tTitle;
+
+    private String tContent;
 
     private String nickname;
 
-    private boolean fHidden;
+    private boolean tFinish;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private FreeBoard freeBoard;
-
-    public void changeText(String text) {
-        this.replyText = text;
+    public void changetTitle(String tTitle){
+        this.tTitle=tTitle;
     }
-
-
 }

@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 // 단점 jsonFormat jsonIgnore 안먹힘
 public interface FreeBoardReadDTO {
 
-    Long getBno();
+    Long getfBno();
 
-    String getTitle();
+    String getfTitle();
 
-    String getContent();
+    String getfContent();
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     LocalDateTime getRegDate();
