@@ -72,7 +72,7 @@ const ProductReplyWrapper = ({ pno }) => {
             <ProductReplyInput pno={pno} refreshLast={refreshLast}></ProductReplyInput>
 
             {data.current !== 0 ? <ProductReplyRead
-                rno={data.current}
+                pRno={data.current}
                 cancelRead={cancelRead}
                 refreshPage={refreshPage}></ProductReplyRead> : <></>}
 

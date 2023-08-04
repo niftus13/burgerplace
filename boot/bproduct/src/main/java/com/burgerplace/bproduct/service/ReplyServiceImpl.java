@@ -71,9 +71,9 @@ public class ReplyServiceImpl implements ReplyService{
         log.info("reply....");
         log.info(reply);
 
-        Long newRno = replyRepository.save(reply).getPRno();
+        Long newPRno = replyRepository.save(reply).getPRno();
 
-        return newRno;
+        return newPRno;
     }
 
     @Override

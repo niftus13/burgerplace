@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-export const getpRepliesOfBoard = async (pno, page = 1, last = false) => {
+export const getpRepliesOfProduct = async (pno, page = 1, last = false) => {
 
   const res = await axios.get(`http://localhost:8080/api/productreplies/${pno}/list?page=${page}&last=${last}`)
 
@@ -9,15 +9,15 @@ export const getpRepliesOfBoard = async (pno, page = 1, last = false) => {
 
 }
 
-export const postpReply = async (reply) => {
+export const postPReply = async (PReply) => {
 
-  const res = await axios.post('http://localhost:8080/api/productreplies/' , reply)
+  const res = await axios.post('http://localhost:8080/api/productreplies/' , PReply)
 
   return res.data
 
 }
 
-export const getpReply = async (pRno) => {
+export const getPReply = async (pRno) => {
 
   const res = await axios.get(`http://localhost:8080/api/productreplies/${pRno}`)
 
@@ -25,16 +25,16 @@ export const getpReply = async (pRno) => {
 
 }
 
-export const deletepReply = async (pRno) => {
+export const deletePReply = async (pRno) => {
 
   const res = await axios.delete(`http://localhost:8080/api/productreplies/${pRno}`)
 
   return res.data
 }
 
-export const putpReply = async (reply) => {
+export const putPReply = async (PReply) => {
 
-  const res = await axios.put(`http://localhost:8080/api/productreplies/${reply.pRno}`, reply)
+  const res = await axios.put(`http://localhost:8080/api/productreplies/${PReply.pRno}`, PReply)
 
   return res.data
 
