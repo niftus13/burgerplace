@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteReply, getReply, putReply } from "../../api/repliesAPI";
+import { deletePReply, getPReply, putPReply } from "../../api/productRepliesAPI";
 
 const initState = {
     pRno:0,
@@ -13,18 +13,18 @@ const ProductReplyRead = ({pRno,cancelRead,refreshPage}) => {
 
     console.log("ReplyRead..........." + pRno)
 
-    const [reply,setReply] = useState(initState)
+    const [reply,setPReply] = useState(initState)
 
     useEffect(() =>{
-        getReply(pRno).then(data => {
+        getPReply(pRno).then(data => {
             console.log(data)
-            setReply(data)
+            setPReply(data)
         })
     },[pRno])
 
     const handleClickDelete = () => {
 
-        deleteReply(pRno).then(data => {
+        deletePReply(pRno).then(data => {
             alert(`${data.result}번 댓글이 삭제되었습니다.`)
             refreshPage(true)
         })
@@ -33,12 +33,12 @@ const ProductReplyRead = ({pRno,cancelRead,refreshPage}) => {
 
     const handleChange = (e) => {
         reply[e.target.name] = e.target.value
-        setReply({...reply})
+        setPReply({...reply})
     }
 
     const handleClickModify = () => {
 
-        putReply(reply).then(data => {
+        putPReply(reply).then(data => {
             alert(`${data.result} 수정되었습니다`)
             refreshPage(true)
         })

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { postReply } from "../../api/repliesAPI";
+import { postPReply } from "../../api/productRepliesAPI";
 
 
 const initState = {
@@ -11,12 +11,12 @@ const initState = {
 
 const ProductReplyInput = ({pRno, refreshLast}) => {
 
-    const [reply, setReply] = useState({...initState})
+    const [reply, setPReply] = useState({...initState})
 
 
     const handleChange = (e) => {
         reply[e.target.name] = e.target.value
-        setReply({...reply})
+        setPReply({...reply})
     }
 
     const handleClickRegister = (e) => {
@@ -24,7 +24,7 @@ const ProductReplyInput = ({pRno, refreshLast}) => {
         reply.pRno = pRno
 
         // {result:223}
-        postReply(reply).then(data => {
+        postPReply(reply).then(data => {
 
             console.log(data)
 
@@ -32,7 +32,7 @@ const ProductReplyInput = ({pRno, refreshLast}) => {
 
             refreshLast()
 
-            setReply({...initState})
+            setPReply({...initState})
 
         } )
 
