@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +13,6 @@ import lombok.ToString;
 
 // 날짜추가를 위해서 BaseEntity를 상속받는다 (중복코드 절감)
 @Entity
-@Table(name = "t_board") // table 이름 지정
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

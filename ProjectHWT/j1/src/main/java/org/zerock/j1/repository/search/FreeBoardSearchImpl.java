@@ -100,7 +100,7 @@ public class FreeBoardSearchImpl extends QuerydslRepositorySupport implements Fr
 
             } // end for
 
-              // for문 끝난후 where 로 searchBuilder 추가
+            // for문 끝난후 where 로 searchBuilder 추가
             query.where(searchBuilder);
         }
 
@@ -128,32 +128,41 @@ public class FreeBoardSearchImpl extends QuerydslRepositorySupport implements Fr
 
         log.info("count: " + count);
 
-
-        // Page까지 처리완료 
+        // Page까지 처리완료
         return new PageImpl<>(arrList, pageable, count);
 
     }
 
     @Override
     public PageResponseDTO<FreeBoardListRcntDTO> searchDTORcnt(PageRequestDTO requestDTO) {
-        
+
+        log.info(requestDTO + "boardimplHWT@");
+
         Pageable pageable = makePageable(requestDTO);
+        log.info(pageable + "pageable log HWT");
 
         QFreeBoard fBoard = QFreeBoard.freeBoard;
+        log.info(fBoard + "fBoard HWT log");
         QFreeReply fReply = QFreeReply.freeReply;
+        log.info(fReply + "fReply HWT log");
 
         // JPQL로 보드 관련 테이블 만드는데 board에서 만든다
         JPQLQuery<FreeBoard> query = from(fBoard);
+        log.info(query + "query HWT log");
         // left join 항상 left join거는 쪽을 기준으로 잡는다.
         query.leftJoin(fReply).on(fReply.freeBoard.eq(fBoard));
+        log.info(query.leftJoin(fReply).on(fReply.freeBoard.eq(fBoard)) + "hwt lefr join 로그");
 
         String keyword = requestDTO.getKeyword();
+        log.info(keyword + "hwt keyWord log");
         String searchType = requestDTO.getType();
+        log.info(searchType + "hwt searchType log");
 
         // 검색조건 추가
         if (keyword != null && searchType != null) {
             // tc => [t,c]
             String[] searchArr = searchType.split("");
+            log.info(searchArr + "searchArr log");
             // BooleanBuilder 생성 ()
             BooleanBuilder searchBuilder = new BooleanBuilder();
 
@@ -167,38 +176,49 @@ public class FreeBoardSearchImpl extends QuerydslRepositorySupport implements Fr
 
             } // end for
 
-              // for문 끝난후 where 로 searchBuilder 추가
+            // for문 끝난후 where 로 searchBuilder 추가
             query.where(searchBuilder);
+
+            log.info(query.where(searchBuilder) + "where query hwt log");
         }
         // paging 처리
         this.getQuerydsl().applyPagination(pageable, query);
 
+        log.info(this.getQuerydsl().applyPagination(pageable, query) + "hwt qdsl log");
+
         // group by
         query.groupBy(fBoard);
+        log.info(query.groupBy(fBoard) + "hwt 그룹 Log");
 
         // 어제 했던 tuple 뽑는거 까진 똑같음
         // JPQL Query를 바로 BoardListRcntDTO로 추출하는 쿼리
-        JPQLQuery<FreeBoardListRcntDTO> listQuery =
-        query.select(Projections.bean(
-            FreeBoardListRcntDTO.class, 
-            fBoard.fBno, 
-            fBoard.fTitle,
-            fBoard.nickname,
-            fBoard.regDate, 
-            fReply.countDistinct().as("replyCount")));
+        JPQLQuery<FreeBoardListRcntDTO> listQuery = query.select(Projections.bean(
+                FreeBoardListRcntDTO.class,
+                fBoard.fBno,
+                fBoard.fTitle,
+                fBoard.nickname,
+                fBoard.regDate,
+                fReply.countDistinct().as("replyCount")));
+
+        log.info("-----------------------------------");
+        log.info(listQuery+" hwt listQuery");
+        log.info("-------------------------------------------------");
 
         // 쿼리를 List<BoardListRcntDTO>로 추출
         List<FreeBoardListRcntDTO> list = listQuery.fetch();
 
+        log.info(list+" listQuery hwt");
+
         log.info("--------------------------");
-        log.info(list);
 
         long totalCount = listQuery.fetchCount();
 
+        log.info(list + "hwtList~~");
+        log.info(totalCount + "HWT TotalCount");
+        log.info(requestDTO + "HWT RequestDTO");
 
         return new PageResponseDTO<>(list, totalCount, requestDTO);
 
     }
 
-    
 }

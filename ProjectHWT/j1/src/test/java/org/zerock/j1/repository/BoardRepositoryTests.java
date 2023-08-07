@@ -111,7 +111,7 @@ public class BoardRepositoryTests {
     // Page 처리 JPQL
     @Test
     public void testQuery1_3() {
-        Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("fBno").descending());
 
         Page<Object[]> result = fbRepository.listTitle3("1", pageable);
 
@@ -136,7 +136,7 @@ public class BoardRepositoryTests {
     public void testQuery2() {
 
         Pageable pageable = PageRequest.of(
-                0, 10, Sort.by("bno").descending());
+                0, 10, Sort.by("fBno").descending());
 
         Page<FreeBoard> result = fbRepository.findByfContentContaining("1", pageable);
 
@@ -157,7 +157,7 @@ public class BoardRepositoryTests {
     @Test
     public void testSearch1(){
 
-       Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+       Pageable pageable = PageRequest.of(0, 10, Sort.by("fBno").descending());
        Page<FreeBoard> result = fbRepository.search1("tcw","1", pageable);
        log.info(result.getTotalElements());
 
@@ -177,7 +177,7 @@ public class BoardRepositoryTests {
     @Test
     public void testListWithRcntSearch(){
 
-         Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
+         Pageable pageable = PageRequest.of(0, 10, Sort.by("fBno").descending());
 
          fbRepository.searchWithRcnt("tcw", "1", pageable);
     }

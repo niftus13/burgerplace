@@ -1,6 +1,5 @@
 package org.zerock.j1.repository.search;
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -37,7 +36,7 @@ public interface FreeBoardSearch {
         Pageable pageable = PageRequest.of(
             requestDTO.getPage() -1,
             requestDTO.getSize(),
-            Sort.by("bno").descending()
+            Sort.by("fBno").descending()
             );
             
             return pageable;

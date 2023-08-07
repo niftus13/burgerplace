@@ -64,7 +64,7 @@ public class ReplyController {
         return Map.of("result", fRno);
     }
 
-    @PutMapping("/{rno}")
+    @PutMapping("/{fRno}")
     public Map<String, Long> modify(@RequestBody FreeReplyDTO replyDTO) {
 
         frService.modify(replyDTO);

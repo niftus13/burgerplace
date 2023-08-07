@@ -26,10 +26,11 @@ public class BoardController {
     private final FreeBoardService fbService;
 
     @GetMapping(value ="/list")
-    public PageResponseDTO<FreeBoardListRcntDTO> list (@ParameterObject  PageRequestDTO requestDTO){
+    // api/board/list면 이 메서드만 사용한다.
+    public PageResponseDTO<FreeBoardListRcntDTO> list (@ParameterObject PageRequestDTO requestDTO){
 
-        log.info(requestDTO);
-
+        log.info(requestDTO+"hwt listControllerBoard");
+        
         return fbService.listRcnt(requestDTO);
         
     }
