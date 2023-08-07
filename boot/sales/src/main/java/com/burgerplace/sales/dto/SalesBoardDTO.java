@@ -14,7 +14,7 @@ public class SalesBoardDTO {
 
     private String eventInfo; // 내용(할인정보)
 
-    private Long eventPrice; // 할인금액
+    private Integer eventPrice; // 할인금액
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime startDate; // 시작날짜

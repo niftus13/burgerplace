@@ -9,12 +9,6 @@ import com.burgerplace.sales.domain.SalesBoard;
 // 이름 일치시켜야된다. Search --> SearchImpl
 public interface SalesBoardSearch {
 
-    // List를 뽑는 메소드
-
-    // List<Board> search1();
-
-    //Page<Board> search1 (Pageable pageable);
-
     Page<SalesBoard> search1 (String searchType, String searchKeyword, Pageable pageable);
 
 }

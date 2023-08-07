@@ -42,18 +42,18 @@ public interface SalesBoardRepository extends JpaRepository<SalesBoard, Long> {
     // Update 하는 JPQL
     @Modifying
     @Query("update Board b set b.title = :title where b.bno = :bno")
-    int modifyTitle(@Param("title") String title, @Param("bno") Long bno);
+    int modifyTitle(@Param("title") String title, @Param("bno") Long pEno);
 
     // Paging 까지 된 쿼리메소드
     // 마지막 매개변수로 Pageable이 들어가면 Page타입으로 리턴해야되고
     // Paging 을 처리해 준다.
     // order by 까지 지원해준다.
-    Page<SalesBoard> findByContentContaining(String content, Pageable pageable);
+    Page<SalesBoard> findByContentContaining(String eventInfo, Pageable pageable);
 
     // nativeQuery
     // 급할때 쓴다.
     // native Query를 쓰면 DB에 종속되게 되버린다.
-    @Query(value = "select * from t_board ", nativeQuery=true)
+    @Query(value = "select * from Product_Event", nativeQuery=true)
     List<Object[]> listNative();
 
 }
