@@ -22,7 +22,6 @@ public class ProductDTO {
 
     private Long pno;
     private String pname;
-    private String pdesc;
     private int price;
     private Boolean event;
     private String hashTag;
