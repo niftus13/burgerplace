@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @RestController
-@RequestMapping("/api/replies")
+@RequestMapping("/api/freplies")
 @RequiredArgsConstructor
 @CrossOrigin
 @Log4j2

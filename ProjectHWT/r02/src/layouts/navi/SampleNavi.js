@@ -7,28 +7,25 @@ const SampleNavi = () => {
     const todoArr = useSelector(state => state.todo)
 
 
-    return ( 
+    return (
         <div className="flex m-3 p-4 mx-auto text-white  bg-slate-800">
             <div className="flex ml-10 font-bold">
                 <div className="m-3 p-2 text-3xl border-2">
                     <Link to={"/"}>Main</Link>
-                    <span className="bg-emerald-700 ">{todoArr.length}</span>
                 </div>
                 <div className="m-3 p-2 text-3xl border-2">
                     <Link to={"/about"}>About</Link>
                 </div>
                 <div className="m-3 p-2 text-3xl border-2">
-                    <Link to={"/products/list"}>Products</Link>
+                    <Link to={"/fboard/list"}>FreeBoard</Link>
                 </div>
-                <div className="m-3 p-2 text-3xl border-2">
-                    <Link to={"/board/list"}>Board</Link>
+                <div>
+                    <Link to={"/tboard/list"}>TradeBoard</Link>
                 </div>
-                <div className=" ml-[60vh]" >
-                    <LoginNavi></LoginNavi>
-                </div>
+
             </div>
         </div>
-     );
+    );
 }
- 
+
 export default SampleNavi;
