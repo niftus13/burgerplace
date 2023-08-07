@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.j1.dto.FreeBoardDTO;
-import org.zerock.j1.dto.FreeBoardListRcntDTO;
 import org.zerock.j1.dto.PageRequestDTO;
 import org.zerock.j1.dto.PageResponseDTO;
-import org.zerock.j1.service.FreeBoardService;
+import org.zerock.j1.dto.TradeBoardDTO;
+import org.zerock.j1.dto.TradeBoardListRcntDTO;
+import org.zerock.j1.service.TradeBoardService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -21,23 +21,22 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Log4j2
 @CrossOrigin
-public class BoardController {
+public class TradeBoardController {
     
-    private final FreeBoardService fbService;
+    private final TradeBoardService boardService;
 
     @GetMapping(value ="/list")
-    // api/board/list면 이 메서드만 사용한다.
-    public PageResponseDTO<FreeBoardListRcntDTO> list (@ParameterObject PageRequestDTO requestDTO){
+    public PageResponseDTO<TradeBoardListRcntDTO> list (@ParameterObject  PageRequestDTO requestDTO){
 
-        log.info(requestDTO+"hwt listControllerBoard");
-        
-        return fbService.listRcnt(requestDTO);
+        log.info(requestDTO);
+
+        return boardService.listRcnt(requestDTO);
         
     }
     
-    @GetMapping("{fBno}")
-    public FreeBoardDTO get(@PathVariable("fBno") Long fBno){
+    @GetMapping("{tBno}")
+    public TradeBoardDTO get(@PathVariable("tBno") Long tBno){
 
-        return  fbService.getOne(fBno);
+        return  boardService.getOne(tBno);
     }
 }

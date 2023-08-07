@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @CrossOrigin
 @Log4j2
-public class ReplyController {
+public class FreeReplyController {
 
     private final FreeReplyService frService;
 
