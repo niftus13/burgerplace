@@ -40,6 +40,8 @@ public class ProductTests {
 
     // }
 
+
+
     @Test
     @Transactional // 안걸리면 lazy exception이 걸린다.
     public void testRead1() {

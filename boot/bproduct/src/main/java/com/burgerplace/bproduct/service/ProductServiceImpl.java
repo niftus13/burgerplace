@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.burgerplace.bproduct.entity.CrawlingProduct;
+import com.burgerplace.bproduct.repositroy.CrawlingProductRepository;
 import org.springframework.stereotype.Service;
 
 import com.burgerplace.bproduct.dto.PageRequestDTO;
@@ -24,6 +26,7 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final FileUploader fileUploader;
+    private final CrawlingProductRepository crawlingProductRepository;
 
     @Override
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO requestDTO) {
@@ -33,9 +36,10 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long register(ProductDTO productDTO) {
+
+
         Product product = Product.builder()
                 .pname(productDTO.getPname())
-                .pdesc(productDTO.getPdesc())
                 .price(productDTO.getPrice())
                 .build();
 
@@ -47,6 +51,33 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void parsing() {
+        List<CrawlingProduct> crawlingProducts = crawlingProductRepository.findAll();
+
+        for(CrawlingProduct crawlingProduct : crawlingProducts){
+
+            log.info(
+                    crawlingProduct.getCno() + "_"+ crawlingProduct.getPname()+ "_"+crawlingProduct.getPrice()
+            );
+
+            Product product = Product.builder()
+                    .pname(crawlingProduct.getPname())
+                    .price(crawlingProduct.getPrice())
+                    .brand(crawlingProduct.getBrand())
+                    .build();
+
+            product.parseImg(crawlingProduct.getFileName());
+
+
+            log.info("==================entity==================");
+            log.info(product.getPno() + "_"+ product.getPname()+ "_"+product.getPrice());
+
+            productRepository.save(product);
+        }
+
+    }
+
+    @Override
     public ProductDTO readOne(Long pno) {
 
         Product product = productRepository.selectOne(pno);
@@ -55,7 +86,6 @@ public class ProductServiceImpl implements ProductService {
                 .pno(product.getPno())
                 .pname(product.getPname())
                 .price(product.getPrice())
-                .pdesc(product.getPdesc())
                 .images(product.getImages().stream().map(pi -> pi.getPfname()).collect(Collectors.toList()))
                 .build();
 
@@ -84,7 +114,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = result.orElseThrow();
         // 기본 정보들 수정
         product.changePname(productDTO.getPname());
-        product.changePdesc(productDTO.getPdesc());
+//        product.changePdesc(productDTO.getPdesc());
         product.changePrice(productDTO.getPrice());
 
         // 기존 이미지 목록 추출 --- 추후 비교해서 삭제

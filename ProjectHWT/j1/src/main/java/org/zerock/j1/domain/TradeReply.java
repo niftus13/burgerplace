@@ -28,6 +28,8 @@ public class TradeReply extends BaseEntity {
 
     private String replyText;
 
+    private String replyFile;
+
     private boolean tHidden;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,6 +37,11 @@ public class TradeReply extends BaseEntity {
 
     public void changerText(String text) {
         this.replyText = text;
+    }
+
+    public void changeFile(String fileName){
+
+        this.replyFile = fileName;
     }
     
 }

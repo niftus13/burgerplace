@@ -29,15 +29,9 @@ public class Product {
 
     private String pname;
 
-    private String pdesc;
-
-    private String writer;
-
     private int price;
 
     private Boolean event;
-
-    private String hashTag;
 
     private String brand;
 
@@ -57,6 +51,18 @@ public class Product {
 
         images.add(pImage);
     }
+    // 크롤링 이미지 이름 파싱
+    public void parseImg(String name){
+
+        String uuid = name.substring(0,36);
+        String imgName = name.substring(37);
+
+        ProductImage pImage = ProductImage.builder()
+                .UUID(uuid)
+                .pfname(imgName)
+                .ord(images.size()).build();
+        images.add(pImage);
+    }
     // 이미지 파일들을 싹 비워주는 method
     public void clearImages(){
         images.clear();
@@ -68,10 +74,6 @@ public class Product {
     
     public void changePname(String pname) {
         this.pname = pname;
-    }
-
-    public void changePdesc(String pdesc) {
-        this.pdesc = pdesc;
     }
 
     public void changeDel(boolean delFlag) {
