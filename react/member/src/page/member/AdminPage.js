@@ -1,17 +1,15 @@
 import React from 'react';
+import AdminComponent from '../../components/member/AdminComponent';
+import BasicLayout from '../../layouts/BasicLayout';
 
-const AdminPage = ({memberList}) => {
+const AdminPage = ({ memberList }) => {
 
     return (
         <div>
-            <h1>Admin Page</h1>
-            <ul>
-                {memberList.map(member => (
-                    <li key={member.id}>
-                        {member.nickname}
-                    </li>
-                ))}
-            </ul>
+            <BasicLayout>
+                <h1>Admin Page</h1>
+                <AdminComponent></AdminComponent>
+            </BasicLayout>
         </div>
     );
 }

@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
-import AdminPage from "../../page/member/AdminPage";
 import { getMemberList } from "../../api/adminAPI";
 
 
 
-const AdminComponent = () => {
+const AdminComponent = (params) => {
 
     const [memberList, setMemberList] = useState([])
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await getMemberList();
-                setMemberList(data);
-            } catch (error) {
-                console.error('Error fetching member list:', error);
-            }
-        };
+        getMemberList(params).then(data => {
+            console.log(data)
+            setMemberList(data)
+        }).catch(err => {
+            console.log("=============================================================")
+            console.log(err)
+            console.log("=============================================================")
+          })
+    }, [params])
 
-        fetchData();
-    }, []);
 
     return (
-        <div>
-            <AdminPage memberList={memberList} />
+        <div className="border-4 border-black">
+            <ul>
+                {memberList.map(member => 
+                    <li key={member.id}>
+                        {member.nickname} - {member.id}
+                    </li>
+                )}
+            </ul>
         </div>
     );
 }

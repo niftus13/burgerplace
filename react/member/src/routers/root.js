@@ -1,12 +1,16 @@
-import AdminPage from "../page/member/AdminPage"
+import { createBrowserRouter } from "react-router-dom";
+import MainPage from "../page/MainPage";
+import AdminPage from "../page/member/AdminPage";
 
+const router = createBrowserRouter([
+    {
+        path:"",
+        element: <MainPage></MainPage>
+    },
+    {
+        path:"admin/members",
+        element: <AdminPage></AdminPage>
+    }
+])
 
-// const memberList = lazy(() => import("../api/admin/members"))
-
-// const router = createBrowserRouter([
-
-//     {
-//         path: "members",
-//         element: <AdminPage></AdminPage>
-//     }
-// ])
+export default router;
