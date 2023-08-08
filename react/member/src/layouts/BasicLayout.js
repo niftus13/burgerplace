@@ -1,4 +1,4 @@
-import SampleNav from "../nav/SampleNav";
+import SampleNav from "./nav/SampleNav";
 
 const BasicLayout = ({ children }) => {
     return (

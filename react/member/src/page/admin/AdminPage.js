@@ -1,8 +1,8 @@
 import React from 'react';
-import AdminComponent from '../../components/member/AdminComponent';
+import AdminComponent from '../../components/admin/AdminComponent';
 import BasicLayout from '../../layouts/BasicLayout';
 
-const AdminPage = ({ memberList }) => {
+const AdminPage = () => {
 
     return (
         <div>

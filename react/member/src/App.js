@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import AdminPage from './page/member/AdminPage';
+import AdminPage from './page/admin/AdminPage';
 
 function App() {
   return (
