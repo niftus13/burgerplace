@@ -86,7 +86,9 @@ public class ProductServiceImpl implements ProductService {
                 .pno(product.getPno())
                 .pname(product.getPname())
                 .price(product.getPrice())
-                .images(product.getImages().stream().map(pi -> pi.getPfname()).collect(Collectors.toList()))
+                .brand(product.getBrand())
+                .event(product.getEvent())
+                .images(product.getImages().stream().map(pi -> pi.getUUID()+"_"+pi.getPfname()).collect(Collectors.toList()))
                 .build();
 
         return dto;

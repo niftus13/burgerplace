@@ -1,6 +1,7 @@
 package com.burgerplace.bproduct.repositroy.search;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -10,7 +11,9 @@ import com.burgerplace.bproduct.dto.PageRequestDTO;
 import com.burgerplace.bproduct.dto.PageResponseDTO;
 import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;
-
+import com.burgerplace.bproduct.entity.QProduct;
+import com.burgerplace.bproduct.entity.QProductImage;
+import com.burgerplace.bproduct.entity.QProductReview;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 
@@ -27,8 +30,9 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO) {
 
             QProduct product = QProduct.product;
+            log.info(product);
             QProductImage productImage = QProductImage.productImage;
-
+            log.info(productImage);
             JPQLQuery<Product> query = from(product);
             query.leftJoin(product.images, productImage);
 
@@ -45,7 +49,9 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
             JPQLQuery<ProductListDTO>dtoQuery = 
             query.select(
                 Projections.bean(ProductListDTO.class,
-                 product.pno, product.pname,
+                 product.pno, 
+                 product.pname, 
+                 product.brand,
                  product.price,
                  productImage.pfname)
             );
@@ -82,11 +88,16 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
 
         JPQLQuery<ProductListDTO> dtoQuery = query.select(
                 Projections.bean(ProductListDTO.class,
-                        product.pno, product.pname,
+                        product.pno, 
+                        product.pname,
+                        product.brand,
                         product.price,
-                        productImage.pfname.min().as("fname"),
+                        productImage.pfname.min().as("pfname"),
                         review.score.avg().as("reviewAvg"),
-                        review.count().as("reviewCnt")));
+                        review.count().as("reviewCnt"),
+                        productImage.UUID.min().as("UUID")
+                        ));
+
         List<ProductListDTO> dtoList = dtoQuery.fetch();
         long totalCount = dtoQuery.fetchCount();
 

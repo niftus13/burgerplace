@@ -19,16 +19,17 @@ public class MemberTests {
     public  void testInsert(){
 
         Member member = Member.builder()
-                .email("user00@aaa.com")
+                .email("user01@gmail.com")
                 .pw("1111")
                 .nickname("USER00")
+                .admin(true)
                 .build();
 
         memberRepository.save(member);
     }
     @Test
     public  void testRead(){
-        String email = "user00@aaa.com";
+        String email = "user01@gmail.com";
 
         Optional<Member> result = memberRepository.findById(email);
 
