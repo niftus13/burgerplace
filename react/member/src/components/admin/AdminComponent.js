@@ -2,12 +2,25 @@ import { useEffect, useState } from "react";
 import { getMemberList } from "../../api/adminAPI";
 import AdminPageComponent from "./AdminPageComponent";
 
-const AdminComponent = ({ params, movePage, moveRead }) => {
+const initState = {
+    dtoList:[],
+    end:0,
+    start:0,
+    next:false,
+    prev:false,
+    pageNums:[],
+    page:0,
+    size:0,
+    requestDTO: null
+  }
 
-    const [memberList, setMemberList] = useState([])
+const AdminComponent = ({ queryObj, movePage, moveRead }) => {
+
+
+    const [memberList, setMemberList] = useState(initState)
 
     useEffect(() => {
-        getMemberList(params).then(data => {
+        getMemberList(queryObj).then(data => {
             console.log(data)
             setMemberList(data)
         }).catch(err => {
@@ -15,18 +28,18 @@ const AdminComponent = ({ params, movePage, moveRead }) => {
             console.log(err)
             console.log("=============================================================")
         })
-    }, [params])
+    }, [queryObj])
 
 
     return (
         <div>
             <div className="border-4 border-black">
                 <ul>
-                    {memberList.map(member =>
-                        <li key={member.id}
-                            onClick={() => moveRead(member.id)}
+                    {memberList.dtoList.map(dto =>
+                        <li key={dto.id}
+                            onClick={() => moveRead(dto.id)}
                         >
-                            {member.nickname} - {member.id}
+                            {dto.nickname} - {dto.id}
                         </li>
                     )}
                 </ul>

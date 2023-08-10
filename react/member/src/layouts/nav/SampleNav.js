@@ -10,7 +10,7 @@ const SampleNav = () => {
           <span className='bg-red-500 font-extrabold'></span>
         </div>
         <div  className='m-4 text-4xl border-2'>
-          <Link to="/admin/members">Admin</Link>
+          <Link to="/admin/list">Admin</Link>
         </div>
       </div>
     );

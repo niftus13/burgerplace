@@ -1,6 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../page/MainPage";
-import AdminPage from "../page/admin/AdminPage";
+import { lazy } from "react";
+import { Suspense } from "react";
+
+
+const AdminIndex = lazy(() => import("../page/admin/AdminIndexPage"))
+const AdminPage = lazy(() => import("../page/admin/AdminPage")) 
+const AdminRead = lazy(() => import("../page/admin/AdminReadPage"))
+
 
 const router = createBrowserRouter([
     {
@@ -8,8 +15,18 @@ const router = createBrowserRouter([
         element: <MainPage></MainPage>
     },
     {
-        path:"admin/members",
-        element: <AdminPage></AdminPage>
+        path:"admin",
+        element: <Suspense><AdminIndex></AdminIndex></Suspense>,
+        children: [
+            {
+                path: "list",
+                element:<Suspense><AdminPage></AdminPage></Suspense>
+            },
+            {
+                path: "read/:id",
+                element:<Suspense><AdminRead></AdminRead></Suspense>
+            }
+        ]
     }
 ])
 

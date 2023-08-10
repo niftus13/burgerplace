@@ -36,12 +36,12 @@ const useQueryObj = () => {
     navigate(`../list?${queryString}`)
   }
 
-  const moveRead = (bno) => {
-    console.log("moveRead: " + bno)
+  const moveRead = (id) => {
+    console.log("moveRead: " + id)
 
     const queryString = createSearchParams (queryObj).toString()
 
-    navigate(`../read/${bno}?${queryString}`)
+    navigate(`../${id}?${queryString}`)
 
   }
 

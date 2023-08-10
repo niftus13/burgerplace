@@ -1,18 +1,21 @@
 import { useParams } from "react-router-dom"
-import adminQueryObj from "../../hooks/adminQueryObj"
+import useQueryObj from "../../hooks/useQueryObj"
+import ReadComponent from "../../components/admin/ReadComponent"
 
 const AdminReadPage = () => {
 
-    const [params, setSearch, moveRead, moveList] = adminQueryObj()
+    const {queryObj, setSearch, moveRead, moveList} = useQueryObj()
     const { id } = useParams()
 
     console.log(id)
-    console.log(params)
+    console.log(queryObj)
 
     return (
         <div>
-            Board Read Page
-            <button onClick={e => moveList()}>List</button>
+            <ReadComponent>
+                Board Read Page
+                <button onClick={e => moveList()}>List</button>
+            </ReadComponent>
         </div>
     );
 }

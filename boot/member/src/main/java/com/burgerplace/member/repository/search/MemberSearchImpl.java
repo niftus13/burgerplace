@@ -100,7 +100,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
         query.groupBy(member);
 
         // 어제 했던 tuple 뽑는거 까진 똑같음
-        // JPQL Query를 바로 BoardListRcntDTO로 추출하는 쿼리
+        // JPQL Query를 바로 MemberDTO로 추출하는 쿼리
         JPQLQuery<MemberDTO> listQuery = query.select(Projections.bean(
                 MemberDTO.class,
                 member.id,
@@ -109,7 +109,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
                 member.admin
                 ));
 
-        // 쿼리를 List<BoardListRcntDTO>로 추출
+        // 쿼리를 List<MemberDTO>로 추출
         List<MemberDTO> list = listQuery.fetch();
 
         log.info("--------------------------");

@@ -1,5 +1,6 @@
 package com.burgerplace.member.service;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
@@ -38,7 +39,7 @@ public class MemberServiceImpl implements MemberService {
     public MemberDTO getOne(String id) {
         Optional<Member> result = memberRepository.findById(id);
 
-        Member member = result.orElseThrow();
+        Member member = result.orElseThrow(() -> new NoSuchElementException("Member not found with id: " + id));
 
         MemberDTO dto = modelMapper.map(member, MemberDTO.class);
 
