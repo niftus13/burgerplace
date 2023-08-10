@@ -9,19 +9,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 @Entity
-@Table(name = "product_reply")
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @ToString(exclude = "product")
-public class Reply {
-
+@Table(name = "productReply")
+public class ProductReply {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pRno;
@@ -30,12 +31,14 @@ public class Reply {
 
     private String replyFile;
 
-    private String replyer;
+    private String nickName; // replyer
+
+    private Integer grade;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    // 수정시 쓰기위한 함수 2개 설정  바꾸는 함수들만
+    // 수정시 쓰기위한 함수 --바꾸는 함수들만
     public void changeText(String text){
         this.replyText = text;
     }
@@ -43,6 +46,10 @@ public class Reply {
     public void changeFile(String fileName){
 
         this.replyFile = fileName;
+    }
+
+    public void changeGrade(Integer grade){
+        this.grade = grade;
     }
 
 }

@@ -10,10 +10,9 @@ import org.springframework.data.domain.Sort;
 
 import com.burgerplace.bproduct.dto.ReplyPageRequestDTO;
 import com.burgerplace.bproduct.entity.Product;
-import com.burgerplace.bproduct.entity.Reply;
-import com.burgerplace.bproduct.repositroy.ReplyRepository;
-import com.burgerplace.bproduct.service.ReplyService;
-
+import com.burgerplace.bproduct.entity.ProductReply;
+import com.burgerplace.bproduct.repositroy.ProductReplyRepository;
+import com.burgerplace.bproduct.service.ProductReplyService;
 import lombok.extern.log4j.Log4j2;
 
 @SpringBootTest
@@ -21,23 +20,30 @@ import lombok.extern.log4j.Log4j2;
 public class ReplyTests {
 
     @Autowired
-    private ReplyRepository replyRepository;
+    private ProductReplyRepository replyRepository;
 
     @Autowired
-    private ReplyService replyService;
+    private ProductReplyService replyService;
 
     @Test
     public void insertOne() {
 
-        Long pno = 100L;
+        Long pno = 1L;
 
         Product product = Product.builder().pno(pno).build();
 
-        Reply reply = Reply.builder()
-                .replyText("Reply......1")
-                .replyer("replyer00")
-                .product(product)
-                .build();
+        // Reply reply = Reply.builder()
+        //         .replyText("Reply......1")
+        //         .replyer("replyer00")
+        //         .product(product)
+        //         .build();
+
+        ProductReply reply = ProductReply.builder()
+        .replyText("Reply......1")
+        .nickName("replyer00")
+        .product(product)
+        .grade(6)
+        .build();
 
         replyRepository.save(reply);
     }
@@ -45,17 +51,19 @@ public class ReplyTests {
     @Test
     public void testInsertDummies() {
 
-        Long[] pnoArr = { 99L, 96L, 92L, 84L, 81L };
+        Long[] pnoArr = {1L ,2L ,3L ,4L ,5L };
 
         for (Long pno : pnoArr) {
 
             Product product = Product.builder().pno(pno).build();
 
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 20; i++) {
+                
 
-                Reply reply = Reply.builder()
+                ProductReply reply = ProductReply.builder()
                         .replyText("Reply..." + pno + "--" + i)
-                        .replyer("replyer" + i)
+                        .nickName("replyer" + i)
+                        .grade((int)(Math.random()*(10)+1))
                         .product(product)
                         .build();
 
@@ -66,10 +74,10 @@ public class ReplyTests {
 
     @Test
     public void testListBoard(){
-        Long pno = 99L;
+        Long pno = 1L;
         Pageable pageable = PageRequest.of(0, 10, Sort.by("pRno").ascending());
 
-        Page<Reply> result = replyRepository.listProduct(pno, pageable);
+        Page<ProductReply> result = replyRepository.listProduct(pno, pageable);
 
         
         result.get().forEach(r -> log.info(r));
@@ -79,7 +87,7 @@ public class ReplyTests {
     @Test
     public void testCount() {
         
-        Long pno = 99L;
+        Long pno = 1L;
 
         long count = replyRepository.getCountProduct(pno);
 

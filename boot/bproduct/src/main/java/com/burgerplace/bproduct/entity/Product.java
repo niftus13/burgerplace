@@ -68,7 +68,7 @@ public class Product {
         images.clear();
     }
 
-    public void changePrice(int i) {
+    public void changePrice(int price) {
         this.price = price;
     }
     

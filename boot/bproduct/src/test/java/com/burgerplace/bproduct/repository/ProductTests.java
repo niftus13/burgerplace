@@ -125,4 +125,20 @@ public class ProductTests {
         }
 
     }
+
+    @Test
+    public void testList3(){
+
+        PageRequestDTO requestDTO = new PageRequestDTO();
+        PageResponseDTO<ProductListDTO> result = repo.listSearchWithReview(requestDTO);
+
+        for (ProductListDTO dto : result.getDtoList()) {
+
+            System.out.println(dto);
+        }
+
+    
+    }
+
+
 }

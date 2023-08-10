@@ -30,6 +30,8 @@ public class ProductReview {
 
     private int score;
 
+    private int grade;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 }

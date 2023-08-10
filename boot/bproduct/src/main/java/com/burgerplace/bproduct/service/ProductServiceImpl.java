@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO requestDTO) {
 
-        return productRepository.listWithReview(requestDTO);
+        return productRepository.listSearchWithReview(requestDTO);
     }
 
     @Override
