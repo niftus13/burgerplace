@@ -13,7 +13,7 @@ import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;
 import com.burgerplace.bproduct.entity.QProduct;
 import com.burgerplace.bproduct.entity.QProductImage;
-import com.burgerplace.bproduct.entity.QProductReview;
+import com.burgerplace.bproduct.entity.QProductReply;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
@@ -31,9 +31,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO) {
 
         QProduct product = QProduct.product;
-        log.info(product);
         QProductImage productImage = QProductImage.productImage;
-        log.info(productImage);
         JPQLQuery<Product> query = from(product);
         query.leftJoin(product.images, productImage);
 
@@ -60,15 +58,15 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
     }
 
     @Override
-    public PageResponseDTO<ProductListDTO> listWithReview(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ProductListDTO> listWithReply(PageRequestDTO pageRequestDTO) {
 
         QProduct product = QProduct.product;
         QProductImage productImage = QProductImage.productImage;
-        QProductReview review = QProductReview.productReview;
+        QProductReply reply = QProductReply.productReply;
 
         JPQLQuery<Product> query = from(product);
         query.leftJoin(product.images, productImage);
-        query.leftJoin(review).on(review.product.eq(product));
+        query.leftJoin(reply).on(reply.product.eq(product));
 
         query.where(productImage.ord.eq(0));
         query.where(product.delFlag.eq(Boolean.FALSE));
@@ -76,7 +74,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         int pageNum = pageRequestDTO.getPage() <= 0 ? 0 : pageRequestDTO.getPage() - 1;
 
         Pageable pageable = PageRequest.of(pageNum, pageRequestDTO.getSize(),
-                Sort.by("pno").descending());
+                Sort.by("pno").ascending());
 
         this.getQuerydsl().applyPagination(pageable, query);
         // 에러가 나오는데 grouping 되지않는애가 있기때문
@@ -91,8 +89,8 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                         product.brand,
                         product.price,
                         productImage.pfname.min().as("pfname"),
-                        review.score.avg().as("reviewAvg"),
-                        review.count().as("reviewCnt"),
+                        reply.grade.avg().as("gradeAvg"),
+                        reply.count().as("replyCnt"),
                         productImage.UUID.min().as("UUID")));
 
         List<ProductListDTO> dtoList = dtoQuery.fetch();
@@ -102,15 +100,15 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
     }
 
     @Override
-    public PageResponseDTO<ProductListDTO> listSearchWithReview(PageRequestDTO pageRequestDTO) {
+    public PageResponseDTO<ProductListDTO> listSearchWithReply(PageRequestDTO pageRequestDTO) {
 
         QProduct product = QProduct.product;
         QProductImage productImage = QProductImage.productImage;
-        QProductReview review = QProductReview.productReview;
+        QProductReply reply = QProductReply.productReply;
 
         JPQLQuery<Product> query = from(product);
         query.leftJoin(product.images, productImage);
-        query.leftJoin(review).on(review.product.eq(product));
+        query.leftJoin(reply).on(reply.product.eq(product));
 
         query.where(productImage.ord.eq(0));
         query.where(product.delFlag.eq(Boolean.FALSE));
@@ -148,8 +146,8 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                         product.brand,
                         product.price,
                         productImage.pfname.min().as("pfname"),
-                        review.score.avg().as("reviewAvg"),
-                        review.count().as("reviewCnt"),
+                        reply.grade.avg().as("gradeAvg"),
+                        reply.count().as("replyCnt"),
                         productImage.UUID.min().as("UUID")));
         List<ProductListDTO> dtoList = dtoQuery.fetch();
         long totalCount = dtoQuery.fetchCount();

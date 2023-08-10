@@ -17,7 +17,7 @@ public class ProductListDTO {
     
     private String pfname;
 
-    private long reviewCnt;
+    private long replyCnt;
 
-    private double reviewAvg;
+    private double gradeAvg;
 }

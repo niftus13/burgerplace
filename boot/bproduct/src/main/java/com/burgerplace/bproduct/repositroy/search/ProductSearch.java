@@ -7,6 +7,6 @@ import com.burgerplace.bproduct.dto.ProductListDTO;
 public interface ProductSearch {
     
     PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO);
-    PageResponseDTO<ProductListDTO> listWithReview(PageRequestDTO pageRequestDTO);
-    PageResponseDTO<ProductListDTO> listSearchWithReview(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<ProductListDTO> listWithReply(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<ProductListDTO> listSearchWithReply(PageRequestDTO pageRequestDTO);
 }

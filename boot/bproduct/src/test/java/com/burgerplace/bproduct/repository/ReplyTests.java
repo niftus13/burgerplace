@@ -99,7 +99,7 @@ public class ReplyTests {
 
         ReplyPageRequestDTO requestDTO = ReplyPageRequestDTO
         .builder()
-        .pno(99L)
+        .pno(1L)
         .last(true)
         .build();
 

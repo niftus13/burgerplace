@@ -117,7 +117,7 @@ public class ProductTests {
 
         PageRequestDTO requestDTO = new PageRequestDTO();
 
-        PageResponseDTO<ProductListDTO> result = repo.listWithReview(requestDTO);
+        PageResponseDTO<ProductListDTO> result = repo.listWithReply(requestDTO);
 
         for (ProductListDTO dto : result.getDtoList()) {
 
@@ -130,7 +130,7 @@ public class ProductTests {
     public void testList3(){
 
         PageRequestDTO requestDTO = new PageRequestDTO();
-        PageResponseDTO<ProductListDTO> result = repo.listSearchWithReview(requestDTO);
+        PageResponseDTO<ProductListDTO> result = repo.listSearchWithReply(requestDTO);
 
         for (ProductListDTO dto : result.getDtoList()) {
 
