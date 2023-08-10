@@ -10,3 +10,10 @@ export const getMemberList = async (queryObj) => {
 
     return res.data
 }
+
+export const getMember = async (id) => {
+
+    const res = await axios.get(`http://localhost:8080/api/admin/${id}`)
+
+    return res.data
+}

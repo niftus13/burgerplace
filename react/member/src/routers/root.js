@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainPage from "../page/MainPage";
 import { lazy } from "react";
+import LoadingPage from "../page/LoadingPage";
 import { Suspense } from "react";
 
 
+const Loading = <LoadingPage></LoadingPage>
 const AdminIndex = lazy(() => import("../page/admin/AdminIndexPage"))
 const AdminPage = lazy(() => import("../page/admin/AdminPage")) 
 const AdminRead = lazy(() => import("../page/admin/AdminReadPage"))
@@ -16,15 +18,15 @@ const router = createBrowserRouter([
     },
     {
         path:"admin",
-        element: <Suspense><AdminIndex></AdminIndex></Suspense>,
+        element: <Suspense fallback={Loading}><AdminIndex></AdminIndex></Suspense>,
         children: [
             {
                 path: "list",
-                element:<Suspense><AdminPage></AdminPage></Suspense>
+                element:<Suspense fallback={Loading}><AdminPage></AdminPage></Suspense>
             },
             {
-                path: "read/:id",
-                element:<Suspense><AdminRead></AdminRead></Suspense>
+                path: ":id",
+                element:<Suspense fallback={Loading}><AdminRead></AdminRead></Suspense>
             }
         ]
     }

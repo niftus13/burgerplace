@@ -12,9 +12,8 @@ const AdminReadPage = () => {
 
     return (
         <div>
-            <ReadComponent>
-                Board Read Page
-                <button onClick={e => moveList()}>List</button>
+            <div>Board Read Page</div>
+            <ReadComponent id={id}>
             </ReadComponent>
         </div>
     );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMemberList } from "../../api/adminAPI";
 import AdminPageComponent from "./AdminPageComponent";
+import useQueryObj from "../../hooks/useQueryObj";
 
 const initState = {
     dtoList:[],
@@ -14,8 +15,9 @@ const initState = {
     requestDTO: null
   }
 
-const AdminComponent = ({ queryObj, movePage, moveRead }) => {
+const AdminComponent = ({ queryObj, movePage }) => {
 
+    const {moveRead} = useQueryObj();
 
     const [memberList, setMemberList] = useState(initState)
 
