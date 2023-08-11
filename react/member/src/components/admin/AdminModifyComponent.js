@@ -29,7 +29,7 @@ const AdminModifyComponent = ({id, moveList, moveRead}) => {
 
     const handleChange = (e) => {
         console.log("handle change..........")
-        member[e.target.nickname] = e.target.value
+        member[e.target.name] = e.target.value
 
         setMember({ ...member })
     }
