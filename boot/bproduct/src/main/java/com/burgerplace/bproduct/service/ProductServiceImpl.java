@@ -81,6 +81,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductDTO readOne(Long pno) {
 
         Product product = productRepository.selectOne(pno);
+        log.info(product);
 
         ProductDTO dto = ProductDTO.builder()
                 .pno(product.getPno())

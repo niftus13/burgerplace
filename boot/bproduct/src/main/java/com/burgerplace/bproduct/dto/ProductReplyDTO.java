@@ -1,13 +1,14 @@
 package com.burgerplace.bproduct.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
+
 
 import lombok.Data;
 
 @Data
 public class ProductReplyDTO {
 
-    private Long pRno;
+    private Long prno;
 
     private String nickname;
 
@@ -15,10 +16,8 @@ public class ProductReplyDTO {
 
     private Integer grade;
 
-    private Date replyDate;
+    private LocalDate replyDate;
 
     private String replyFile;
-
-    private String replyer;
     
 }

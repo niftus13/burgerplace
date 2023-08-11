@@ -15,10 +15,10 @@ public interface ProductReplyService {
     Long register(ProductReplyDTO replyDTO);
 
     // reply read
-    ProductReplyDTO read(Long pRno);
+    ProductReplyDTO read(Long prno);
 
     // reply delete
-    void remove(Long pRno);
+    void remove(Long prno);
 
     // reply modify
     void modify(ProductReplyDTO replyDTO);

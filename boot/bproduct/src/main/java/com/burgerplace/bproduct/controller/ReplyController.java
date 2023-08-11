@@ -53,25 +53,25 @@ public class ReplyController {
 
     }
 
-    @GetMapping("{pRno}")
-    public ProductReplyDTO getOne(@PathVariable("pRno") Long pRno) {
+    @GetMapping("{prno}")
+    public ProductReplyDTO getOne(@PathVariable("prno") Long prno) {
 
-        return replyService.read(pRno);        
+        return replyService.read(prno);        
     }
-    @DeleteMapping("{pRno}")
-    public Map<String, Long> remove(@PathVariable("pRno") Long pRno){
+    @DeleteMapping("{prno}")
+    public Map<String, Long> remove(@PathVariable("prno") Long prno){
 
-        replyService.remove(pRno);
+        replyService.remove(prno);
 
 
-        return Map.of("result",pRno);
+        return Map.of("result",prno);
     }
-    @PutMapping("{pRno}")
+    @PutMapping("{prno}")
     public Map<String, Long> modify(@RequestBody ProductReplyDTO replyDTO){
 
         replyService.modify(replyDTO);
 
-        return Map.of("result", replyDTO.getPRno());
+        return Map.of("result", replyDTO.getPrno());
     }
 
 }

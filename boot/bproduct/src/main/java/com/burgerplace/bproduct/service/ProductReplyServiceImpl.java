@@ -41,20 +41,19 @@ public class ProductReplyServiceImpl implements ProductReplyService{
             pageNum = (int)(Math.ceil((totalCount/(double)requestDTO.getSize())));
         }
 
-        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("pRno").ascending());
+        Pageable pageable = PageRequest.of(pageNum -1, requestDTO.getSize(), Sort.by("prno").ascending());
 
         Page<ProductReply> result = replyRepository.listProduct(requestDTO.getPno(), pageable);
 
         log.info("--------------------------");
-
-        log.info(result.getNumber());
         log.info(result.getContent());
 
         long totalReplyCount = result.getTotalElements();
+        log.info(totalReplyCount);
 
-        List<ProductReplyDTO> dtoList = result.get().map(en -> modelMapper.map(en, ProductReplyDTO.class)).collect(Collectors.toList());
         
-
+        List<ProductReplyDTO> dtoList = result.get().map(entity -> modelMapper.map(entity, ProductReplyDTO.class)).collect(Collectors.toList());
+        
         PageResponseDTO<ProductReplyDTO> responseDTO = new PageResponseDTO<>(dtoList, totalReplyCount, requestDTO);
 
         responseDTO.setPage(pageNum);
@@ -68,7 +67,7 @@ public class ProductReplyServiceImpl implements ProductReplyService{
        
         ProductReply reply = modelMapper.map(replyDTO,ProductReply.class);
 
-        Long newPrno = replyRepository.save(reply).getPRno();
+        Long newPrno = replyRepository.save(reply).getPrno();
 
         return newPrno;
 
@@ -101,7 +100,7 @@ public class ProductReplyServiceImpl implements ProductReplyService{
     @Override
     public void modify(ProductReplyDTO ProductReplyDTO) {
         
-        Optional<ProductReply> result = replyRepository.findById(ProductReplyDTO.getPRno());
+        Optional<ProductReply> result = replyRepository.findById(ProductReplyDTO.getPrno());
         
 
         ProductReply reply = result.orElseThrow();

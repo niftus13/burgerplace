@@ -1,5 +1,9 @@
 package com.burgerplace.bproduct.entity;
 
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.CreatedDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -9,23 +13,25 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+
 @Entity
-@Data
 @Builder
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(exclude = "product")
 @Table(name = "productReply")
-public class ProductReply {
+public class ProductReply extends BaseTimeEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pRno;
+    private Long prno;
 
     private String replyText;
 
