@@ -5,7 +5,7 @@ const AdminSearchComponent = ({ moveSearch, queryObj }) => {
 
     const [searchObj, setSearchObj] = useState({ type: '', keyword: '' });
     useEffect(() => {
-        setSearchObj({ type: queryObj.type || '', keyword: queryObj.keyword || '' });
+        setSearchObj({ type: queryObj.type || 'nickname', keyword: queryObj.keyword || '' });
     }, [queryObj]);
 
     return (
@@ -15,8 +15,8 @@ const AdminSearchComponent = ({ moveSearch, queryObj }) => {
                 value={searchObj.type}
                 onChange={e => setSearchObj({ ...searchObj, type: e.target.value })}
             >
-                <option value={'id'}>id</option>
                 <option value={'nickname'}>nickname</option>
+                <option value={'id'}>id</option>
                 <option value={'in'}>id&nickname</option>
             </select>
             <input

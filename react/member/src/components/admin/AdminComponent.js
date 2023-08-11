@@ -15,9 +15,7 @@ const initState = {
     requestDTO: null
   }
 
-const AdminComponent = ({ queryObj, movePage }) => {
-
-    const {moveRead} = useQueryObj();
+const AdminComponent = ({ queryObj, movePage, moveRead }) => {
 
     const [memberList, setMemberList] = useState(initState)
 

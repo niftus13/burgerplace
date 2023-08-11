@@ -21,18 +21,18 @@ const AdminPage = () => {
         queryObj.page = 1
         queryObj.type = type
         queryObj.keyword = keyword
-    
-        setSearch({...queryObj})
-      }
+
+        setSearch({ ...queryObj })
+    }
 
     return (
         <div>
             <h1>Admin Page</h1>
             <AdminSearchComponent moveSearch={moveSearch} queryObj={queryObj}></AdminSearchComponent>
-            <AdminComponent>
+            <AdminComponent
                 queryObj={queryObj}
                 movePage={movePage}
-                moveRead={moveRead}
+                moveRead={moveRead}>
             </AdminComponent>
         </div>
     );
