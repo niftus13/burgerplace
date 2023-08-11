@@ -7,27 +7,31 @@ import { Suspense } from "react";
 
 const Loading = <LoadingPage></LoadingPage>
 const AdminIndex = lazy(() => import("../page/admin/AdminIndexPage"))
-const AdminPage = lazy(() => import("../page/admin/AdminPage")) 
+const AdminPage = lazy(() => import("../page/admin/AdminPage"))
 const AdminRead = lazy(() => import("../page/admin/AdminReadPage"))
-
+const AdminModify = lazy(() => import("../page/admin/AdminModifyPage"))
 
 const router = createBrowserRouter([
     {
-        path:"",
+        path: "",
         element: <MainPage></MainPage>
     },
     {
-        path:"admin",
+        path: "admin",
         element: <Suspense fallback={Loading}><AdminIndex></AdminIndex></Suspense>,
         children: [
             {
                 path: "list",
-                element:<Suspense fallback={Loading}><AdminPage></AdminPage></Suspense>
+                element: <Suspense fallback={Loading}><AdminPage></AdminPage></Suspense>
             },
             {
-                path: ":id",
-                element:<Suspense fallback={Loading}><AdminRead></AdminRead></Suspense>
-            }
+                path: "read/:id",
+                element: <Suspense fallback={Loading}><AdminRead></AdminRead></Suspense>
+            },
+            {
+                path: "modify/:id",
+                element: <Suspense fallback={Loading}><AdminModify></AdminModify></Suspense>
+            },
         ]
     }
 ])

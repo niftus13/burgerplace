@@ -1,5 +1,6 @@
 package com.burgerplace.member.service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -44,6 +45,30 @@ public class MemberServiceImpl implements MemberService {
         MemberDTO dto = modelMapper.map(member, MemberDTO.class);
 
         return dto;
+    }
+
+    @Override
+    public void remove(String id) {
+        
+        Member member = memberRepository.selectOne(id);
+
+        member.changeDel(true);
+
+        memberRepository.save(member);
+    }
+
+    @Override
+    public void modify(MemberDTO memberDTO) {
+        
+        Optional<Member> result = memberRepository.findById(memberDTO.getId());
+   
+        Member member = result.orElseThrow();
+
+        member.changeNickname(memberDTO.getNickname());
+        member.changePassword(memberDTO.getPw());
+        member.changeAdmin(memberDTO.getAdmin());
+
+        memberRepository.save(member);
     }
 
 

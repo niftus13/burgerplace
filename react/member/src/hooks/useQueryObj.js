@@ -41,7 +41,7 @@ const useQueryObj = () => {
 
     const queryString = createSearchParams (queryObj).toString()
 
-    navigate(`../${id}?${queryString}`)
+    navigate(`../read/${id}?${queryString}`)
 
   }
 
@@ -50,7 +50,7 @@ const useQueryObj = () => {
 
     const queryString = createSearchParams (queryObj).toString()
 
-    navigate(`./${id}?${queryString}`)
+    navigate(`../modify/${id}?${queryString}`)
 
   }
 

@@ -17,6 +17,6 @@ public class MemberDTO {
 
     private String nickname;
 
-    private boolean admin;
+    private Boolean admin;
 
 }

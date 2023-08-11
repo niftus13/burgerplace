@@ -49,7 +49,7 @@ const ReadComponent = ({ id, moveModify, moveList }) => {
             <div className="m-2 p-2 border-2">
                 {member.admin}
             </div>
-            {/* <div>
+            <div>
                 <button className="bg-blue-400 border-2 m-2 p-2 font-extrabold"
                     onClick={moveList}>
                     List
@@ -58,12 +58,7 @@ const ReadComponent = ({ id, moveModify, moveList }) => {
                     onClick={() => moveModify(member.id)}>
                     Modify
                 </button>
-                <button
-                    className="bg-blue-300 border-2 m-2 p-2 font-bold"
-                    onClick={moveList}>
-                    List
-                </button>
-            </div> */}
+            </div>
         </div>
     </div>
 );

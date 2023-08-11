@@ -4,19 +4,6 @@ import { useState } from "react";
 const AdminSearchComponent = ({ moveSearch, queryObj }) => {
 
     const [searchObj, setSearchObj] = useState({ type: '', keyword: '' });
-
-    // useEffect(() => {
-
-    //     searchObj.type = queryObj.type || ''
-    //     searchObj.keyword = queryObj.keyword || ''
-
-    //     console.log("===========searchobj=============")
-    //     console.log(searchObj)
-
-    //     setSearchObj({ ...searchObj })
-
-    // }, [queryObj])
-
     useEffect(() => {
         setSearchObj({ type: queryObj.type || '', keyword: queryObj.keyword || '' });
     }, [queryObj]);

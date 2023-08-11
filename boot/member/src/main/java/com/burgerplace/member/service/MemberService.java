@@ -12,4 +12,8 @@ public interface MemberService {
     PageResponseDTO<MemberDTO> listRcnt(PageRequestDTO pageRequestDTO);
 
     MemberDTO getOne(String id);
+
+    void remove(String id);
+
+    void modify(MemberDTO memberDTO);
 }

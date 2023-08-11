@@ -52,4 +52,7 @@ public interface MemberRepository extends JpaRepository<Member, String>, MemberS
     @Query("select m from Member m where m.id = :id")
     MemberReadDTO readOne(@Param("id")String id);
 
+    @Query("select m from Member m where m.delFlag = false and m.id = :id ")
+    Member selectOne(@Param("id") String id);
+
 }

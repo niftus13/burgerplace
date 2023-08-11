@@ -4,7 +4,7 @@ import ReadComponent from "../../components/admin/ReadComponent"
 
 const AdminReadPage = () => {
 
-    const {queryObj, setSearch, moveRead, moveList} = useQueryObj()
+    const {queryObj, setSearch, moveRead, moveList, moveModify} = useQueryObj()
     const { id } = useParams()
 
     console.log(id)
@@ -13,7 +13,10 @@ const AdminReadPage = () => {
     return (
         <div>
             <div>Board Read Page</div>
-            <ReadComponent id={id}>
+            <ReadComponent 
+            id={id}
+            moveModify={moveModify} 
+            moveList={moveList}>
             </ReadComponent>
         </div>
     );

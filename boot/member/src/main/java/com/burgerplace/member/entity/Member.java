@@ -27,4 +27,22 @@ public class Member {
     private String nickname;
 
     private boolean admin;
+
+    private boolean delFlag;
+
+    public void changeNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public void changePassword(String pw) {
+        this.pw = pw;
+    }
+
+    public void changeAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public void changeDel(boolean delFlag) {
+        this.delFlag = delFlag;
+    }
 }
