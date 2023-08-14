@@ -24,7 +24,8 @@ public class MemberController {
     @PostMapping("login")
     public MemberDTO login(@RequestBody MemberDTO memberDTO){
 
-        log.info("Parameter: " + memberDTO);
+        log.info("Parameter: " + memberDTO); 
+        
 
         MemberDTO result = memberService.login(
                 memberDTO.getEmail(),
