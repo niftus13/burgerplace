@@ -9,4 +9,6 @@ public interface MemberReadDTO {
     String getNickname();
 
     boolean getAdmin();
+
+    boolean getDelFlag();
 }

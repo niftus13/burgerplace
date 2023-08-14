@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import com.burgerplace.member.dto.MemberDTO;
 import com.burgerplace.member.dto.PageRequestDTO;
 import com.burgerplace.member.dto.PageResponseDTO;
-import com.burgerplace.member.entity.Member;
-import com.burgerplace.member.repository.MemberRepository;
+import com.burgerplace.member.entity.MemberEntity;
+import com.burgerplace.member.repository.MemberEntityRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,16 +20,16 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Log4j2
 public class MemberServiceImpl implements MemberService {
-    
 
-    private final MemberRepository memberRepository;
+    private final MemberEntityRepository memberRepository;
 
     private final ModelMapper modelMapper;
+
     // 등록작업을 위해서 사용한다.
     // private final ModelMapper modelMapper;
     @Override
     public PageResponseDTO<MemberDTO> listRcnt(PageRequestDTO pageRequestDTO) {
-       
+
         log.info("--------------------------");
         log.info(pageRequestDTO);
 
@@ -38,9 +38,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberDTO getOne(String id) {
-        Optional<Member> result = memberRepository.findById(id);
+        Optional<MemberEntity> result = memberRepository.findById(id);
 
-        Member member = result.orElseThrow(() -> new NoSuchElementException("Member not found with id: " + id));
+        MemberEntity member = result.orElseThrow(() -> new NoSuchElementException("Member not found with id: " + id));
 
         MemberDTO dto = modelMapper.map(member, MemberDTO.class);
 
@@ -49,8 +49,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void remove(String id) {
-        
-        Member member = memberRepository.selectOne(id);
+
+        MemberEntity member = memberRepository.selectOne(id);
 
         member.changeDel(true);
 
@@ -59,10 +59,10 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void modify(MemberDTO memberDTO) {
-        
-        Optional<Member> result = memberRepository.findById(memberDTO.getId());
-   
-        Member member = result.orElseThrow();
+
+        Optional<MemberEntity> result = memberRepository.findById(memberDTO.getId());
+
+        MemberEntity member = result.orElseThrow();
 
         member.changeNickname(memberDTO.getNickname());
         member.changePassword(memberDTO.getPw());
@@ -71,5 +71,12 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
     }
 
+    @Override
+    public void register(MemberDTO memberDTO) {
+        MemberEntity newMember = modelMapper.map(memberDTO, MemberEntity.class);
 
+        // 회원 가입 시 필요한 초기화 작업 등 수행 가능
+
+        memberRepository.save(newMember);
+    }
 }

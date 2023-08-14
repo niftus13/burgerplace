@@ -6,19 +6,19 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.burgerplace.member.entity.Member;
-import com.burgerplace.member.repository.MemberRepository;
+import com.burgerplace.member.entity.MemberEntity;
+import com.burgerplace.member.repository.MemberEntityRepository;
 
 @SpringBootTest
 public class MemberTests {
 
     @Autowired
-    MemberRepository memberRepository;
+    MemberEntityRepository memberRepository;
 
     @Test
     public void testInsert() {
 
-        Member member = Member.builder()
+        MemberEntity member = MemberEntity.builder()
                 .id("Bazzi@nexon.com")
                 .pw("1111")
                 .admin(true)
@@ -32,9 +32,9 @@ public class MemberTests {
     public void testRead() {
         String id = "Bazzi@nexon.com";
 
-        Optional<Member> result = memberRepository.findById(id);
+        Optional<MemberEntity> result = memberRepository.findById(id);
 
-        Member member = result.orElseThrow();
+        MemberEntity member = result.orElseThrow();
 
         System.out.println(member);
     }

@@ -10,8 +10,9 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import com.burgerplace.member.dto.MemberDTO;
 import com.burgerplace.member.dto.PageRequestDTO;
 import com.burgerplace.member.dto.PageResponseDTO;
-import com.burgerplace.member.entity.Member;
-import com.burgerplace.member.entity.QMember;
+import com.burgerplace.member.entity.MemberEntity;
+
+import com.burgerplace.member.entity.QMemberEntity;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
@@ -22,15 +23,15 @@ import lombok.extern.log4j.Log4j2;
 public class MemberSearchImpl extends QuerydslRepositorySupport implements MemberSearch {
 
     public MemberSearchImpl() {
-        super(Member.class);
+        super(MemberEntity.class);
     }
 
     @Override
-    public Page<Member> search1(String searchType, String keyword, Pageable pageable) {
+    public Page<MemberEntity> search1(String searchType, String keyword, Pageable pageable) {
 
-        QMember member = QMember.member;
+        QMemberEntity member = QMemberEntity.memberEntity;
 
-        JPQLQuery<Member> query = from(member);
+        JPQLQuery<MemberEntity> query = from(member);
 
         if (keyword != null && searchType != null) {
 
@@ -52,7 +53,7 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
 
         this.getQuerydsl().applyPagination(pageable, query);
         // list를 가져오는 방법
-        List<Member> list = query.fetch();
+        List<MemberEntity> list = query.fetch();
         long count = query.fetchCount();
 
         log.info(list);
@@ -66,10 +67,10 @@ public class MemberSearchImpl extends QuerydslRepositorySupport implements Membe
 
         Pageable pageable = makePageable(requestDTO);
 
-        QMember member = QMember.member;
+        QMemberEntity member = QMemberEntity.memberEntity;
 
         // JPQL로 보드 관련 테이블 만드는데 member에서 만든다
-        JPQLQuery<Member> query = from(member);
+        JPQLQuery<MemberEntity> query = from(member);
 
         String keyword = requestDTO.getKeyword();
         String searchType = requestDTO.getType();

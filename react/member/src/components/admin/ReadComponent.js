@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { getMember } from "../../api/adminAPI";
 
 
@@ -8,7 +7,8 @@ const initState = {
     id: '',
     pw: '',
     nickname: '',
-    admin: 0
+    admin: false,
+    delFlag: false
 }
 
 const ReadComponent = ({ id, moveModify, moveList }) => {
@@ -36,18 +36,21 @@ const ReadComponent = ({ id, moveModify, moveList }) => {
     return (
         <div>
         <div className="m-2 p-2 border-2">
-            <h1>Input</h1>
+        <h1>입력 정보</h1>
             <div className="m-2 p-2 border-2">
-                {member.nickname}
+                닉네임: {member.nickname}
             </div>
             <div className="m-2 p-2 border-2">
-                {member.id}
+                아이디: {member.id}
             </div>
             <div className="m-2 p-2 border-2">
-                {member.pw}
+                비밀번호: {member.pw}
             </div>
             <div className="m-2 p-2 border-2">
-                {member.admin}
+                관리자 여부: {member.admin ? '예' : '아니오'}
+            </div>
+            <div className="m-2 p-2 border-2">
+                삭제 여부: {member.delFlag ? '예' : '아니오'}
             </div>
             <div>
                 <button className="bg-blue-400 border-2 m-2 p-2 font-extrabold"

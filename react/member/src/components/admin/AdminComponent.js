@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMemberList } from "../../api/adminAPI";
 import AdminPageComponent from "./AdminPageComponent";
-import useQueryObj from "../../hooks/useQueryObj";
 
 const initState = {
     dtoList:[],

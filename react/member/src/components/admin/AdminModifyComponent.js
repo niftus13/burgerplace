@@ -1,18 +1,17 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { useRef } from "react";
 import { deleteMember, getMember, putMember } from "../../api/adminAPI";
 
 const initState = {
     id: '',
     pw: '',
     nickname: '',
-    admin: 0
+    admin: false,
+    delFlag: false
 }
 
 const AdminModifyComponent = ({id, moveList, moveRead}) => {
 
-    const fileRef = useRef()
     const [member, setMember] = useState(initState)
 
     useEffect(() => {
@@ -27,12 +26,24 @@ const AdminModifyComponent = ({id, moveList, moveRead}) => {
         })
     }
 
-    const handleChange = (e) => {
-        console.log("handle change..........")
-        member[e.target.name] = e.target.value
+    // const handleChange = (e) => {
+    //     console.log("handle change..........")
+    //     member[e.target.name] = e.target.value
 
-        setMember({ ...member })
-    }
+    //     setMember({ ...member })
+    // }
+
+    const handleChange = (e) => {
+        const { name, value, type, checked } = e.target;
+      
+        // If it's a checkbox, update the boolean value
+        const newValue = type === 'checkbox' ? checked : value;
+      
+        setMember(prevState => ({
+          ...prevState,
+          [name]: newValue
+        }));
+      };
 
     const handleClickModify = () => {
 
@@ -42,6 +53,7 @@ const AdminModifyComponent = ({id, moveList, moveRead}) => {
         formData.append("pw", member.pw)
         formData.append("nickname", member.nickname)
         formData.append("admin", member.admin);
+        formData.append("delFlag", member.delFlag);
 
         putMember(formData).then(data => {
             console.log(data)
@@ -53,28 +65,39 @@ const AdminModifyComponent = ({id, moveList, moveRead}) => {
     return (
         <div>
             <div className="m-2 p-2 border-2">
-                {member.id}
+                아이디: {member.id}
             </div>
-
             <div className="m-2 p-2 border-2">
+                닉네임: 
                 <input type="text"
                     name="nickname"
                     value={member.nickname}
                     onChange={handleChange} />
             </div>
-
             <div className="m-2 p-2 border-2">
+                패스워드: 
                 <input type="text"
                     name="pw"
                     value={member.pw}
                     onChange={handleChange} />
             </div>
-
             <div className="m-2 p-2 border-2">
-                <input type="number"
+                <label>
+                    관리자 여부
+                <input type="checkbox"
                     name="admin"
                     value={member.admin}
+                    checked={member.admin}
                     onChange={handleChange} />
+                    </label>
+            </div>
+            <div className="m-2 p-2 border-2">
+                <label>
+                    삭제 여부
+                <input type="checkbox"
+                    name="delFlag"
+                    checked={member.delFlag} />
+                    </label>
             </div>
 
             <div>

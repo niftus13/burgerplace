@@ -19,4 +19,6 @@ public class MemberDTO {
 
     private Boolean admin;
 
+    private boolean delFlag;
+
 }

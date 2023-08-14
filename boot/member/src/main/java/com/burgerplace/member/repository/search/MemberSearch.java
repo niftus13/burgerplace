@@ -8,7 +8,7 @@ import org.springframework.data.domain.Sort;
 import com.burgerplace.member.dto.MemberDTO;
 import com.burgerplace.member.dto.PageRequestDTO;
 import com.burgerplace.member.dto.PageResponseDTO;
-import com.burgerplace.member.entity.Member;
+import com.burgerplace.member.entity.MemberEntity;
 
 public interface MemberSearch {
 
@@ -18,7 +18,7 @@ public interface MemberSearch {
 
     //Page<Board> search1 (Pageable pageable);
     // 기본 게시판의 검색조건
-    Page<Member> search1 (String searchType, String searchKeyword, Pageable pageable);
+    Page<MemberEntity> search1 (String searchType, String searchKeyword, Pageable pageable);
 
     // DTO로 받는 검색방식 method
     PageResponseDTO<MemberDTO> searchDTORcnt(PageRequestDTO requestDTO);
