@@ -13,6 +13,7 @@ import com.burgerplace.bproduct.dto.PageResponseDTO;
 import com.burgerplace.bproduct.dto.ProductDTO;
 import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;
+import com.burgerplace.bproduct.entity.Tag;
 import com.burgerplace.bproduct.repositroy.ProductRepository;
 import com.burgerplace.bproduct.util.FileUploader;
 
@@ -43,8 +44,13 @@ public class ProductServiceImpl implements ProductService {
                 .price(productDTO.getPrice())
                 .build();
 
+
         productDTO.getImages().forEach(fname -> {
             product.addImage(fname);
+        });
+
+        productDTO.getHashTags().forEach(tag ->{
+            product.addTag(tag.getTagName());
         });
 
         return productRepository.save(product).getPno();
@@ -52,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void parsing() {
+        
         List<CrawlingProduct> crawlingProducts = crawlingProductRepository.findAll();
 
         for(CrawlingProduct crawlingProduct : crawlingProducts){
@@ -64,7 +71,14 @@ public class ProductServiceImpl implements ProductService {
                     .pname(crawlingProduct.getPname())
                     .price(crawlingProduct.getPrice())
                     .brand(crawlingProduct.getBrand())
+                    
                     .build();
+
+            
+
+            product.addTag(crawlingProduct.getBrand());
+
+            product.addTag(crawlingProduct.getPname());
 
             product.parseImg(crawlingProduct.getFileName());
 

@@ -1,9 +1,13 @@
 package com.burgerplace.bproduct.dto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.web.multipart.MultipartFile;
+
+import com.burgerplace.bproduct.entity.Tag;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +28,10 @@ public class ProductDTO {
     private String pname;
     private int price;
     private Boolean event;
-    private String hashTag;
     private String brand;
+
+    @Builder.Default
+    private Set<Tag> hashTags = new HashSet<>();
 
     @Builder.Default
     private List<String> images = new ArrayList<>();

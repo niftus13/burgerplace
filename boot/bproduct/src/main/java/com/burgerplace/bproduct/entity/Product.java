@@ -1,7 +1,9 @@
 package com.burgerplace.bproduct.entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
@@ -11,16 +13,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
+
+
 
 @Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "images")
 @Builder
+@Log4j2
 public class Product {
 
     @Id
@@ -39,6 +44,26 @@ public class Product {
     // delFlag
     private boolean delFlag;
 
+
+    // hashTag elementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<Tag> hashTags = new HashSet<>();
+
+    // hashtag add method
+    public void addTag(String tagName){
+        Tag tag = Tag.builder().tagName(tagName).build();
+        hashTags.add(tag);
+    }
+
+    // hashtag clear method
+    public void clearTag(){
+        hashTags.clear();
+    }
+
+
+
+    // image elementCollection
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private List<ProductImage> images = new ArrayList<>();

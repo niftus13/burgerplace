@@ -9,4 +9,5 @@ public interface ProductSearch {
     PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO);
     PageResponseDTO<ProductListDTO> listWithReply(PageRequestDTO pageRequestDTO);
     PageResponseDTO<ProductListDTO> listSearchWithReply(PageRequestDTO pageRequestDTO);
+    PageResponseDTO<ProductListDTO> listSearchWithReplyAndHashTag(PageRequestDTO pageRequestDTO);
 }

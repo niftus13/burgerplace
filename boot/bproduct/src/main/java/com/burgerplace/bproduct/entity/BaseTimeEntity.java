@@ -1,6 +1,5 @@
 package com.burgerplace.bproduct.entity;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -26,6 +25,8 @@ public class BaseTimeEntity {
     private LocalDateTime modDate;
 
 
+
+    // Formatting : regDate, modDate
     @PrePersist
     public void onPrePersist() {
         String customLocalDateTimeFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -33,7 +34,7 @@ public class BaseTimeEntity {
         this.regDate = parsedRegDate;
         this.modDate = this.regDate;
     }
-
+     // Formatting : modDate PreUpdate
     @PreUpdate
     public void onPreUpdate(){
         String customLocalDateTimeFormat = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));

@@ -1,8 +1,6 @@
 package com.burgerplace.bproduct.entity;
 
-import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.CreatedDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
