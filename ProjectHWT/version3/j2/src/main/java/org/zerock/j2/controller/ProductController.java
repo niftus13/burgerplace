@@ -3,7 +3,6 @@ package org.zerock.j2.controller;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.web.bind.annotation.*;
 import org.zerock.j2.dto.PageRequestDTO;
 import org.zerock.j2.dto.PageResponseDTO;
@@ -29,20 +28,20 @@ public class ProductController {
     @GetMapping("list")
     public PageResponseDTO<ProductListDTO> list(PageRequestDTO pageRequestDTO) {
 
-
         log.info("-------------------------------");
-        log.info((pageRequestDTO)+" requestDTO HWT product");
+        log.info((pageRequestDTO) + " requestDTO HWT product");
 
         return service.list(pageRequestDTO);
     }
-    
+
     @GetMapping("{pno}")
-    public  ProductDTO getOne(@PathVariable("pno") Long pno){
+    public ProductDTO getOne(@PathVariable("pno") Long pno) {
 
         log.info("PNO..............." + pno);
 
         return service.readOne(pno);
     }
+
 
     @PostMapping("")
     public Map<String, Long> register(ProductDTO productDTO) {
@@ -57,6 +56,19 @@ public class ProductController {
         return Map.of("result", pno);
 
     }
+
+    
+    @DeleteMapping("{pno}")
+    public Map<String, Long> delete(@PathVariable("pno") Long pno) {
+
+        log.info("PNO..............." + pno);
+        service.remove(pno);
+        return Map.of("result", pno);
+    }
+
+
+
+
     @PostMapping("modify")
     public Map<String, Long> modify(ProductDTO productDTO) {
 
@@ -64,13 +76,12 @@ public class ProductController {
         log.info("----------------modify-----------------");
         log.info("----------------modify-----------------");
         log.info(productDTO);
+        
         // 기존 파일 및 업로드된 파일까지 추가하는 배열
-        if(productDTO.getFiles() != null && productDTO.getFiles().size()>0){
+        if (productDTO.getFiles() != null && productDTO.getFiles().size() > 0) {
             List<String> uploadFileNames = uploader.uploadFiles(productDTO.getFiles(), true);
 
             List<String> oldFileNames = productDTO.getImages();
-
-
 
             uploadFileNames.forEach(fname -> oldFileNames.add(fname));
         }
@@ -79,16 +90,7 @@ public class ProductController {
 
         service.modify(productDTO);
 
-
         return Map.of("result", productDTO.getPno());
-
-    }
-    @DeleteMapping("{pno}")
-    public Map<String, Long> delete(@PathVariable("pno") Long pno){
-
-        log.info("PNO..............." + pno);
-        service.remove(pno);
-        return Map.of("result",pno);
     }
 
 }

@@ -22,6 +22,6 @@ public interface FreeBoardService {
 
     void remove(Long freeBno);
 
-    void modify(FreeBoardDTO freeBoardDTO);
+    void modify(FreeGetBoardDTO freeGetBoardDTO);
 
 }

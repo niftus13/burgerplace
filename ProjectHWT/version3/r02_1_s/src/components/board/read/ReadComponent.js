@@ -8,7 +8,8 @@ const initState = {
     freeContent: '',
     nickname: '',
     regDate: '',
-    modDate: ''
+    modDate: '',
+    freeImages : []
 }
 
 const ReadComponent = ({ freeBno,moveList,moveModify}) => {
@@ -18,6 +19,9 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
     useEffect(() => {
         getOne(freeBno).then(data => {
             setBoard(data)
+        }).catch(e => {
+            console.log(e)
+           
         })
     }, [freeBno])
 
@@ -46,6 +50,18 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
                 <span>Regist Date - </span>
                 {board.regDate}
             </div>
+
+            <div className="m-2 p-2 ">
+                    <ul className="list-none ">
+                        {board.freeImages.map((imageName, idx) =>
+                            <li key={idx}
+                            className=" w-[50vh]"
+                            >
+                                <img 
+                                src={`http://localhost/${imageName}`} alt="No image"></img>
+                            </li>)}
+                    </ul>
+                </div>
 
             <div>
             <button 

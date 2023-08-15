@@ -25,6 +25,7 @@ const ModifyComponent = ({ pno, moveList, moveRead }) => {
 
     }, [pno])
     
+
     const handleClickDelete = () => {
 
         deleteProduct(pno).then(data => {
@@ -32,6 +33,8 @@ const ModifyComponent = ({ pno, moveList, moveRead }) => {
             moveList()
         })
     }
+
+
     const handleChage = (e) => {
 
         product[e.target.name] = e.target.value
@@ -57,6 +60,7 @@ const ModifyComponent = ({ pno, moveList, moveRead }) => {
         for (let file of arr) {
             formData.append("files", file)
         }
+        
         putProduct(formData).then(data=>{
             console.log(data)
             alert(pno +"게시글이 수정되었습니다.")
@@ -64,6 +68,7 @@ const ModifyComponent = ({ pno, moveList, moveRead }) => {
         })
 
     }
+
     const handleClickDelImg = (fname)=>{
 
         const newArr = product.images.filter(ele => ele !== fname)
@@ -109,9 +114,13 @@ const ModifyComponent = ({ pno, moveList, moveRead }) => {
                         onChange={handleChage}
                     ></input>
                 </div>
+
+
                 <div className="m-2 p-2">
                     <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="images" ></input>
                 </div>
+
+                
                 <div className="m-2 p-2 ">
                     <ul className="list-none flex">
                         {product.images.map((fname, idx) =>

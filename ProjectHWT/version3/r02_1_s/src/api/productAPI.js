@@ -24,14 +24,14 @@ export const getList = async (queryObj) =>{
     const res = await axios.get(`http://localhost:8080/api/products/list?${queryString}`)
 
     return res.data
-}
+} // 리스트
 
 export const getProduct = async (pno) =>{
 
     const res = await axios.get(`http://localhost:8080/api/products/${pno}`)
 
     return res.data
-}
+} // readOne
 
 export const deleteProduct = async (pno) =>{
 

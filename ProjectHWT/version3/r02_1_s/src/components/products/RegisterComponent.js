@@ -46,6 +46,7 @@ const RegisterComponent = ({ moveList }) => {
         })
 
     }
+    
     const handleClickClear = (e) => {
 
         fileRef.current.value = ''

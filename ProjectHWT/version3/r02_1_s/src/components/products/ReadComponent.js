@@ -30,6 +30,7 @@ const ReadComponent = ({ pno, moveModify, moveList }) => {
     return (
         <div>
             <div className="m-2 p-2 text-white font-bold">
+
                 <div className="m-2 p-2 text-3xl">
                     <span>  상품명 :  {product.pname}</span>
                 </div>
@@ -39,6 +40,8 @@ const ReadComponent = ({ pno, moveModify, moveList }) => {
                 <div className="m-2 p-2 text-3xl">
                     <span> 가격:   {product.price} </span>
                 </div>
+
+
                 <div className="m-2 p-2 ">
                     <ul className="list-none ">
                         {product.images.map((fname, idx) =>
@@ -50,6 +53,8 @@ const ReadComponent = ({ pno, moveModify, moveList }) => {
                             </li>)}
                     </ul>
                 </div>
+
+
                 <div>
                     <button
                         className="bg-sky-400 border-2 m-2 p-2 text-white font-bold"
