@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.burgerplace.bproduct.dto.EventDTO;
 import com.burgerplace.bproduct.entity.CrawlingEvent;
 import com.burgerplace.bproduct.entity.Event;
 import com.burgerplace.bproduct.repositroy.CrawlingEventRepository;
@@ -39,6 +40,21 @@ public class EventServiceimpl implements EventService{
         }
 
         eventRepository.saveAll(eventList); // 이벤트 리스트 한꺼번에 저장
+    }
+
+
+    @Override
+    public void remove(Long eno) {
+        // Event event = eventRepository.selectOne(eno);
+        // eventRepository.delete(event);
+
+        
+    }
+
+
+    @Override
+    public void modify(EventDTO eventDTO) {
+        
     }
             
   

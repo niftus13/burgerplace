@@ -26,4 +26,5 @@ public class Event {
     private LocalDate endDate;
     private String brand;
     
+    
 }
