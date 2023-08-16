@@ -26,11 +26,11 @@ import lombok.ToString;
 @NoArgsConstructor
 @Getter
 @ToString
-public class FreeReply extends BaseEntity {
-    
+public class TradeReply extends BaseEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long freeRno;
+    private Long tradeRno;
 
     private String replyText;
 
@@ -38,39 +38,31 @@ public class FreeReply extends BaseEntity {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private FreeBoard freeBoard;
-
+    private TradeBoard tradeBoard;
 
     @BatchSize(size = 20)
     @OneToMany(fetch = FetchType.LAZY, cascade={CascadeType.ALL}, orphanRemoval = true)
-    @JoinColumn(name ="freeReply")
+    @JoinColumn(name ="tradeReply")
     @Builder.Default
-    private List<FreeReplyImage> freeImages = new ArrayList<>();
+    private List<TradeReplyImage> tradeImages = new ArrayList<>();
 
-    
     // oneToMany 메서드
     public void addImage(String name) {
 
-        FreeReplyImage pImage = FreeReplyImage.builder().imageName(name)
-                .ord(freeImages.size()).build();
+        TradeReplyImage pImage = TradeReplyImage.builder().imageName(name)
+                .ord(tradeImages.size()).build();
 
-        freeImages.add(pImage);
+        tradeImages.add(pImage);
     } 
-
-    // oneToMany 메서드
-    public void cleanImages(){
-        freeImages.clear();
-    }
-
-
-
-
-    // 댓글처리 메서드
-    public void changeText(String text) {
-        this.replyText = text;
-    }
-
     
-
+        // oneToMany 메서드
+        public void cleanImages(){
+            tradeImages.clear();
+        }
+    
+        // 댓글처리 메서드
+        public void changeText(String text) {
+            this.replyText = text;
+        }
     
 }

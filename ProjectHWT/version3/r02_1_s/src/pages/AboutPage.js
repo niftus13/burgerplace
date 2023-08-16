@@ -1,6 +1,3 @@
-import CountButtons from "../components/counter/CountButtons";
-import CountDisplay from "../components/counter/CountDisplay";
-import TodoInput from "../components/todo/TodoInput";
 import useCustomLogin from "../hooks/useCustomLogin";
 import BasicLayout from "../layouts/BasicLayout";
 
@@ -17,10 +14,6 @@ const AboutPage = () => {
         <div className="text-white text-center text-2xl font-mono ">
         
 
-          <CountDisplay></CountDisplay>
-          <CountButtons></CountButtons>
-
-          <TodoInput></TodoInput>
 
           <div className="flex justify-center items-center">
           <img  src={require('../image/backimage.jpg')} ></img>

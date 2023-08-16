@@ -3,6 +3,7 @@ package org.zerock.j2.service;
 
 
 
+import org.zerock.j2.dto.FreeGetReplyDTO;
 import org.zerock.j2.dto.FreeReplyDTO;
 import org.zerock.j2.dto.FreeReplyPageRequestDTO;
 import org.zerock.j2.dto.PageResponseDTO;
@@ -14,12 +15,12 @@ public interface FreeReplyService {
 
     PageResponseDTO<FreeReplyDTO> list(FreeReplyPageRequestDTO requestDTO);
 
-    FreeReplyDTO read(Long freeRno);
+    FreeGetReplyDTO read(Long freeRno);
 
-    Long register(FreeReplyDTO replyDTO);
+    Long register(FreeGetReplyDTO replyDTO);
 
     void remove(Long freeRno);
 
-    void modify(FreeReplyDTO replyDTO);
+    void modify(FreeGetReplyDTO replyDTO);
 
 }

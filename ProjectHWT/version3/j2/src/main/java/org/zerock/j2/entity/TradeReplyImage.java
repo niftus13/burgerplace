@@ -1,12 +1,12 @@
 package org.zerock.j2.entity;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -14,23 +14,20 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 @ToString
-public class FileBoardImage {
+public class TradeReplyImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long imgno;
+    private long imageTradeRno;
 
-    private String uuid;
-
-    private String fname;
+    private String imageName;
 
     private int ord;
 
-    // 게시판내에 이미지 순번을정하는 method
     public void changeOrd (int ord){
         this.ord = ord;
     }
     
-
 }
