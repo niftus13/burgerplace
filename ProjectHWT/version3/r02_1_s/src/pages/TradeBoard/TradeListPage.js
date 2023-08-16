@@ -1,16 +1,16 @@
-
-import ListComponent from "../../components/board/ListComponent";
-import ListSearchComponent from "../../components/board/ListSearchComponent";
 import useQueryObj from "../../hooks/useQueryObj";
+import TradeListSearchComponent from "../../components/TradeBoard/TradeListSearchComponent"
+import TradeListComponent from "../../components/TradeBoard/TradeListComponent"
 
 
 
 
-const ListPage = () => {
+
+const TradeListPage = () => {
 
 
 
-    const {queryObj,setSearch,moveRead,moveRegister} = useQueryObj()
+    const { queryObj, setSearch, moveRead, moveRegister } = useQueryObj()
 
 
 
@@ -37,11 +37,11 @@ const ListPage = () => {
 
 
 
-    const changeSize = (size) =>{
+    const changeSize = (size) => {
 
         queryObj.size = size
 
-        setSearch({...queryObj})
+        setSearch({ ...queryObj })
     }
 
 
@@ -51,22 +51,26 @@ const ListPage = () => {
 
     return (
         <div>
-            {/* queryobj를 전달 해준다.  */}
-            <div className="text-white text-3xl text-center font-bold">Board</div>
-            <ListSearchComponent 
-            queryObj={queryObj} 
-            moveSearch={moveSearch} 
-            changeSize={changeSize}>
+            <div className="text-white text-3xl text-center font-bold">Trade Board</div>
+            <TradeListSearchComponent
+                queryObj={queryObj}
+                moveSearch={moveSearch}
+                changeSize={changeSize}
+            >
+            </TradeListSearchComponent>
 
-            </ListSearchComponent>
-            <ListComponent 
-            queryObj={queryObj} 
-            movePage={movePage} 
-            moveRead={moveRead}
-            moveRegister={moveRegister}
-            ></ListComponent>
+            <TradeListComponent
+                queryObj={queryObj}
+                movePage={movePage}
+                moveRead={moveRead}
+                moveRegister={moveRegister}
+            ></TradeListComponent>
+
+
+
+
         </div>
     );
 }
 
-export default ListPage;
+export default TradeListPage;

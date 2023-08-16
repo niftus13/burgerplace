@@ -1,17 +1,17 @@
 import { useState } from "react"
-import { deleteBoard, getOne, putBoard } from "../../../api/boardAPI"
+import { deleteBoard, getOne, putBoard } from "../../../api/TradeBoardAPI"
 import { useEffect } from "react"
 import { useRef } from "react"
 
 const initState = {
-    freeBno: 0,
-    freeTitle: "",
-    freeContent: "",
+    tradeBno: 0,
+    tradeTitle: "",
+    tradeContent: "",
     nickname: "",
-    freeImages: []
+    tradeImages: []
 }
 
-const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
+const TradeBoardModifyComponent = ({ tradeBno, moveList, moveRead }) => {
 
     const [board, setBoard] = useState(initState)
 
@@ -20,17 +20,17 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
 
     useEffect(() => {
 
-        getOne(freeBno).then(data => {
+        getOne(tradeBno).then(data => {
             console.log(data)
             setBoard(data)
         })
 
-    }, [freeBno])
+    }, [tradeBno])
 
 
     const handleClickDelete = () => {
 
-        deleteBoard(freeBno).then(data => {
+        deleteBoard(tradeBno).then(data => {
             console.log(data)
             alert(`${data.result}번 게시글이 삭제되었습니다.`)
             moveList()
@@ -47,27 +47,27 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
     const handleClickModify = () => {
 
         const formData = new FormData();
-        formData.append("freeBno", board.freeBno)
-        formData.append("freeTitle", board.freeTitle)
-        formData.append("freeContent", board.freeContent)
+        formData.append("tradeBno", board.tradeBno)
+        formData.append("tradeTitle", board.tradeTitle)
+        formData.append("tradeContent", board.tradeContent)
         formData.append("nickname", board.nickname)
 
-        if (board.freeImages) {
-            for (let pi of board.freeImages) {
-                formData.append("freeImages", pi)
+        if (board.tradeImages) {
+            for (let pi of board.tradeImages) {
+                formData.append("tradeImages", pi)
             }
         }
 
         const arr = fileRef.current.files
 
-        for (let freeFiles of arr) {
-            formData.append("freeFiles", freeFiles)
+        for (let tradeFiles of arr) {
+            formData.append("tradeFiles", tradeFiles)
         }
 
         putBoard(formData).then(data => {
             console.log(data)
-            alert(freeBno + "게시글이 수정되었습니다.")
-            moveRead(freeBno)
+            alert(tradeBno + "게시글이 수정되었습니다.")
+            moveRead(tradeBno)
         })
 
     }
@@ -75,9 +75,9 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
 
     const handleClickDelImg = (imageName) => {
 
-        const newArr = board.freeImages.filter(ele => ele !== imageName)
+        const newArr = board.tradeImages.filter(ele => ele !== imageName)
 
-        board.freeImages = newArr
+        board.tradeImages = newArr
 
         setBoard({ ...board })
     }
@@ -88,15 +88,15 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
         <div>
             <div>
                 <div className="m-2 p-2">
-                    {board.freeBno}
+                    {board.tradeBno}
                 </div>
                 <div className="m-2 p-2 ">
 
                     <input
                         className="bg-white"
                         type="text"
-                        name="freeTitle"
-                        value={board.freeTitle}
+                        name="tradeTitle"
+                        value={board.tradeTitle}
                         onChange={handleChange}
                     ></input>
 
@@ -104,8 +104,8 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
                         <input
                             className="bg-white"
                             type="text"
-                            name="freeContent"
-                            value={board.freeContent}
+                            name="tradeContent"
+                            value={board.tradeContent}
                             onChange={handleChange}
                         ></input>
                     </div>
@@ -121,12 +121,12 @@ const TradeBoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
                     </div>
 
                     <div className="m-2 p-2">
-                        <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="freeImages" ></input>
+                        <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="tradeImages" ></input>
                     </div>
 
                     <div className="m-2 p-2 ">
                         <ul className="list-none flex">
-                            {board.freeImages.map((imageName, idx) =>
+                            {board.tradeImages.map((imageName, idx) =>
                                 <li key={idx} className="m-2">
                                     <img src={`http://localhost/s_${imageName}`} alt="No image"></img>
                                     <button className="bg-red-500 m-2 p-2" onClick={() => handleClickDelImg(imageName)}>X</button>

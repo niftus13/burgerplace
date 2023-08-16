@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { postBoard } from "../../api/boardAPI";
+import { postBoard } from "../../api/TradeBoardAPI";
 import { useRef } from "react";
 
 const initState = {
-    freeTitle: "free Title",
-    freeContent: "free Content",
+    tradeTitle: "trade Title",
+    tradeContent: "trade Content",
     nickname: "Register NickName"
 }
 
-const BoardRegisterComponent = ({ moveList }) => {
+const TradeBoardRegisterComponent = ({ moveList }) => {
 
     const fileRef = useRef()
 
@@ -27,16 +27,16 @@ const BoardRegisterComponent = ({ moveList }) => {
 
         const formData = new FormData();
 
-        formData.append("freeTitle", board.freeTitle)
-        formData.append("freeContent", board.freeContent)
+        formData.append("tradeTitle", board.tradeTitle)
+        formData.append("tradeContent", board.tradeContent)
         formData.append("nickname", board.nickname)
 
         console.dir(fileRef.current)
 
         const arr = fileRef.current.files
 
-        for (let freeFiles of arr) {
-            formData.append("freeFiles", freeFiles)
+        for (let tradeFiles of arr) {
+            formData.append("tradeFiles", tradeFiles)
         }
 
         postBoard(formData).then(data => {
@@ -60,20 +60,20 @@ const BoardRegisterComponent = ({ moveList }) => {
 
     return (
         <div className="m-8 bg-gradient-to-r from-red-300 to-amber-400 border-4 ">
-            <div className="text-black font-extrabold ">Board Register</div>
+            <div className="text-black font-extrabold ">TradeBoard Register</div>
             <div className="m-2 text-black">
                 <div>
-                    <input type="text" className="border-2 border-slate-500" name="freeTitle" value={board.freeTitle} onChange={handleChange}></input>
+                    <input type="text" className="border-2 border-slate-500" name="freeTitle" value={board.tradeTitle} onChange={handleChange}></input>
                 </div>
                 <br></br>
                 <div >
-                    <input type="text" className="border-2 border-slate-500" name="freeContent" value={board.freeContent} onChange={handleChange}></input>
+                    <input type="text" className="border-2 border-slate-500" name="freeContent" value={board.tradeContent} onChange={handleChange}></input>
                 </div>
                 <div >
                     <input type="text" className="border-2 border-slate-500" name="nickname" value={board.nickname} onChange={handleChange}></input>
                 </div>
                 <div className="m-2 p-2">
-                    <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="freeImages" onChange={handleChange} ></input>
+                    <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="tradeImages" onChange={handleChange} ></input>
                 </div>
             </div>
 
@@ -85,4 +85,4 @@ const BoardRegisterComponent = ({ moveList }) => {
     );
 }
 
-export default BoardRegisterComponent;
+export default TradeBoardRegisterComponent;

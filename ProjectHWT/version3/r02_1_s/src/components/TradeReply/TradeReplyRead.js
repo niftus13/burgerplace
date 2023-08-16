@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { deleteReply, getReply, putReply } from "../../api/repliesAPI";
+import { deleteReply, getReply, putReply } from "../../api/TradeReplyAPI";
 import { useRef } from "react";
 
 const initState = {
-    freeRno: 0,
-    freeBno: 0,
+    tradeRno: 0,
+    tradeBno: 0,
     replyText: '',
     nickname:'',
-    freeImages : []
+    tradeImages : []
 }
 
 
-const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
+const TradeReplyRead = ({tradeRno,cancelRead,refreshPage}) => {
     
-    console.log("ReplyRead............... " + freeRno)
+    console.log("ReplyRead............... " + tradeRno)
 
     const [reply, setReply] =useState(initState)
 
@@ -22,19 +22,19 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
 
     useEffect(()=>{
 
-        getReply(freeRno).then(data =>{
+        getReply(tradeRno).then(data =>{
             console.log(data)
             setReply(data)
         })
 
 
-    },[freeRno])
+    },[tradeRno])
 
 
 
     const handleClickDelete =  () =>{
 
-        deleteReply(freeRno).then(data =>{
+        deleteReply(tradeRno).then(data =>{
             alert(`${data.result}번 댓글이 삭제되었습니다.`)
             refreshPage(true)
         })
@@ -42,7 +42,7 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
 
     const handleClickDelImg = (imageName) => {
 
-        const newArr = reply.freeImages.filter(ele => ele !== imageName)
+        const newArr = reply.tradeImages.filter(ele => ele !== imageName)
 
         reply.freeImages = newArr
 
@@ -60,13 +60,13 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
 
         const formData = new FormData();
 
-        formData.append("freeRno", reply.freeRno)
+        formData.append("tradeRno", reply.tradeRno)
         formData.append("replyText", reply.replyText)
         formData.append("nickname", reply.nickname)
 
-        if (reply.freeImages) {
-            for (let pi of reply.freeImages) {
-                formData.append("freeImages", pi)
+        if (reply.tradeImages) {
+            for (let pi of reply.tradeImages) {
+                formData.append("tradeImages", pi)
             }
             console.log(formData+" if문에 있는 것")
         }
@@ -75,8 +75,8 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
 
         const arr = fileRef.current.files
 
-        for (let freeFiles of arr) {
-            formData.append("freeFiles", freeFiles)
+        for (let tradeFiles of arr) {
+            formData.append("tradeFiles", tradeFiles)
         }
 
     putReply(formData).then(data => {
@@ -98,10 +98,10 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
     
     return (  
         <div className="m-8 bg-gradient-to-r from-indigo-400 to-sky-300 border-4  text-zinc-100">
-            <div className=" text-xl text-center">Reply Read {freeRno}</div>
+            <div className=" text-xl text-center">TradeReply Read {tradeRno}</div>
 
             <div>
-                <div className=" pl-2 pb-2">Reply Number - {freeRno}</div>
+                <div className=" pl-2 pb-2">Reply Number - {tradeRno}</div>
                 <div className=" pl-2 pb-2">   
                     <span>Reply Text - </span>             
                     <input 
@@ -115,12 +115,12 @@ const TradeReplyRead = ({freeRno,cancelRead,refreshPage}) => {
                 <div className=" pl-2">Replyer -{reply.nickname}</div>
 
                 <div className="m-2 p-2">
-                        <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="freeImages" ></input>
+                        <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="tradeImages" ></input>
                     </div>
 
                 <div className="m-2 p-2 ">
                     <ul className="list-none ">
-                        {reply.freeImages.map((imageName, idx) =>
+                        {reply.tradeImages.map((imageName, idx) =>
                             <li key={idx}
                             className=" w-[50vh]"
                             >

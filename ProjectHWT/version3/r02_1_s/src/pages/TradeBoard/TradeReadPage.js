@@ -1,30 +1,30 @@
 import { useParams } from "react-router-dom";
 import useQueryObj from "../../hooks/useQueryObj";
-import ReadComponent from "../../components/board/read/ReadComponent";
-import ReplyWrapper from "../../components/reply/ReplyWrapper";
+import TradeReadComponent from "../../components/TradeBoard/read/TradeReadComponent";
+import TradeReplyWrapper from "../../components/TradeReply/TradeReplyWrapper";
+
 
 const ReadPage = () => {
 
-    const {queryObj,moveList,moveModify} = useQueryObj()
-    const {freeBno} = useParams()
-    
-    
-    console.log(freeBno)
+    const { queryObj, moveList, moveModify } = useQueryObj()
+    const { tradeBno } = useParams()
+
+
+    console.log(tradeBno)
     console.log(queryObj)
 
-    return (  
+    return (
         <div>
+            <TradeReadComponent
+                moveList={moveList}
+                moveModify={moveModify}
+                tradeBno={tradeBno}
+            ></TradeReadComponent>
 
-            <ReadComponent freeBno={freeBno}
-             moveList={moveList}
-             moveModify={moveModify}
-             >
-             </ReadComponent>
+            <TradeReplyWrapper tradeBno={tradeBno}></TradeReplyWrapper>
 
-            
-            <ReplyWrapper freeBno={freeBno}></ReplyWrapper>
         </div>
     );
 }
- 
+
 export default ReadPage;

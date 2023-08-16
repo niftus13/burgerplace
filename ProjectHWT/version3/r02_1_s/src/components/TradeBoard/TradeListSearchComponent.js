@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 
-const ListSearchComponent = ({ queryObj, moveSearch, changeSize }) => {
+const TradeListSearchComponent = ({ queryObj, moveSearch, changeSize }) => {
 
     const [chSize, setChSize] = useState({ size: 10 })
     const [searchObj, setSearchObj] = useState({ type: '', keyword: '' })
@@ -67,4 +67,4 @@ const ListSearchComponent = ({ queryObj, moveSearch, changeSize }) => {
     );
 }
 
-export default ListSearchComponent;
+export default TradeListSearchComponent;
