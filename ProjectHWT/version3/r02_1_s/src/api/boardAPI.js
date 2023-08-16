@@ -24,7 +24,7 @@ export const postBoard = async (fordata) => {
   
     return res.data
   
-  } // 등록 작업 완룐
+  } // 등록 작업 완료
 
 
 

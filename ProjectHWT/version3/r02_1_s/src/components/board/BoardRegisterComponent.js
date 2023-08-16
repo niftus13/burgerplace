@@ -42,7 +42,7 @@ const BoardRegisterComponent = ({ moveList }) => {
         postBoard(formData).then(data => {
 
             const rno = data.result
-            alert(`${rno}번 상품이 등록되었습니다.`)
+            alert(`${rno}번 게시글이 등록되었습니다.`)
 
             moveList()
         })

@@ -68,6 +68,9 @@ public class FreeBoardServiceImpl implements FreeBoardService {
         return dto;
     }
 
+
+
+    
     @Override
     public Long Register(FreeGetBoardDTO freeBoardDTO) {
 
