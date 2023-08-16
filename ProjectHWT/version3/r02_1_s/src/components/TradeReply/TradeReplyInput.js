@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { postReply } from "../../api/TradeReplyAPI";
+import { postTradeReply } from "../../api/TradeReplyAPI";
 
 
 const initState = {
@@ -39,7 +39,7 @@ const TradeReplyInput = ({ tradeBno,refreshLast }) => {
             formData.append("tradeFiles", tradeFiles)
         }
 
-        postReply(formData).then(data => {
+        postTradeReply(formData).then(data => {
 
             const rno = data.result
             alert(`${rno}번 게시글이 등록되었습니다.`)

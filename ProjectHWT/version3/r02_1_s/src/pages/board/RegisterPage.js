@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import TradeBoardRegisterComponent from "../../components/TradeBoard/TradeBoardRegisterComponent"
+import BoardRegisterComponent from "../../components/board/BoardRegisterComponent";
 
 const RegisterPage = () => {
 
@@ -19,7 +19,7 @@ const RegisterPage = () => {
         <div 
         className="text-3xl text-white text-center">
             Board Register Page
-            <TradeBoardRegisterComponent moveRegister={moveRegister} moveList={moveList}></TradeBoardRegisterComponent>
+            <BoardRegisterComponent moveRegister={moveRegister} moveList={moveList}></BoardRegisterComponent>
         </div>
      );
 }

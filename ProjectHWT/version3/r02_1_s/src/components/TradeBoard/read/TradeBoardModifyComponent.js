@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { deleteBoard, getOne, putBoard } from "../../../api/TradeBoardAPI"
+import { deleteTradeBoard, getTradeOne, putTradeBoard } from "../../../api/TradeBoardAPI"
 import { useEffect } from "react"
 import { useRef } from "react"
 
@@ -20,7 +20,7 @@ const TradeBoardModifyComponent = ({ tradeBno, moveList, moveRead }) => {
 
     useEffect(() => {
 
-        getOne(tradeBno).then(data => {
+        getTradeOne(tradeBno).then(data => {
             console.log(data)
             setBoard(data)
         })
@@ -30,7 +30,7 @@ const TradeBoardModifyComponent = ({ tradeBno, moveList, moveRead }) => {
 
     const handleClickDelete = () => {
 
-        deleteBoard(tradeBno).then(data => {
+        deleteTradeBoard(tradeBno).then(data => {
             console.log(data)
             alert(`${data.result}번 게시글이 삭제되었습니다.`)
             moveList()
@@ -64,7 +64,7 @@ const TradeBoardModifyComponent = ({ tradeBno, moveList, moveRead }) => {
             formData.append("tradeFiles", tradeFiles)
         }
 
-        putBoard(formData).then(data => {
+        putTradeBoard(formData).then(data => {
             console.log(data)
             alert(tradeBno + "게시글이 수정되었습니다.")
             moveRead(tradeBno)

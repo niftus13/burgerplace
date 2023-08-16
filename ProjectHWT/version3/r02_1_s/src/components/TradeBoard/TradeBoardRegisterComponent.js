@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postBoard } from "../../api/TradeBoardAPI";
+import { postTradeBoard } from "../../api/TradeBoardAPI";
 import { useRef } from "react";
 
 const initState = {
@@ -39,7 +39,7 @@ const TradeBoardRegisterComponent = ({ moveList }) => {
             formData.append("tradeFiles", tradeFiles)
         }
 
-        postBoard(formData).then(data => {
+        postTradeBoard(formData).then(data => {
 
             const rno = data.result
             alert(`${rno}번 게시글이 등록되었습니다.`)

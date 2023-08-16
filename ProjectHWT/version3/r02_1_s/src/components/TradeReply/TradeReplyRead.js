@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteReply, getReply, putReply } from "../../api/TradeReplyAPI";
+import { deleteTradeReply, getTradeReply, putTradeReply } from "../../api/TradeReplyAPI";
 import { useRef } from "react";
 
 const initState = {
@@ -22,7 +22,7 @@ const TradeReplyRead = ({tradeRno,cancelRead,refreshPage}) => {
 
     useEffect(()=>{
 
-        getReply(tradeRno).then(data =>{
+        getTradeReply(tradeRno).then(data =>{
             console.log(data)
             setReply(data)
         })
@@ -34,7 +34,7 @@ const TradeReplyRead = ({tradeRno,cancelRead,refreshPage}) => {
 
     const handleClickDelete =  () =>{
 
-        deleteReply(tradeRno).then(data =>{
+        deleteTradeReply(tradeRno).then(data =>{
             alert(`${data.result}번 댓글이 삭제되었습니다.`)
             refreshPage(true)
         })
@@ -79,7 +79,7 @@ const TradeReplyRead = ({tradeRno,cancelRead,refreshPage}) => {
             formData.append("tradeFiles", tradeFiles)
         }
 
-    putReply(formData).then(data => {
+    putTradeReply(formData).then(data => {
 
             const rno = data.result
             alert(`${rno}번 댓글이 수정되었습니다.`)

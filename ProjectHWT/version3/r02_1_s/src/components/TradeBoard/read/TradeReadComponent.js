@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getOne } from "../../../api/TradeBoardAPI";
+import { getTradeOne } from "../../../api/TradeBoardAPI";
 
 
 const initState = {
@@ -17,7 +17,7 @@ const TradeReadComponent = ({ tradeBno,moveList,moveModify}) => {
     const [board, setBoard] = useState(initState)
     
     useEffect(() => {
-        getOne(tradeBno).then(data => {
+        getTradeOne(tradeBno).then(data => {
             setBoard(data)
         }).catch(e => {
             console.log(e)

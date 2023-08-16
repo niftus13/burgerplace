@@ -1,7 +1,7 @@
 import axios from "axios"
 
 
-export const getRepliesOfBoard = async (freeBno, page = 1, last = false) => {
+export const getTradeRepliesOfBoard = async (freeBno, page = 1, last = false) => {
 
   const res = await axios.get(`http://localhost:8080/api/treplies/${freeBno}/list?page=${page}&last=${last}`)
 
@@ -10,7 +10,7 @@ export const getRepliesOfBoard = async (freeBno, page = 1, last = false) => {
 
 
 
-export const postReply = async (fordata) => {
+export const postTradeReply = async (fordata) => {
 
   const header = {
     headers: {
@@ -25,7 +25,7 @@ export const postReply = async (fordata) => {
   } 
 
   
-export const getReply = async (freeRno) => {
+export const getTradeReply = async (freeRno) => {
 
   const res = await axios.get(`http://localhost:8080/api/treplies/${freeRno}`)
 
@@ -33,7 +33,7 @@ export const getReply = async (freeRno) => {
 
 }
 
-export const deleteReply = async (freeRno) => {
+export const deleteTradeReply = async (freeRno) => {
 
   const res = await axios.delete(`http://localhost:8080/api/treplies/${freeRno}`)
 
@@ -41,7 +41,7 @@ export const deleteReply = async (freeRno) => {
 }
 
 
-export const putReply = async(formdata) => {
+export const putTradeReply = async(formdata) => {
 
 
   const header = {

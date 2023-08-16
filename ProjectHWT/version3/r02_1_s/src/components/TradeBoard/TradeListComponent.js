@@ -2,7 +2,7 @@
 //실제 axios에  전달하고 responseDTO를 받아서 처리해주는 Component
 
 import { useEffect, useState } from "react";
-import { getList } from "../../api/TradeBoardAPI";
+import { getTradeList } from "../../api/TradeBoardAPI";
 import ListPageComponent from "../common/ListPageComponent";
 
 
@@ -27,7 +27,7 @@ const TradeListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
     // 그외는 자체적으로 제공하는 함수라 생각한다.
     useEffect(()=>{
 
-        getList(queryObj).then(data =>{
+        getTradeList(queryObj).then(data =>{
             console.log(data)
             setListData(data)
         })
