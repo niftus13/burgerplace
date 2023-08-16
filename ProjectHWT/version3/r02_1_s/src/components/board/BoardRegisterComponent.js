@@ -1,18 +1,19 @@
 import { useState } from "react";
 import { postBoard } from "../../api/boardAPI";
+import { useRef } from "react";
 
 const initState = {
-    freeBno:0,
     freeTitle: "free Title",
     freeContent: "free Content",
-    nickname:""
+    nickname: "Register NickName"
 }
 
-const BoardRegisterComponent = ({moveList}) => {
+const BoardRegisterComponent = ({ moveList }) => {
+
+    const fileRef = useRef()
 
 
     const [board, setBoard] = useState({ ...initState })
-
 
 
     const handleChange = (e) => {
@@ -21,19 +22,36 @@ const BoardRegisterComponent = ({moveList}) => {
         setBoard({ ...board })
     }
 
-    const handleClickRegister = (e) =>{
 
-        postBoard(board).then(data =>{
-            
-            console.log(data)
+    const handleClickSave = (e) => {
 
-            alert(`${data.result}번 게시글 등록완료`)
-            
-            setBoard({...initState})
+        const formData = new FormData();
+
+        formData.append("freeTitle", board.freeTitle)
+        formData.append("freeContent", board.freeContent)
+        formData.append("nickname", board.nickname)
+
+        console.dir(fileRef.current)
+
+        const arr = fileRef.current.files
+
+        for (let freeFiles of arr) {
+            formData.append("freeFiles", freeFiles)
+        }
+
+        postBoard(formData).then(data => {
+
+            const rno = data.result
+            alert(`${rno}번 게시글이 등록되었습니다.`)
 
             moveList()
-
         })
+
+    }
+
+    const handleClickClear = (e) => {
+
+        fileRef.current.value = ''
     }
 
 
@@ -51,9 +69,17 @@ const BoardRegisterComponent = ({moveList}) => {
                 <div >
                     <input type="text" className="border-2 border-slate-500" name="freeContent" value={board.freeContent} onChange={handleChange}></input>
                 </div>
+                <div >
+                    <input type="text" className="border-2 border-slate-500" name="nickname" value={board.nickname} onChange={handleChange}></input>
+                </div>
+                <div className="m-2 p-2">
+                    <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="freeImages" onChange={handleChange} ></input>
+                </div>
             </div>
-            <div >
-                <button onClick={handleClickRegister} className=" border-2 border-slate-500 text-white font-semibold">Register</button>
+
+            <div className="m-2 p-2">
+                <button className="m-2 p-2 border-2 border-gray-500 " onClick={handleClickSave}>Register</button>
+                <button className="m-2 p-2 border-2 border-gray-500 " onClick={handleClickClear}>CLEARFILES</button>
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 package org.zerock.j2.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springdoc.core.annotations.ParameterObject;
@@ -9,16 +10,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.j2.dto.FreeBoardDTO;
+
 import org.zerock.j2.dto.FreeBoardListRcntDTO;
 import org.zerock.j2.dto.FreeGetBoardDTO;
 import org.zerock.j2.dto.PageRequestDTO;
 import org.zerock.j2.dto.PageResponseDTO;
 import org.zerock.j2.service.FreeBoardService;
+import org.zerock.j2.util.FileUploader;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,51 +31,73 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @CrossOrigin
 public class FreeBoardController {
-    
+
     private final FreeBoardService boardService;
 
-    @GetMapping(value ="/list")
-    public PageResponseDTO<FreeBoardListRcntDTO> list (@ParameterObject  PageRequestDTO requestDTO){
+    private final FileUploader uploader;
 
-        log.info(requestDTO+"FreeBoard Request DTO");
+    @GetMapping(value = "/list")
+    public PageResponseDTO<FreeBoardListRcntDTO> list(@ParameterObject PageRequestDTO requestDTO) {
+
+        log.info(requestDTO + "FreeBoard Request DTO");
 
         return boardService.listRcnt(requestDTO);
-        
+
     }
 
     @GetMapping("{freeBno}")
-    public FreeGetBoardDTO get(@PathVariable("freeBno") Long freeBno){
+    public FreeGetBoardDTO get(@PathVariable("freeBno") Long freeBno) {
 
-        log.info(freeBno+"Controller BNO");
+        log.info(freeBno + "Controller BNO");
 
-        return  boardService.getOne(freeBno);
+        return boardService.getOne(freeBno);
     } // 로직 이해 완료
 
 
     @PostMapping("/")
-    public Map<String, Long> postBoard(@RequestBody FreeGetBoardDTO boardDTO){
+    public Map<String, Long> postBoard(FreeGetBoardDTO boardDTO) {
 
         log.info(boardDTO);
+
+        List<String> fileNames = uploader.uploadFiles(boardDTO.getFreeFiles(), true);
+        boardDTO.setFreeImages(fileNames);
 
         Long newBno = boardService.Register(boardDTO);
 
         return Map.of("result", newBno);
     }
 
+
     @DeleteMapping("{freeBno}")
     public Map<String, Long> remove(@PathVariable("freeBno") Long freeBno) {
 
-        log.info(freeBno+ " ReplyRemove");
+        log.info(freeBno + " ReplyRemove");
 
         boardService.remove(freeBno);
 
         return Map.of("result", freeBno);
     }
 
-    @PutMapping("{freeBno}")
-    public Map<String, Long> modify(@RequestBody FreeBoardDTO boardDTO) {
+    @PostMapping("modify")
+    public Map<String, Long> modify(FreeGetBoardDTO boardDTO) {
 
-        log.info(boardDTO+ " freeModify");
+        log.info("----------------modify-----------------");
+        log.info("----------------modify-----------------");
+        log.info("----------------modify-----------------");
+        log.info(boardDTO);
+        // 기존 파일 및 업로드된 파일까지 추가하는 배열
+
+        // 기존 파일 및 업로드된 파일까지 추가하는 배열
+        if (boardDTO.getFreeFiles() != null && boardDTO.getFreeFiles().size() > 0) {
+
+            List<String> uploadFileNames = uploader.uploadFiles(boardDTO.getFreeFiles(), true);
+
+            List<String> oldFileNames = boardDTO.getFreeImages();
+
+            uploadFileNames.forEach(fname -> oldFileNames.add(fname));
+        }
+        log.info("After............");
+        log.info(boardDTO);
 
         boardService.modify(boardDTO);
 

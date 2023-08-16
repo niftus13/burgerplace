@@ -1,15 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { postReply } from "../../api/repliesAPI";
 
 
 const initState = {
     freeBno: 0,
     replyText: '',
-    replyFile: '',
     nickname: ''
 }
 
 const ReplyInput = ({ freeBno,refreshLast }) => {
+
+    const fileRef = useRef()
+
 
     const [reply, setReply] = useState({...initState})
 
@@ -19,22 +21,40 @@ const ReplyInput = ({ freeBno,refreshLast }) => {
         setReply({ ...reply })
     }
 
-    const handleClickRegister = (e) =>{
+    const handleClickSave = (e) => {
 
         reply.freeBno = freeBno;
 
-        // data = {result:223}
-        postReply(reply).then(data =>{
-            
-            console.log(data)
+        const formData = new FormData();
 
-            alert(`${data.result}번 댓글 등록완료`)
-            
+        formData.append("freeBno", reply.freeBno)
+        formData.append("replyText", reply.replyText)
+        formData.append("nickname", reply.nickname)
+
+        console.dir(fileRef.current)
+
+        const arr = fileRef.current.files
+
+        for (let freeFiles of arr) {
+            formData.append("freeFiles", freeFiles)
+        }
+
+        postReply(formData).then(data => {
+
+            const rno = data.result
+            alert(`${rno}번 게시글이 등록되었습니다.`)
+
             refreshLast()
 
             setReply({...initState})
 
         })
+
+    }
+
+    const handleClickClear = (e) => {
+
+        fileRef.current.value = ''
     }
 
 
@@ -47,8 +67,12 @@ const ReplyInput = ({ freeBno,refreshLast }) => {
                 <br></br>
                 <div >  <input type="text" className="border-2 border-slate-500" name="nickname" value={reply.nickname} onChange={handleChange}></input></div>
             </div>
+            <div className="m-2 p-2">
+                        <input className=" border-2 border-gray-500" type="file" ref={fileRef} multiple name="freeImages" ></input>
+                    </div>
             <div >
-                <button className=" border-2 border-slate-500 text-white font-semibold" onClick={handleClickRegister}>Register</button>
+                <button className=" border-2 border-slate-500 text-white font-semibold" onClick={handleClickSave}>Register</button>
+                <button className="m-2 p-2 border-2 border-gray-500 " onClick={handleClickClear}>CLEARFILES</button>
             </div>
         </div>
 

@@ -19,21 +19,22 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class FreeGetBoardDTO {
+public class FreeGetReplyDTO {
 
-    private long freeBno;
+    private long freeRno;
 
-    private String freeTitle;
-
-    private String freeContent;
+    private String replyText;
 
     private String nickname;
 
-        // DB 처리용
+    // bno값 추가
+    private long freeBno;
+
+    // DB 처리용
     @Builder.Default
     private List<String> freeImages = new ArrayList<>();
 
-    // 등록/수정 업로드된  파일 데이터를 수집하는 용도
+    // 등록/수정 업로드된 파일 데이터를 수집하는 용도
     @Builder.Default
     private List<MultipartFile> freeFiles = new ArrayList<>();
 
@@ -43,10 +44,9 @@ public class FreeGetBoardDTO {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime modDate;
 
+    // 수정시 쓰기위한 함수 2개 설정 바꾸는 함수들만
+    public void changeText(String text) {
+        this.replyText = text;
+    }
 
-
-
-
-    
-    
 }

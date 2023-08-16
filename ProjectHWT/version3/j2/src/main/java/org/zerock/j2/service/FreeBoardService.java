@@ -2,7 +2,6 @@ package org.zerock.j2.service;
 
 
 
-import org.zerock.j2.dto.FreeBoardDTO;
 import org.zerock.j2.dto.FreeBoardListRcntDTO;
 import org.zerock.j2.dto.FreeGetBoardDTO;
 import org.zerock.j2.dto.PageRequestDTO;
@@ -22,6 +21,6 @@ public interface FreeBoardService {
 
     void remove(Long freeBno);
 
-    void modify(FreeBoardDTO freeBoardDTO);
+    void modify(FreeGetBoardDTO freeGetBoardDTO);
 
 }

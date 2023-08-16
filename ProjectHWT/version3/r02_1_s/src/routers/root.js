@@ -15,12 +15,6 @@ const Board_Register = lazy(()=> import("../pages/board/RegisterPage"))
 const Board_Modify = lazy(()=> import("../pages/board/ModifyPage"))
 
 
-const Products_Index = lazy(()=> import("../pages/products/IndexPage"))
-const Products_List = lazy(()=> import("../pages/products/ListPage"))
-const Products_Register = lazy(()=> import("../pages/products/RegisterPage"))
-const Products_Read = lazy(()=> import("../pages/products/ReadPage"))
-const Products_Modify = lazy(()=> import("../pages/products/ModifyPage"))
-
 const Member_Login =  lazy(()=> import("../pages/member/LoginPage"))
 
 
@@ -60,28 +54,7 @@ const router = createBrowserRouter([
 
         ]
     },
-    {
-        path: "products",
-        element: <Suspense fallback={Loading}><Products_Index/></Suspense>,
-        children: [
-            {
-                path: "list",
-                element: <Suspense fallback={Loading}><Products_List/></Suspense>
-            },
-            {
-                path: "register",
-                element: <Suspense fallback={Loading}><Products_Register/></Suspense>
-            },
-            {
-                path: "read/:pno",
-                element: <Suspense fallback={Loading}><Products_Read/></Suspense>
-            },
-            {
-                path: "modify/:pno",
-                element: <Suspense fallback={Loading}><Products_Modify/></Suspense>
-            }
-        ]
-    }
+
 
 
 ])

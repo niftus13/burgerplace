@@ -6,17 +6,25 @@ export const getRepliesOfBoard = async (freeBno, page = 1, last = false) => {
   const res = await axios.get(`http://localhost:8080/api/replies/${freeBno}/list?page=${page}&last=${last}`)
 
   return res.data
+} // 완료
 
+
+
+export const postReply = async (fordata) => {
+
+  const header = {
+    headers: {
+        "Content-Type": "multipart/form-data",
+    }
 }
 
-export const postReply = async (reply) => {
+    const res = await axios.post('http://localhost:8080/api/replies/', fordata, header)
+  
+    return res.data
+  
+  } 
 
-  const res = await axios.post('http://localhost:8080/api/replies/' , reply)
-
-  return res.data
-
-}
-
+  
 export const getReply = async (freeRno) => {
 
   const res = await axios.get(`http://localhost:8080/api/replies/${freeRno}`)
@@ -32,10 +40,18 @@ export const deleteReply = async (freeRno) => {
   return res.data
 }
 
-export const putReply = async (reply) => {
 
-  const res = await axios.put(`http://localhost:8080/api/replies/${reply.freeRno}`, reply)
+export const putReply = async(formdata) => {
 
-  return res.data
+
+  const header = {
+       headers: {
+           "Content-Type": "multipart/form-data",
+       }
+   }
+  
+   const res = await axios.post('http://localhost:8080/api/replies/modify', formdata, header)
+   
+   return res.data
 
 }
