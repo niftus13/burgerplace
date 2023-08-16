@@ -35,6 +35,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
 
         QProduct product = QProduct.product;
         QProductImage productImage = QProductImage.productImage;
+
        
 
         JPQLQuery<Product> query = from(product);
