@@ -1,5 +1,6 @@
 package com.burgerplace.bproduct.repositroy.search;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -167,6 +168,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         QTag tag = QTag.tag;
 
 
+
         JPQLQuery<Product> query = from(product);
         query.leftJoin(product.images, productImage);
         query.leftJoin(reply).on(reply.product.eq(product));
@@ -201,6 +203,8 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         this.getQuerydsl().applyPagination(pageable, query);
         query.groupBy(product);
 
+
+
         
 
         JPQLQuery<ProductListDTO> dtoQuery = query.select(
@@ -210,7 +214,6 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
                         product.brand,
                         product.price,
                         productImage.pfname.min().as("pfname"),
-                        Expressions.list(tag.tagName),
                         reply.grade.avg().as("gradeAvg"),
                         reply.count().as("replyCnt"),
                         productImage.UUID.min().as("UUID")));

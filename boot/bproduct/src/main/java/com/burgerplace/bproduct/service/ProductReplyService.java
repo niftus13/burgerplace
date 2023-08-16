@@ -23,7 +23,5 @@ public interface ProductReplyService {
     // reply modify
     void modify(ProductReplyDTO replyDTO);
 
-
-
     
 }
