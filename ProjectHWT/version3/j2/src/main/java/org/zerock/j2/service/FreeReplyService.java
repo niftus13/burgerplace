@@ -1,8 +1,6 @@
 package org.zerock.j2.service;
 
 
-
-
 import org.zerock.j2.dto.FreeGetReplyDTO;
 import org.zerock.j2.dto.FreeReplyDTO;
 import org.zerock.j2.dto.FreeReplyPageRequestDTO;
