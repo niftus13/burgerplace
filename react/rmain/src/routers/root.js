@@ -11,6 +11,12 @@ const Board_Index = lazy(() => import("../pages/board/IndexPage"))
 const Board_List = lazy(() => import("../pages/board/ListPage"))
 const Board_Read = lazy(() => import("../pages/board/ReadPage"))
 
+const AdminIndex = lazy(() => import("../page/admin/AdminIndexPage"))
+const AdminPage = lazy(() => import("../page/admin/AdminPage"))
+const AdminRead = lazy(() => import("../page/admin/AdminReadPage"))
+const AdminModify = lazy(() => import("../page/admin/AdminModifyPage"))
+const SignUp = lazy(() => import("../page/member/SignUpPage"))
+
 const Products_Index = lazy(() => import("../pages/products/IndexPage"))
 const Products_List = lazy(() => import("../pages/products/ListPage"))
 const Products_Register = lazy(() => import("../pages/products/RegisterPage"))
@@ -71,7 +77,29 @@ const router = createBrowserRouter([
         element: <Suspense fallback={Loading}><Products_Modify/></Suspense>
       },
     ]
-  }
+  },
+  {
+    path: "admin",
+    element: <Suspense fallback={Loading}><AdminIndex></AdminIndex></Suspense>,
+    children: [
+        {
+            path: "list",
+            element: <Suspense fallback={Loading}><AdminPage></AdminPage></Suspense>
+        },
+        {
+            path: "read/:id",
+            element: <Suspense fallback={Loading}><AdminRead></AdminRead></Suspense>
+        },
+        {
+            path: "modify/:id",
+            element: <Suspense fallback={Loading}><AdminModify></AdminModify></Suspense>
+        },
+    ]
+},
+{
+    path: "member/register",
+    element: <Suspense fallback={Loading}><SignUp></SignUp></Suspense>
+}
 ])
 
 export default router;

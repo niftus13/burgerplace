@@ -45,10 +45,7 @@ const MainPage = () => {
         setSearch={setSearchData}
       />
       <h1>============작은지도============</h1>
-      <h1>H-----------------------------------------------H</h1>
-      <h1>H-----------------------------------------------H</h1>
-      <h1>H-----------------------------------------------H</h1>
-      <h1>H-----------------------------------------------H</h1>
+      <MapComponent></MapComponent>
       <h1>============작은지도============</h1>
       <h1>행사상품</h1>
       <MainListComponent queryObj={queryObjWithSize} movePage={moveList} moveRead={moveRead} />
