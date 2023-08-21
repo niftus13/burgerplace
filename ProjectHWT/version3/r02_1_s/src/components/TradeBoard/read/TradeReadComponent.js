@@ -46,10 +46,7 @@ const TradeReadComponent = ({ tradeBno,moveList,moveModify}) => {
                 <span>Writer - </span>
                 {board.nickname}
             </div>
-            <div>
-                <span>Regist Date - </span>
-                {board.regDate}
-            </div>
+
 
             <div className="m-2 p-2 ">
                     <ul className="list-none ">

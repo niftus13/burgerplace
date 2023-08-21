@@ -19,21 +19,21 @@ const initState = {
 
 
 
-const TradeReplyList = ({ freeBno, page, last, refresh, movePage, changeCurrent }) => {
+const TradeReplyList = ({ tradeBno, page, last, refresh, movePage, changeCurrent }) => {
 
-    console.log("Reply List...bno: " + freeBno)
+    console.log("Reply List...bno: " + tradeBno)
 
     // rendering시 에러방지
     const [listData, setListData] = useState(initState)
 
     useEffect(() => {
 
-        getTradeRepliesOfBoard(freeBno, page, last).then(data => {
+        getTradeRepliesOfBoard(tradeBno, page, last).then(data => {
             console.log(data)
             setListData(data)
         })
 
-    }, [freeBno,page, last, refresh])
+    }, [tradeBno,page, last, refresh])
 
 
     return (
@@ -45,15 +45,15 @@ const TradeReplyList = ({ freeBno, page, last, refresh, movePage, changeCurrent 
             <div>
                 <ul>
                 <li className="text-white border-2">
-                        <span className="mr-2">freeRno </span>
+                        <span className="mr-2">tradeRno </span>
                         <span className="m-2 mr-8 text-center">ReplyContent </span>
                  
                         </li>
-                    {listData.dtoList.map( reply => <li key={reply.freeRno}
+                    {listData.dtoList.map( reply => <li key={reply.tradeRno}
                     className="border-2"
-                    onClick={ ()=>changeCurrent(reply.freeRno)}
+                    onClick={ ()=>changeCurrent(reply.tradeRno)}
                     >
-                        {reply.freeRno} -- {reply.replyText}
+                        {reply.tradeRno} -- {reply.replyText}
                     </li>)}
                 </ul>
                 <ListPageComponent {...listData} movePage={movePage}></ListPageComponent>

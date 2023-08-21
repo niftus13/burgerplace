@@ -4,6 +4,7 @@
 import { useEffect, useState } from "react";
 import { getTradeList } from "../../api/TradeBoardAPI";
 import ListPageComponent from "../common/ListPageComponent";
+import styles from './TradeCss/TradeBoard.module.css';
 
 
 const initState = {
@@ -46,7 +47,7 @@ const TradeListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
                         <span className="mr-2">Number </span>
                         <span className="m-2 mr-8 text-center">Title </span>
                         <span className="m-16">ReplyCounts</span>
-                        <span className="ml-3 m-2">Regist Date</span>
+                        <span className="ml-3 m-2">Register Date</span>
                         </li>
                     {listData.dtoList.map(
                      ({tradeBno,tradeTitle,replyCount,regDate})   =>
@@ -58,7 +59,7 @@ const TradeListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
 
                 </ul>
 
-        <button onClick={() => moveRegister()} className="bg-sky-400 border-2 m-2 p-2 text-white font-bold">Register Page</button>
+        <button onClick={() => moveRegister()} className={styles.btn}>Register Page</button>
 
             </div>
             <div>

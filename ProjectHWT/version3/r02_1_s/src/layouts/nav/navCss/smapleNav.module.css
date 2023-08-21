@@ -1,0 +1,106 @@
+
+.link1{
+    font-size: 15px;
+    padding: 15px 15px;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: all 0.6s;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.link2{
+    font-size: 15px;
+    padding: 15px 15px;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: all 0.6s;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.link3{
+    font-size: 15px;
+    padding: 15px 15px;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: all 0.6s;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.link4{
+    font-size: 15px;
+    padding: 15px 15px;
+    background-color: white;
+    color: black;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    transition: all 0.6s;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+
+.link1 :focus{
+    outline: none;
+}
+
+.link1:hover{
+    background-color: red;
+    color: white;
+}
+
+.link2 :focus{
+    outline: none;
+}
+
+.link2:hover{
+    background-color: red;
+    color: white;
+}
+
+.link3 :focus{
+    outline: none;
+}
+
+.link3:hover{
+    background-color: red;
+    color: white;
+}
+
+.link4 :focus{
+    outline: none;
+}
+
+.link4:hover{
+    background-color: red;
+    color: white;
+}
+
+.link1 :focus{
+    outline: none;
+}
+
+.link1:hover{
+    background-color: red;
+    color: white;
+}
+
+.con2{
+    display: flex;
+    margin: 0.5%;
+    padding: 40px;
+    color: black;
+    font-family: sans-serif;
+    justify-content: center;
+    background-color: #f95959;
+    
+}

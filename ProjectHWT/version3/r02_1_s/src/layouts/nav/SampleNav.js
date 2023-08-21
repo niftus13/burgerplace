@@ -1,27 +1,32 @@
 import { Link } from "react-router-dom";
 import LoginNav from "./LoginNav";
+import styles from "./navCss/smapleNav.module.css";
 
 const SampleNav = () => {
 
 
     return (
-        <div className="flex m-6 p-6 text-black font-serif ">
 
-            <div className="m-5 text-3xl border-2 ">
-                <Link to="/">Main</Link>
+
+        <div>
+            <div className={styles.con2}>
+                <div>
+                    <Link className={styles.link1} to="/">Main</Link>
+                </div>
+                <div >
+                    <Link className={styles.link2} to="/about">About</Link>
+                </div>
+                <div>
+                    <Link className={styles.link3} to="/tboard/list">TradeBoard</Link>
+                </div>
+                <div>
+                    <Link className={styles.link4} to="/board/list">FreeBoard</Link>
+                </div>
+                <div>
+                    <LoginNav className={styles.link5} ></LoginNav>
+                </div>
             </div>
-            <div className="m-5 text-3xl border-2 ">
-                <Link to="/about">About</Link>
-            </div>
-            <div className="m-5 text-3xl border-2 ">
-                <Link to="/tboard/list">TradeBoard</Link>
-            </div>
-            <div className="m-5 text-3xl border-2 ">
-                <Link to="/board/list">FreeBoard</Link>
-            </div>
-            <div className="ml-80  text-2xl text-right">
-                <LoginNav></LoginNav>
-            </div>
+
 
         </div>
     );

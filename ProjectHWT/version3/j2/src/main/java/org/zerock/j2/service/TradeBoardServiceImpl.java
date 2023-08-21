@@ -53,6 +53,7 @@ public class TradeBoardServiceImpl implements TradeBoardService {
                 .tradeBno(reply.getTradeBno())
                 .tradeTitle(reply.getTradeTitle())
                 .tradeContent(reply.getTradeContent())
+                .nickname(reply.getNickname())
                 .tradeImages(reply.getTradeImages().stream().map(pi -> pi.getImageName()).collect(Collectors.toList()))
                 .build();
 

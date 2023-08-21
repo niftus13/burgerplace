@@ -3,6 +3,7 @@ import { deleteBoard, getOne, putBoard } from "../../../api/boardAPI"
 import { useEffect } from "react"
 import { useRef } from "react"
 
+
 const initState = {
     freeBno: 0,
     freeTitle: "",

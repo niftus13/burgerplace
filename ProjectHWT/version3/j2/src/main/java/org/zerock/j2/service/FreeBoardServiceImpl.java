@@ -60,6 +60,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
                 .freeBno(board.getFreeBno())
                 .freeTitle(board.getFreeTitle())
                 .freeContent(board.getFreeContent())
+                .nickname(board.getNickname())
                 .freeImages(board.getFreeImages().stream().map(pi -> pi.getImageName()).collect(Collectors.toList()))
                 .build();
 

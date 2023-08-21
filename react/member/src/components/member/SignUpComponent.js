@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerMember } from "../../api/memberAPI";
 
+
 const initState = {
     id: "",
     pw: "",
@@ -77,8 +78,8 @@ const SignUpComponent = () => {
                             required
                         />
                     </div>
-                    <div className="m-2 p-2 border-2">
-                        <button type="submit" className="bg-blue-400 p-2 text-white">
+                    <div  className="m-2 p-2 border-2">
+                        <button type="submit" className="Admin-Button">
                             회원가입
                         </button>
                     </div>
