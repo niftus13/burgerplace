@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useQueryObj from "../../hooks/useQueryObj";
-import BoardModifyComponent from "../../components/board/read/BoardModifyComponent";
+import TradeBoardModifyComponent from "../../components/TradeBoard/read/TradeBoardModifyComponent"
 
 const ModifyPage = () => {
 
@@ -12,7 +12,7 @@ const ModifyPage = () => {
         <div>
 
             <div>TradeBoard Modify Page {tradeBno}</div>
-            <BoardModifyComponent freeBno={tradeBno} moveList={moveList} moveRead={moveRead}></BoardModifyComponent>
+            <TradeBoardModifyComponent tradeBno={tradeBno} moveList={moveList} moveRead={moveRead}></TradeBoardModifyComponent>
 
         </div>);
 }

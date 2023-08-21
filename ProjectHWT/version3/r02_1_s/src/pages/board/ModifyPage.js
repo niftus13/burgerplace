@@ -11,7 +11,7 @@ const ModifyPage = () => {
     return (
         <div>
 
-            <div>Product Modify Page {freeBno}</div>
+            <div>FreeBoard Modify Page {freeBno}</div>
             <BoardModifyComponent freeBno={freeBno} moveList={moveList} moveRead={moveRead}></BoardModifyComponent>
 
         </div>);

@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.zerock.j2.dto.FreeGetReplyDTO;
-import org.zerock.j2.dto.FreeReplyDTO;
-import org.zerock.j2.dto.FreeReplyPageRequestDTO;
+
+
 import org.zerock.j2.dto.PageResponseDTO;
 import org.zerock.j2.dto.TradeGetReplyDTO;
 import org.zerock.j2.dto.TradeReplyDTO;
 import org.zerock.j2.dto.TradeReplyPageRequestDTO;
-import org.zerock.j2.service.FreeReplyService;
+
 import org.zerock.j2.service.TradeReplyService;
 import org.zerock.j2.util.FileUploader;
 

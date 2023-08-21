@@ -56,12 +56,16 @@ public class TradeBoardController {
     @PostMapping("/")
     public Map<String, Long> postBoard(TradeGetBoardDTO boardDTO) {
 
-        log.info(boardDTO);
+        log.info(boardDTO+" tradeBoard dto");
 
         List<String> fileNames = uploader.uploadFiles(boardDTO.getTradeFiles(), true);
         boardDTO.setTradeImages(fileNames);
 
+        log.info(fileNames+" tradeBoardDTO fileNames");
+
         Long newBno = boardService.Register(boardDTO);
+
+        log.info(newBno+" tBoard newBno");
 
         return Map.of("result", newBno);
     }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getRepliesOfBoard } from "../../api/repliesAPI";
+import { } from "../../api/repliesAPI";
 import ListPageComponent from "../common/ListPageComponent";
+import { getTradeRepliesOfBoard } from "../../api/TradeReplyAPI";
 
 
 
@@ -27,7 +28,7 @@ const TradeReplyList = ({ freeBno, page, last, refresh, movePage, changeCurrent 
 
     useEffect(() => {
 
-        getRepliesOfBoard(freeBno, page, last).then(data => {
+        getTradeRepliesOfBoard(freeBno, page, last).then(data => {
             console.log(data)
             setListData(data)
         })

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import ReplyList from "./ReplyList";
-import ReplyInput from "./ReplyInput";
-import ReplyRead from "./ReplyRead";
+import TradeReplyList from "./TradeReplyList"
+import TradeReplyInput from "./TradeReplyInput"
+import TradeReplyRead from "./TradeReplyRead";
+
 
 // 상태값 초기화
 const initState = {
-    freeBno: 0,
+    tradeBno: 0,
     page: 1,
     last: false,
     // 상태를 계속 바꾸게하기 위한 변수
@@ -15,7 +16,7 @@ const initState = {
 }
 
 // bno 1개가 propertities로 내려온다
-const TradeReplyWrapper = ({ freeBno }) => {
+const TradeReplyWrapper = ({ tradeBno }) => {
 
     // 상태 함수 설정
     const [data, setData] = useState(initState)
@@ -24,12 +25,12 @@ const TradeReplyWrapper = ({ freeBno }) => {
     // bno 및 last를 변경해준다.
     useEffect(() => {
 
-        data.freeBno = freeBno
+        data.tradeBno = tradeBno
         data.last = true
         data.page = 1
         setData({ ...data })
 
-    }, [freeBno])
+    }, [tradeBno])
 
     // page를 바꿔주는 기능 설정 num 을 받아서 변경
     const movePage = (num) => {
@@ -48,8 +49,8 @@ const TradeReplyWrapper = ({ freeBno }) => {
         setData({ ...data })
     }
 
-    const changeCurrent = (freeRno) => {
-        data.current = freeRno
+    const changeCurrent = (tradeRno) => {
+        data.current = tradeRno
         setData({ ...data })
     }
     const cancelRead = () => {
@@ -67,13 +68,12 @@ const TradeReplyWrapper = ({ freeBno }) => {
 
     return (
         <div>
-            <ReplyList {...data} movePage={movePage} changeCurrent={changeCurrent}></ReplyList>
-            {/*  current값을 기준으로 삼항연산자 처리 */}
-            {data.current !== 0 ? <ReplyRead
-                freeRno={data.current}
+            <TradeReplyList {...data} movePage={movePage} changeCurrent={changeCurrent}></TradeReplyList>
+            {data.current !== 0 ? <TradeReplyRead
+                tradeRno={data.current}
                 refreshPage={refreshPage}
-                cancelRead={cancelRead}></ReplyRead> : <></>}
-            <ReplyInput freeBno={freeBno} refreshLast={refreshLast}></ReplyInput>
+                cancelRead={cancelRead}></TradeReplyRead> : <></>}
+                <TradeReplyInput tradeBno={tradeBno} refreshLast={refreshLast}></TradeReplyInput>
         </div>
     );
 }

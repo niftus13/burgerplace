@@ -2,7 +2,7 @@
 //실제 axios에  전달하고 responseDTO를 받아서 처리해주는 Component
 
 import { useEffect, useState } from "react";
-import { getList } from "../../api/boardAPI";
+import { getTradeList } from "../../api/TradeBoardAPI";
 import ListPageComponent from "../common/ListPageComponent";
 
 
@@ -19,7 +19,7 @@ const initState = {
 }
 
 
-const ListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
+const TradeListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
     // rendering시 에러방지
     const [listData, setListData] = useState(initState)
 
@@ -27,7 +27,7 @@ const ListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
     // 그외는 자체적으로 제공하는 함수라 생각한다.
     useEffect(()=>{
 
-        getList(queryObj).then(data =>{
+        getTradeList(queryObj).then(data =>{
             console.log(data)
             setListData(data)
         })
@@ -49,12 +49,12 @@ const ListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
                         <span className="ml-3 m-2">Regist Date</span>
                         </li>
                     {listData.dtoList.map(
-                     ({freeBno,freeTitle,replyCount,regDate})   =>
+                     ({tradeBno,tradeTitle,replyCount,regDate})   =>
                      
-                     <li key={freeBno}
+                     <li key={tradeBno}
                      className="border-2 border-white text-white text-2xl font-bold"
-                     onClick={()=> moveRead(freeBno)}
-                     >{freeBno} - {freeTitle}  - [{replyCount}] - {regDate}</li>)}
+                     onClick={()=> moveRead(tradeBno)}
+                     >{tradeBno} - {tradeTitle}  - [{replyCount}] - {regDate}</li>)}
 
                 </ul>
 
@@ -68,4 +68,4 @@ const ListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
     );
 }
  
-export default ListComponent;
+export default TradeListComponent;

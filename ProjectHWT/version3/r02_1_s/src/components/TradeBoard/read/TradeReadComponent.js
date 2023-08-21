@@ -1,45 +1,45 @@
 import { useEffect, useState } from "react";
-import { getOne } from "../../../api/boardAPI";
+import { getTradeOne } from "../../../api/TradeBoardAPI";
 
 
 const initState = {
-    freeBno: 0,
-    freeTitle: '',
-    freeContent: '',
+    tradeBno: 0,
+    tradeTitle: '',
+    tradeContent: '',
     nickname: '',
     regDate: '',
     modDate: '',
-    freeImages : []
+    tradeImages : []
 }
 
-const ReadComponent = ({ freeBno,moveList,moveModify}) => {
+const TradeReadComponent = ({ tradeBno,moveList,moveModify}) => {
 
     const [board, setBoard] = useState(initState)
     
     useEffect(() => {
-        getOne(freeBno).then(data => {
+        getTradeOne(tradeBno).then(data => {
             setBoard(data)
         }).catch(e => {
             console.log(e)
            
         })
-    }, [freeBno])
+    }, [tradeBno])
 
     return (
         <div className="text-white text-2xl font-bold m-2 p-2">
             <div className="border-2 border-gray-400">
                 <span>Number - </span>
-                {board.freeBno}
+                {board.tradeBno}
             </div>
             <div className="border-2 border-gray-400">
                 <span>Title - </span>
-                {board.freeTitle}
+                {board.tradeTitle}
             </div>
             <div className="border-2 border-gray-400">
                 <div className="border-b-2">Content</div>
                 
                 <textare>
-                {board.freeContent}
+                {board.tradeContent}
                 </textare>
             </div>
             <div className="border-2 border-gray-400">
@@ -53,7 +53,7 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
 
             <div className="m-2 p-2 ">
                     <ul className="list-none ">
-                        {board.freeImages.map((imageName, idx) =>
+                        {board.tradeImages.map((imageName, idx) =>
                             <li key={idx}
                             className=" w-[50vh]"
                             >
@@ -68,11 +68,11 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
                 className="bg-sky-400 border-2 m-2 p-2 text-white font-bold"
                 onClick={moveList}
                 >List</button>
-                <button onClick={() => moveModify(freeBno)} className="bg-sky-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
+                <button onClick={() => moveModify(tradeBno)} className="bg-sky-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
             </div>
 
         </div>
     );
 }
 
-export default ReadComponent;
+export default TradeReadComponent;

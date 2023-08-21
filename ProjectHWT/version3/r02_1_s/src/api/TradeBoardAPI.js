@@ -2,7 +2,7 @@ import axios from "axios"
 import { createSearchParams } from "react-router-dom"
 
 
-export const getList = async (queryObj) =>{
+export const getTradeList = async (queryObj) =>{
 
     const queryString = createSearchParams(queryObj).toString()
 
@@ -12,7 +12,7 @@ export const getList = async (queryObj) =>{
 } // 완료
 
 
-export const postBoard = async (fordata) => {
+export const postTradeBoard = async (fordata) => {
 
   const header = {
     headers: {
@@ -28,7 +28,7 @@ export const postBoard = async (fordata) => {
 
 
 
-export const getOne = async (tradeBno) =>{
+export const getTradeOne = async (tradeBno) =>{
 
     const res = await axios.get(`http://localhost:8080/api/tboard/${tradeBno}`)
 
@@ -37,7 +37,7 @@ export const getOne = async (tradeBno) =>{
 
 
 
-export const deleteBoard = async (tradeBno) => {
+export const deleteTradeBoard = async (tradeBno) => {
 
     const res = await axios.delete(`http://localhost:8080/api/tboard/${tradeBno}`)
   
@@ -46,7 +46,7 @@ export const deleteBoard = async (tradeBno) => {
 
 
 
-export const putBoard = async(formdata) => {
+export const putTradeBoard = async(formdata) => {
 
 
     const header = {

@@ -72,6 +72,8 @@ public class TradeBoardServiceImpl implements TradeBoardService {
                 .nickname(tradeGetBoardDTO.getNickname())
                 .build();
 
+                log.info(board+" tradeBoard simple");
+
         tradeGetBoardDTO.getTradeImages().forEach(imageName -> {
             board.addImage(imageName);
         });
