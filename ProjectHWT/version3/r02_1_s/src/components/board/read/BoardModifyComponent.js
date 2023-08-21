@@ -87,10 +87,12 @@ const BoardModifyComponent = ({ freeBno, moveList, moveRead }) => {
 
     return (
         <div>
-            <div>
+            <div className="bg-red-300">
+
                 <div className="m-2 p-2">
                     {board.freeBno}
                 </div>
+
                 <div className="m-2 p-2 ">
 
                     <input

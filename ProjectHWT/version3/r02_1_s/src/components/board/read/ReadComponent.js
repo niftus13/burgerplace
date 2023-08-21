@@ -9,24 +9,26 @@ const initState = {
     nickname: '',
     regDate: '',
     modDate: '',
-    freeImages : []
+    freeImages: []
 }
 
-const ReadComponent = ({ freeBno,moveList,moveModify}) => {
+const ReadComponent = ({ freeBno, moveList, moveModify }) => {
 
     const [board, setBoard] = useState(initState)
-    
+
     useEffect(() => {
         getOne(freeBno).then(data => {
             setBoard(data)
         }).catch(e => {
             console.log(e)
-           
+
         })
     }, [freeBno])
 
     return (
-        <div className="text-white text-2xl font-bold m-2 p-2">
+        <div className="text-black text-2xl font-bold m-2 p-2">
+            <div className="mb-5 flex justify-center text-red-500">Read Page</div>
+
             <div className="border-2 border-gray-400">
                 <span>Number - </span>
                 {board.freeBno}
@@ -37,9 +39,9 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
             </div>
             <div className="border-2 border-gray-400">
                 <div className="border-b-2">Content</div>
-                
+
                 <textare>
-                {board.freeContent}
+                    {board.freeContent}
                 </textare>
             </div>
             <div className="border-2 border-gray-400">
@@ -49,23 +51,23 @@ const ReadComponent = ({ freeBno,moveList,moveModify}) => {
 
 
             <div className="m-2 p-2 ">
-                    <ul className="list-none ">
-                        {board.freeImages.map((imageName, idx) =>
-                            <li key={idx}
+                <ul className="list-none ">
+                    {board.freeImages.map((imageName, idx) =>
+                        <li key={idx}
                             className=" w-[50vh]"
-                            >
-                                <img 
+                        >
+                            <img
                                 src={`http://localhost/${imageName}`} alt="No image"></img>
-                            </li>)}
-                    </ul>
-                </div>
+                        </li>)}
+                </ul>
+            </div>
 
             <div>
-            <button 
-                className="bg-sky-400 border-2 m-2 p-2 text-white font-bold"
-                onClick={moveList}
+                <button
+                    className="bg-red-400 border-2 m-2 p-2 text-white font-bold"
+                    onClick={moveList}
                 >List</button>
-                <button onClick={() => moveModify(freeBno)} className="bg-sky-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
+                <button onClick={() => moveModify(freeBno)} className="bg-red-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
             </div>
 
         </div>

@@ -11,7 +11,7 @@ const ModifyPage = () => {
     return (
         <div>
 
-            <div>FreeBoard Modify Page {freeBno}</div>
+            <div className="flex justify-center font-bold text-2xl text-red-300">FreeBoard Modify Page {freeBno}</div>
             <BoardModifyComponent freeBno={freeBno} moveList={moveList} moveRead={moveRead}></BoardModifyComponent>
 
         </div>);

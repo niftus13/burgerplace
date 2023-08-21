@@ -43,17 +43,17 @@ const TradeListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
 
             <div>
                 <ul >
-                    <li className="text-white font-bold">
-                        <span className="mr-2">Number </span>
-                        <span className="m-2 mr-8 text-center">Title </span>
-                        <span className="m-16">ReplyCounts</span>
-                        <span className="ml-3 m-2">Register Date</span>
+                    <li className="text-red-400 font-bold flex justify-center">
+                        <div className="m-2">Number </div>
+                        <div className="m-2">Title </div>
+                        <div className="m-2">ReplyCounts</div>
+                        <div className="m-2">Register Date</div>
                         </li>
                     {listData.dtoList.map(
                      ({tradeBno,tradeTitle,replyCount,regDate})   =>
                      
                      <li key={tradeBno}
-                     className="border-2 border-white text-white text-2xl font-bold"
+                     className="flex justify-center border-2 border-white text-black text-1xl font-bold"
                      onClick={()=> moveRead(tradeBno)}
                      >{tradeBno} - {tradeTitle}  - [{replyCount}] - {regDate}</li>)}
 

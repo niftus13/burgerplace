@@ -51,7 +51,7 @@ const TradeListPage = () => {
 
     return (
         <div>
-            <div className="text-white text-3xl text-center font-bold">Trade Board</div>
+            <div className="text-red-300 text-3xl text-center font-bold">Trade Board</div>
             <TradeListSearchComponent
                 queryObj={queryObj}
                 moveSearch={moveSearch}

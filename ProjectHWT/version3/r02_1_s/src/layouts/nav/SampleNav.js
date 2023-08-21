@@ -14,7 +14,7 @@ const SampleNav = () => {
                     <Link className={styles.link1} to="/">Main</Link>
                 </div>
                 <div >
-                    <Link className={styles.link2} to="/about">About</Link>
+                    <Link className={styles.link2} to="/about">Login</Link>
                 </div>
                 <div>
                     <Link className={styles.link3} to="/tboard/list">TradeBoard</Link>

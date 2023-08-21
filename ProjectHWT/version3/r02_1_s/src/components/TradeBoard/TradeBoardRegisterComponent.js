@@ -59,8 +59,8 @@ const TradeBoardRegisterComponent = ({ moveList }) => {
 
 
     return (
-        <div className="m-8 bg-gradient-to-r from-red-300 to-amber-400 border-4 ">
-            <div className="text-black font-extrabold ">TradeBoard Register</div>
+        <div className="m-8 bg-gradient-to-r from-red-300 to-red-400 border-4 ">
+            <div className="text-white font-extrabold ">TradeBoard Register</div>
             <div className="m-2 text-black">
                 <div>
                     <input type="text" className="border-2 border-slate-500" name="freeTitle" value={board.tradeTitle} onChange={handleChange}></input>

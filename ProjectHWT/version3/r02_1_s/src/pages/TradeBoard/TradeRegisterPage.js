@@ -18,7 +18,7 @@ const RegisterPage = () => {
 
     return ( 
         <div 
-        className="text-3xl text-white text-center">
+        className="text-3xl text-white text-center bg-red-400">
             TradeBoard Register Page
             <TradeBoardRegisterComponent moveRegister={moveRegister} moveList={moveList}></TradeBoardRegisterComponent>
         </div>

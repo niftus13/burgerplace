@@ -38,13 +38,13 @@ const TradeReplyList = ({ tradeBno, page, last, refresh, movePage, changeCurrent
 
     return (
 
-        <div className="border-2 border-black text-white">
+        <div className="border-2 border-black text-black bg-rose-200">
             <div className="border-b-2">
                 Reply List
             </div>
             <div>
                 <ul>
-                <li className="text-white border-2">
+                <li className="text-white border-2 mb-5">
                         <span className="mr-2">tradeRno </span>
                         <span className="m-2 mr-8 text-center">ReplyContent </span>
                  

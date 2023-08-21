@@ -9,7 +9,7 @@ const AboutPage = () => {
     
 
     return ( 
-        <div className="bg-blue-200">
+        <div className="bg-red-300">
         <BasicLayout></BasicLayout>
         <div className="text-white text-center text-2xl font-mono ">
         

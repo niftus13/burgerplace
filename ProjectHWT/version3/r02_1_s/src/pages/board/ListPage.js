@@ -51,7 +51,7 @@ const ListPage = () => {
     return (
         <div>
             {/* queryobj를 전달 해준다.  */}
-            <div className="text-white text-3xl text-center font-bold">Free Board</div>
+            <div className="text-red-300 text-3xl text-center font-bold">Free Board</div>
             <ListSearchComponent 
             queryObj={queryObj} 
             moveSearch={moveSearch} 

@@ -23,7 +23,7 @@ const ListSearchComponent = ({ queryObj, moveSearch, changeSize }) => {
 
     console.log(chSize.size)
     return (
-        <div className="m-2 p-4 bg-blue-300 border-2 ">
+        <div className="m-2 p-4 bg-red-300 border-2 ">
             <select className="boarder-2 m-2 p-2 font-medium "
                 value={searchObj.type}
                 onChange={e => {

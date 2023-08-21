@@ -59,7 +59,7 @@ const BoardRegisterComponent = ({ moveList }) => {
 
 
     return (
-        <div className="m-8 bg-gradient-to-r from-red-300 to-amber-400 border-4 ">
+        <div className="m-8 bg-gradient-to-r from-red-300 to-red-400 border-4 ">
             <div className="text-black font-extrabold ">Board Register</div>
             <div className="m-2 text-black">
                 <div>

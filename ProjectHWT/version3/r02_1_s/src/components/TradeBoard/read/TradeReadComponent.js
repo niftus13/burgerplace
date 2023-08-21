@@ -26,7 +26,8 @@ const TradeReadComponent = ({ tradeBno,moveList,moveModify}) => {
     }, [tradeBno])
 
     return (
-        <div className="text-white text-2xl font-bold m-2 p-2">
+        <div className="text-black text-2xl font-bold m-2 p-2">
+            <div className="mb-5 flex justify-center text-red-500">Read Page</div>
             <div className="border-2 border-gray-400">
                 <span>Number - </span>
                 {board.tradeBno}
@@ -62,10 +63,10 @@ const TradeReadComponent = ({ tradeBno,moveList,moveModify}) => {
 
             <div>
             <button 
-                className="bg-sky-400 border-2 m-2 p-2 text-white font-bold"
+                className="bg-red-400 border-2 m-2 p-2 text-white font-bold"
                 onClick={moveList}
                 >List</button>
-                <button onClick={() => moveModify(tradeBno)} className="bg-sky-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
+                <button onClick={() => moveModify(tradeBno)} className="bg-red-400 border-2 m-2 p-2 text-white font-bold">Modify</button>
             </div>
 
         </div>

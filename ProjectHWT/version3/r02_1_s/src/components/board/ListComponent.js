@@ -42,17 +42,17 @@ const ListComponent = ({queryObj,movePage, moveRead, moveRegister}) => {
 
             <div>
                 <ul >
-                    <li className="text-white font-bold">
-                        <span className="mr-2">Number </span>
-                        <span className="m-2 mr-8 text-center">Title </span>
-                        <span className="m-16">ReplyCounts</span>
-                        <span className="ml-3 m-2">Register Date</span>
+                    <li className="text-red-400 font-bold flex justify-center">
+                        <span className="m-2">Number </span>
+                        <span className="m-2">Title </span>
+                        <span className="m-2">ReplyCounts</span>
+                        <span className="m-2">Register Date</span>
                         </li>
                     {listData.dtoList.map(
                      ({freeBno,freeTitle,replyCount,regDate})   =>
                      
                      <li key={freeBno}
-                     className="border-2 border-white text-white text-2xl font-bold"
+                     className="flex justify-center border-2 border-white text-black text-1xl font-bold"
                      onClick={()=> moveRead(freeBno)}
                      >{freeBno} - {freeTitle}  - [{replyCount}] - {regDate}</li>)}
 
