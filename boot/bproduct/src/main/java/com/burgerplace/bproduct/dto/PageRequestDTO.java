@@ -1,4 +1,5 @@
-package com.burgerplace.bproduct.dto;
+package com.burgerplace.member.dto;
+
 
 import lombok.Data;
 import lombok.ToString;
@@ -20,10 +21,10 @@ public class PageRequestDTO {
 
     public PageRequestDTO(int page, int size) {
         this(page,size,null, null);
-
+        
     }
     public PageRequestDTO(int page, int size, String type, String keyword){
-
+    
         this.page = page <=0 ? 1: page;
         this.size = size <0 || size >= 100? 10 : size;
 

@@ -1,4 +1,4 @@
-package com.burgerplace.bproduct.dto;
+package com.burgerplace.member.dto;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -12,22 +12,22 @@ import lombok.Data;
 @Data
 
 public class PageResponseDTO<E> {
-
+    
     private List<E> dtoList;
-
+    
     private long totalCount;
 
     private List<Integer> pageNums;
 
     private boolean prev, next;
-
+    
     private PageRequestDTO requestDTO;
-
+    
     private int page, size, start, end;
 
 
     public PageResponseDTO(List<E> dtoList, long totalCount, PageRequestDTO pageRequestDTO){
-
+       
         this.dtoList = dtoList;
         this.totalCount = totalCount;
         this.requestDTO = pageRequestDTO;

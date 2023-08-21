@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
-import com.burgerplace.bproduct.dto.PageRequestDTO;
+
 import com.burgerplace.bproduct.dto.PageResponseDTO;
 import com.burgerplace.bproduct.dto.ProductListDTO;
 import com.burgerplace.bproduct.entity.Product;

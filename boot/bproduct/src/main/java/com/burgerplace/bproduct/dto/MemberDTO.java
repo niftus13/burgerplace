@@ -1,4 +1,4 @@
-package com.burgerplace.bproduct.dto;
+package com.burgerplace.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,8 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MemberDTO {
     
-    private  String email;
-    private  String pw;
-    private  String nickname;
-    private  boolean admin;    
+    private String id;
+
+    private String pw;
+
+    private String nickname;
+
+    private Boolean admin;
+
+    private boolean delFlag;
+
 }
