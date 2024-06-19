@@ -1,14 +1,14 @@
-package com.burgerplace.main.repository.search;
+package com.burgerplace.main.mainPage.repository.search;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import com.burgerplace.main.dto.MainListRcntDTO;
-import com.burgerplace.main.dto.PageRequestDTO;
-import com.burgerplace.main.dto.PageResponseDTO;
-import com.burgerplace.main.entity.Main;
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.mainPage.dto.MainListRcntDTO;
+import com.burgerplace.main.mainPage.entity.Main;
 
 public interface MainSearch {
 

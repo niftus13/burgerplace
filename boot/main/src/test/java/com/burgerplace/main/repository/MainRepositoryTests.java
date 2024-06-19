@@ -14,11 +14,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.burgerplace.main.dto.MainListRcntDTO;
-import com.burgerplace.main.dto.MainReadDTO;
-import com.burgerplace.main.dto.PageRequestDTO;
-import com.burgerplace.main.dto.PageResponseDTO;
-import com.burgerplace.main.entity.Main;
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.mainPage.dto.MainListRcntDTO;
+import com.burgerplace.main.mainPage.dto.MainReadDTO;
+import com.burgerplace.main.mainPage.entity.Main;
+import com.burgerplace.main.mainPage.repository.MainRepository;
 
 import lombok.extern.log4j.Log4j2;
 

@@ -10,7 +10,7 @@ public class SalesBoardDTO {
 
     private String category; // 카테고리
 
-    private String title; // 제목(DB설계엔 없는데 필요할거같아서 넣음)
+    private String title; // 제목(DB설계 부재)
 
     private String eventInfo; // 내용(할인정보)
 

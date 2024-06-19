@@ -1,4 +1,6 @@
-package com.burgerplace.main.dto;
+package com.burgerplace.main.mainPage.dto;
+
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

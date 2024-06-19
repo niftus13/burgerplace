@@ -1,4 +1,4 @@
-package com.burgerplace.main.entity;
+package com.burgerplace.main.mainPage.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

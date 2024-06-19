@@ -38,6 +38,15 @@ dependencies {
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
 
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+	implementation 'com.google.code.gson:gson:2.10.1'
+	
+	implementation 'net.coobird:thumbnailator:0.4.16'
+
+
 	// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
 	// Entity => dto || dto => Entity
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.1.1'
@@ -74,5 +83,5 @@ sourceSets {
 
 // compileJava전에  clean작업 해달라고하는것
 // 3버전 전용이지 2버전 용이아니다.
-// compileJava.dependsOn('clean')
-// compileTestJava.dependsOn('clean')
+compileJava.dependsOn('clean')
+compileTestJava.dependsOn('clean')

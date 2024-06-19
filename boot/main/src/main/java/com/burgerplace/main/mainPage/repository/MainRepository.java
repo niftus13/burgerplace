@@ -1,4 +1,4 @@
-package com.burgerplace.main.repository;
+package com.burgerplace.main.mainPage.repository;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.burgerplace.main.dto.MainReadDTO;
-import com.burgerplace.main.entity.Main;
-import com.burgerplace.main.repository.search.MainSearch;
+import com.burgerplace.main.mainPage.dto.MainReadDTO;
+import com.burgerplace.main.mainPage.entity.Main;
+import com.burgerplace.main.mainPage.repository.search.MainSearch;
 
 public interface MainRepository extends JpaRepository<Main, Long>, MainSearch{
 

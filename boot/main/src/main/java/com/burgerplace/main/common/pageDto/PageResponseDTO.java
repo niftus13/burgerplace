@@ -1,4 +1,4 @@
-package com.burgerplace.main.dto;
+package com.burgerplace.main.common.pageDto;
 
 import java.util.List;
 import java.util.stream.IntStream;

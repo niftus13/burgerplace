@@ -1,4 +1,4 @@
-package com.burgerplace.main.service;
+package com.burgerplace.main.mainPage.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,11 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.burgerplace.main.entity.Reply;
-import com.burgerplace.main.dto.PageResponseDTO;
-import com.burgerplace.main.dto.ReplyDTO;
-import com.burgerplace.main.dto.ReplyPageRequestDTO;
-import com.burgerplace.main.repository.ReplyRepository;
+
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.mainPage.dto.ReplyDTO;
+import com.burgerplace.main.mainPage.dto.ReplyPageRequestDTO;
+import com.burgerplace.main.mainPage.entity.Reply;
+import com.burgerplace.main.mainPage.repository.ReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

@@ -1,4 +1,4 @@
-package com.burgerplace.main.entity;
+package com.burgerplace.main.mainPage.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

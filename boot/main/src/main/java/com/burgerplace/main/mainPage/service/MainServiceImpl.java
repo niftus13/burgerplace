@@ -1,16 +1,16 @@
-package com.burgerplace.main.service;
+package com.burgerplace.main.mainPage.service;
 
 import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.burgerplace.main.dto.MainDTO;
-import com.burgerplace.main.dto.MainListRcntDTO;
-import com.burgerplace.main.dto.PageRequestDTO;
-import com.burgerplace.main.dto.PageResponseDTO;
-import com.burgerplace.main.entity.Main;
-import com.burgerplace.main.repository.MainRepository;
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.mainPage.dto.MainDTO;
+import com.burgerplace.main.mainPage.dto.MainListRcntDTO;
+import com.burgerplace.main.mainPage.entity.Main;
+import com.burgerplace.main.mainPage.repository.MainRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

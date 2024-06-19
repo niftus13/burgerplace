@@ -1,4 +1,4 @@
-package com.burgerplace.main.repository.search;
+package com.burgerplace.main.mainPage.repository.search;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,12 +8,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
-import com.burgerplace.main.dto.MainListRcntDTO;
-import com.burgerplace.main.dto.PageRequestDTO;
-import com.burgerplace.main.dto.PageResponseDTO;
-import com.burgerplace.main.entity.Main;
-import com.burgerplace.main.entity.QMain;
-import com.burgerplace.main.entity.QReply;
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.mainPage.dto.MainListRcntDTO;
+import com.burgerplace.main.mainPage.entity.Main;
+import com.burgerplace.main.mainPage.entity.QMain;
+import com.burgerplace.main.mainPage.entity.QReply;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
