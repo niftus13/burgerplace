@@ -14,7 +14,7 @@ import com.burgerplace.main.common.pageDto.PageResponseDTO;
 import com.burgerplace.main.mainPage.dto.ReplyDTO;
 import com.burgerplace.main.mainPage.dto.ReplyPageRequestDTO;
 import com.burgerplace.main.mainPage.entity.Reply;
-import com.burgerplace.main.mainPage.repository.ReplyRepository;
+import com.burgerplace.main.mainPage.repository.MainReplyRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class ReplyServiceImpl implements ReplyService{
     
-    private final ReplyRepository replyRepository;
+    private final MainReplyRepository replyRepository;
     private final ModelMapper modelMapper;
 
     @Override
