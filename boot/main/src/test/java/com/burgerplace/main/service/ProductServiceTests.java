@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.burgerplace.main.productPage.service.ProductService;
+
 @SpringBootTest
 @Log4j2
 public class ProductServiceTests {

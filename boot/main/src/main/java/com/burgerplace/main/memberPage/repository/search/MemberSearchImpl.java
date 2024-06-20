@@ -11,6 +11,7 @@ import com.burgerplace.main.common.pageDto.PageRequestDTO;
 import com.burgerplace.main.common.pageDto.PageResponseDTO;
 import com.burgerplace.main.memberPage.dto.MemberDTO;
 import com.burgerplace.main.memberPage.entity.MemberEntity;
+import com.burgerplace.main.memberPage.entity.QMemberEntity;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;

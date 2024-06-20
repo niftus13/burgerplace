@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 
-
-
+import com.burgerplace.main.common.pageDto.PageRequestDTO;
+import com.burgerplace.main.common.pageDto.PageResponseDTO;
+import com.burgerplace.main.productPage.domain.Product;
+import com.burgerplace.main.productPage.dto.ProductListDTO;
+import com.burgerplace.main.productPage.repository.ProductRepository;
 
 import jakarta.transaction.Transactional;
 

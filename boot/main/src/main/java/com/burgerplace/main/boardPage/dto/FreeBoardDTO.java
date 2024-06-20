@@ -7,9 +7,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Data
+@EqualsAndHashCode(callSuper=false) 
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

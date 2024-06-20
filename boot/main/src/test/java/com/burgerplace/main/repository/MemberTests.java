@@ -6,19 +6,22 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.burgerplace.main.memberPage.entity.MemberEntity;
+import com.burgerplace.main.memberPage.repository.MemberEntityRepository;
+
 
 
 @SpringBootTest
 public class MemberTests {
 
     @Autowired
-    memberRepository memberRepository;
+    MemberEntityRepository memberRepository;
 
     @Test
     public  void testInsert(){
 
-        Member member = Member.builder()
-                .email("user01@gmail.com")
+        MemberEntity member = MemberEntity.builder()
+                .id("user01@gmail.com")
                 .pw("1111")
                 .nickname("USER00")
                 .admin(true)
@@ -30,9 +33,9 @@ public class MemberTests {
     public  void testRead(){
         String email = "user01@gmail.com";
 
-        Optional<Member> result = memberRepository.findById(email);
+        Optional<MemberEntity> result = memberRepository.findById(email);
 
-        Member member = result.orElseThrow();
+        MemberEntity member = result.orElseThrow();
 
         System.out.println(member);
     }

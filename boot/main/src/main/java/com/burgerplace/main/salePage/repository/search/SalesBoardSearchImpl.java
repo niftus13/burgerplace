@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import com.burgerplace.main.salePage.domain.QSalesEntity;
 import com.burgerplace.main.salePage.domain.SalesEntity;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
@@ -25,7 +26,7 @@ public class SalesBoardSearchImpl extends QuerydslRepositorySupport implements S
     public Page<SalesEntity> search1(String searchType, String keyword, Pageable pageable) {
         
         /// QueryDomain 이 필요하다
-        QSalesBoard board = QSalesBoard.board;
+        QSalesEntity board = QSalesEntity.salesEntity;
         // Query를 동적으로 만들어내는 작업
         // SQL 문을 객체화 시켜놓은것
         JPQLQuery<SalesEntity> query = from(board);
@@ -41,8 +42,9 @@ public class SalesBoardSearchImpl extends QuerydslRepositorySupport implements S
 
                 switch(type){
                     case "t" -> searchBuilder.or(board.title.contains(keyword));
-                    case "c" -> searchBuilder.or(board.content.contains(keyword));
-                    case "w" -> searchBuilder.or(board.writer.contains(keyword));
+                    case "c" -> searchBuilder.or(board.category.contains(keyword));
+                    case "w" -> searchBuilder.or(board.eventInfo.contains(keyword));
+                    case "e" -> searchBuilder.or(board.eventInfo.contains(keyword));
                 }
 
 

@@ -5,6 +5,7 @@ import com.burgerplace.main.common.pageDto.PageRequestDTO;
 import lombok.*;
 
 @Data
+@EqualsAndHashCode(callSuper=false) 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

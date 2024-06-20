@@ -12,6 +12,10 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import com.burgerplace.main.common.pageDto.PageRequestDTO;
 import com.burgerplace.main.common.pageDto.PageResponseDTO;
 import com.burgerplace.main.productPage.domain.Product;
+import com.burgerplace.main.productPage.domain.QProduct;
+import com.burgerplace.main.productPage.domain.QProductImage;
+import com.burgerplace.main.productPage.domain.QProductReply;
+import com.burgerplace.main.productPage.domain.QTag;
 import com.burgerplace.main.productPage.dto.ProductListDTO;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Projections;

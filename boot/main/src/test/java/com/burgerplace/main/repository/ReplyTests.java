@@ -8,6 +8,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.burgerplace.main.productPage.domain.Product;
+import com.burgerplace.main.productPage.domain.ProductReply;
+import com.burgerplace.main.productPage.dto.ReplyPageRequestDTO;
+import com.burgerplace.main.productPage.repository.ProductReplyRepository;
+import com.burgerplace.main.productPage.service.ProductReplyService;
 
 import lombok.extern.log4j.Log4j2;
 
