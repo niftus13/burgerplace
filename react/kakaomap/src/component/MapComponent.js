@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 
+// kakao maps
 const MapComponent = () => {
     const [currentLocation, setCurrentLocation] = useState({ lat: 37.5665, lng: 126.9780 });
     const [status, setStatus] = useState('');

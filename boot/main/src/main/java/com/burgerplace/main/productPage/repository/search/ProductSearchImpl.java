@@ -169,8 +169,6 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         QProductReply reply = QProductReply.productReply;
         QTag tag = QTag.tag;
 
-
-
         JPQLQuery<Product> query = from(product);
         query.leftJoin(product.images, productImage);
         query.leftJoin(reply).on(reply.product.eq(product));
@@ -204,11 +202,7 @@ public class ProductSearchImpl extends QuerydslRepositorySupport implements Prod
         }
         this.getQuerydsl().applyPagination(pageable, query);
         query.groupBy(product);
-
-
-
         
-
         JPQLQuery<ProductListDTO> dtoQuery = query.select(
                 Projections.bean(ProductListDTO.class,
                         product.pno,

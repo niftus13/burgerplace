@@ -74,9 +74,7 @@ public class ProductServiceImpl implements ProductService {
                     .brand(crawlingProduct.getBrand())
                     
                     .build();
-
             
-
             product.addTag(crawlingProduct.getBrand());
 
             product.addTag(crawlingProduct.getPname());

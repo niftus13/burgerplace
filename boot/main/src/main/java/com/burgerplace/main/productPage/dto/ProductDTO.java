@@ -22,7 +22,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ProductDTO {
 
-    // 기본적으로 Entity와 맞춰두고 variation을 준다
+    
 
     private Long pno;
     private String pname;
